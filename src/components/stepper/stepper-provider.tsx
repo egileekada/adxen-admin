@@ -12,11 +12,16 @@ export const StepperProvider = ({
   const [currentStep, setCurrentStep] = useState(0);
   const [data, setData] = useState<Partial<FormData>>({});
 
+  const isLastStep = currentStep === steps.length - 1;
+  const isFirstStep = currentStep === 0;
+
   const nextStep = () => {
+    if (isLastStep) return;
     setCurrentStep((step) => step + 1);
   };
 
   const prevStep = () => {
+    if (currentStep === 0) return;
     setCurrentStep((step) => step - 1);
   };
 
@@ -30,6 +35,8 @@ export const StepperProvider = ({
         prevStep,
         setCurrentStep,
         setData,
+        isLastStep,
+        isFirstStep,
       }}
     >
       {children}

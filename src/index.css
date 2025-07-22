@@ -138,12 +138,17 @@
   --color-hint: #27272a4d;
   --color-soft: #27272a0f;
   --color-border-darker: #27272a26;
+  --color-bg-subtle: #fafafa;
+  --color-basic-blue-accent: #437dfc;
+  --color-basic-green-accent: #4fc660;
+  --color-blue-infomative: #2b5df3;
 
   /* fonts */
   --font-inter: "Inter", sans-serif;
 
   /* border */
   --border-default: #27272a1a;
+  --border-darker: #27272a;
 }
 
 @layer base {
