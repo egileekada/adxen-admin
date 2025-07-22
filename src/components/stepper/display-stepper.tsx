@@ -1,9 +1,9 @@
-import { useStepper } from "@/hooks/use-stepper";
+import { useStepperStore } from "@/hooks/use-stepper-store";
 import { cn } from "@/lib/utils";
 
 export const DisplayStepper = () => {
-  const { steps, currentStep } = useStepper();
-  console.log(steps, currentStep);
+  const { steps, currentStep } = useStepperStore();
+
   return (
     <div className="h-full flex flex-col items-start justify-center px-6 gap-4">
       <h2 className="text-base font-inter font-normal text-subtle">
@@ -13,9 +13,23 @@ export const DisplayStepper = () => {
       {/* start the stepper */}
       <div className="relative w-full space-y-6">
         {steps.map((step, index) => (
-          <div key={index} className="flex gap-6 items-start">
-            <div className="relative border size-6 rounded-full flex items-center justify-center shadow-xs">
-              <h1>{index + 1}</h1>
+          <div key={step} className="flex gap-6 items-start">
+            <div
+              className={cn(
+                "relative border size-6 rounded-full flex items-center justify-center shadow-xs",
+                currentStep === index && "bg-basic-blue-accent",
+                currentStep > index &&
+                  "bg-basic-green-accent border-border-darker text-white"
+              )}
+            >
+              <h1
+                className={cn(
+                  "text-xs font-inter font-medium",
+                  currentStep === index && "text-white"
+                )}
+              >
+                {index + 1}
+              </h1>
               <div
                 className={cn(
                   "absolute flex-auto left-1/2 top-1/2 mt-1.5 transition duration-300 ease-in-out translate-y-1/2 w-px h-4.5 bg-bordercolor",
@@ -34,5 +48,30 @@ export const DisplayStepper = () => {
 };
 
 export const MobileStepper = () => {
-  return <div>MobileStepper</div>;
+  const { steps, currentStep } = useStepperStore();
+
+  return (
+    <div className="absolute bottom-0 w-full flex h-14 gap-4 bg-bg-subtle items-center justify-center px-4">
+      <div
+        className={cn(
+          "relative border-2 size-6 rounded-full flex items-center text-subtle justify-center shadow-xs",
+          currentStep === 0 && "bg-basic-blue-accent",
+          currentStep > 0 &&
+            "bg-basic-green-accent border-border-darker text-white"
+        )}
+      >
+        <h1
+          className={cn(
+            "text-xs font-inter font-medium",
+            currentStep === 0 && "text-white"
+          )}
+        >
+          {currentStep + 1}
+        </h1>
+      </div>
+      <div className="text-base font-inter font-medium text-text-default">
+        {steps[currentStep]}
+      </div>
+    </div>
+  );
 };
