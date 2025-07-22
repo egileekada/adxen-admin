@@ -7,14 +7,11 @@ import {
 } from "@/components/ui/sidebar";
 import { TeamSwitcher } from "./team-switcher";
 import React from "react";
-import { useStepper } from "@/hooks/use-stepper";
 import { DisplayStepper } from "@/components/stepper/display-stepper";
 
 const AdAccountSidebar = ({
   ...props
 }: React.ComponentProps<typeof Sidebar>) => {
-  const { currentStep } = useStepper();
-  console.log(currentStep);
   return (
     <Sidebar collapsible="icon" {...props} className="h-full">
       <SidebarHeader className=" bg-[#FAFAFA] text-sidebarcolor ">
