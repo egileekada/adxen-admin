@@ -36,7 +36,7 @@ export default function AuthLayout(
                     )}
                     <div className=" max-w-[517px] flex flex-col-reverse lg:flex-col gap-4 " >
                         <p className="  " >“We were looking for a partner who could adapt to our requirements in terms of fluidity in our processes, it was important that accounts were available on time and that recharge orders were processed on time to ensure consistent performance over time. It's definitely the fastest service on the market with a lot of proactivity from their support and professionalism.”</p>
-                        <div className=" flex gap-6 items-center " >
+                        <div className=" flex gap-3 items-center " >
                             <div className=" w-10 h-10 rounded-full bg-blue-300 "  >
 
                             </div>
