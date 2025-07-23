@@ -11,6 +11,11 @@ export default function SigninForm() {
     const navigate = useNavigate()
     const [ hidePassword, setHidePassword ] = useState("password")  
 
+    const changeHandler = (name: string, value: string) => {
+        console.log(name);
+        console.log(value); 
+    }
+
     return (
         <div className=" w-full flex flex-col items-center " >
             <div className=" p-6 w-full gap-6 flex justify-center flex-col items-center " >
@@ -46,9 +51,7 @@ export default function SigninForm() {
                 )}
                 {search && (
                     <form className=" flex w-full flex-col gap-4 " >
-                        <CustomInput placeholder="mail@domain.com" label="Email" name={""} setValue={function (name: string, value: string): void {
-                            throw new Error("Function not implemented.");
-                        }} />
+                        <CustomInput placeholder="mail@domain.com" label="Email" name={""} setValue={changeHandler} />
                         <CustomInput
                             labelbtn={
                                 <div onClick={()=> navigate("/auth/reset")} className=" text-sm text-[#2B5DF3] cursor-pointer " >
@@ -65,9 +68,7 @@ export default function SigninForm() {
                             } 
                             hasBackIcon={true}
                             type={hidePassword}
-                            placeholder="Enter password" label="Password" name={""} setValue={function (name: string, value: string): void {
-                                throw new Error("Function not implemented.");
-                            }} />
+                            placeholder="Enter password" label="Password" name={""} setValue={changeHandler} />
                         <CustomButton className=" mt-2 w-full " >
                             Sign in
                         </CustomButton>
