@@ -39,6 +39,7 @@ import { CountryDropdown } from "@/components/shared/country-dropdown";
 import { useCountry } from "@/hooks/use-country";
 import { CircleFlag } from "react-circle-flags";
 import { Badge } from "@/components/ui/badge";
+import { useSelectPlatform } from "@/hooks/use-stepper-store";
 
 const timezones = [
   {
@@ -69,10 +70,7 @@ const AdDetails = () => {
   const [timezone, setTimezone] = useState("");
   const [businessCategory, setBusinessCategory] = useState("");
   const { selectedCountries, removeSelectedCountry } = useCountry();
-
-  console.log("🌍 timezone: ", timezone);
-  console.log("selectedCountries: ", selectedCountries);
-
+  const { selectedPlatform } = useSelectPlatform();
   const form = useForm({
     defaultValues: {},
   });
@@ -83,14 +81,14 @@ const AdDetails = () => {
   };
 
   return (
-    <div className="px-4 pb-6 sm:px-0">
+    <div className="px-4 pb-6 sm:px-0 sm:max-w-md mx-auto">
       <h1 className="text-2xl sm:text-3xl font-semibold text-text-default font-inter">
         Set up your ad account
       </h1>
       <p className="text-sm sm:text-base font-inter font-normal text-subtle mt-2 sm:mt-4 sm:max-w-md">
         These help us configure and submit your request accurately.
       </p>
-      <div className="max-w-[478px] mx-auto mt-6">
+      <div className="mx-auto mt-6">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)} className="">
             <div className="flex flex-col">
@@ -107,7 +105,7 @@ const AdDetails = () => {
                       <FormControl>
                         <Input
                           placeholder="Enter your ad account name"
-                          className="bg-accent border border-border-darker outline-none shadow-sm focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-subtle"
+                          className="bg-accent border border-border-darker tracking-wide outline-none shadow-sm focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-subtle"
                         />
                       </FormControl>
                       <FormMessage />
@@ -202,7 +200,7 @@ const AdDetails = () => {
                       <FormControl>
                         <Input
                           placeholder="Enter your ad account name"
-                          className="bg-accent border border-border-darker shadow-sm outline-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-subtle"
+                          className="bg-accent border border-border-darker tracking-wide shadow-sm outline-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-subtle"
                         />
                       </FormControl>
                       <FormMessage />
@@ -309,7 +307,7 @@ const AdDetails = () => {
                         <div className="relative">
                           <Input
                             placeholder="Enter your ad account name"
-                            className="bg-accent border border-border-darker shadow-sm outline-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-subtle pl-20"
+                            className="bg-accent border tracking-wide border-border-darker shadow-sm outline-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-subtle pl-20"
                           />
                           <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted">
                             https://
@@ -331,7 +329,7 @@ const AdDetails = () => {
                     <FormItem className="w-full">
                       <FormLabel>Target Countries</FormLabel>
                       {selectedCountries.length > 0 && (
-                        <div className="max-w-120 flex flex-wrap gap-2 mb-2 bg-accent py-1.5 px-2 rounded-md">
+                        <div className="flex flex-wrap gap-2 mb-2 bg-accent py-1.5 px-2 rounded-md max-w-full">
                           {selectedCountries.map((c) => (
                             <div className="flex items-center bg-white px-1 rounded-full shadow-sm">
                               <Badge
@@ -367,39 +365,54 @@ const AdDetails = () => {
               </div>
             </div>
             <Separator className="my-6" />
-            <div className="flex flex-col">
-              <Label className="mb-6  text-text-default font-semibold text-lg font-inter">
-                Meta Linking Access
-              </Label>
-              <div className="flex flex-col gap-4">
-                <FormField
-                  // control={form.control}
-                  name="addacount"
-                  render={() => (
-                    <FormItem>
-                      <FormLabel>Meta Business Manager ID</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Enter your ad account name" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  // control={form.control}
-                  name="addacount"
-                  render={() => (
-                    <FormItem>
-                      <FormLabel>Facebook Page Links</FormLabel>
-                      <FormControl>
-                        <Textarea placeholder="Enter your ad account name"></Textarea>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+            {selectedPlatform === "meta" && (
+              <div className="flex flex-col">
+                <Label className="mb-6  text-text-default font-semibold text-lg font-inter">
+                  Meta Linking Access
+                </Label>
+                <div className="flex flex-col gap-4">
+                  <FormField
+                    // control={form.control}
+                    name="addacount"
+                    render={() => (
+                      <FormItem>
+                        <FormLabel>Meta Business Manager ID</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Enter your ad account name"
+                            className="bg-accent border border-border-darker shadow-sm tracking-wide outline-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-subtle"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    // control={form.control}
+                    name="addacount"
+                    render={() => (
+                      <FormItem>
+                        <FormLabel>Facebook Page Links</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder="Enter your ad account name"
+                            rows={10}
+                            maxLength={1000}
+                            minLength={10}
+                            className="bg-accent border border-border-darker shadow-sm tracking-wide outline-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-subtle"
+                          ></Textarea>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
               </div>
-            </div>
+            )}
+            {selectedPlatform === "google" && <div>google form</div>}
+            {selectedPlatform === "tiktok" && <div>tiktok form</div>}
+            {selectedPlatform === "snapchat" && <div>snapchat form</div>}
+            {selectedPlatform === "bing" && <div>bing form</div>}
           </form>
         </Form>
       </div>

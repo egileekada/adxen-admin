@@ -1,17 +1,18 @@
 import { SiMeta, SiGoogle, SiTiktok, SiSnapchat } from "react-icons/si";
 import { BsBing } from "react-icons/bs";
-import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useSelectPlatform, type Platform } from "@/hooks/use-stepper-store";
 
 const ChoosePlatform = () => {
-  const [selectedPlatform, setSelectedPlatform] = useState<string | null>(null);
+  // const [selectedPlatform, setSelectedPlatform] = useState<string | null>(null);
+  const { selectedPlatform, setSelectedPlatform } = useSelectPlatform();
 
-  const handleSelectPlatform = (platform: string) => {
+  const handleSelectPlatform = (platform: Platform) => {
     setSelectedPlatform(platform);
   };
 
   return (
-    <div className="px-4 sm:px-0">
+    <div className="px-4 sm:px-0 sm:max-w-md mx-auto">
       <h1 className="text-2xl sm:text-3xl font-semibold text-text-default font-inter">
         Request Ad Acccount
       </h1>

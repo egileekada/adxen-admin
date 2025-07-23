@@ -1,8 +1,17 @@
 import { useStepperStore } from "@/hooks/use-stepper-store";
+
 import { cn } from "@/lib/utils";
 
 export const DisplayStepper = () => {
   const { steps, currentStep } = useStepperStore();
+  const currentStepIndex = steps.indexOf(currentStep);
+
+  const stepNames = {
+    choose: "Choose Platform",
+    "ad-details": "Ad Details",
+    "ad-budget": "Ad Budget",
+    summary: "Ad Summary",
+  } as const;
 
   return (
     <div className="h-full flex flex-col items-start justify-center px-6 gap-4">
@@ -17,15 +26,15 @@ export const DisplayStepper = () => {
             <div
               className={cn(
                 "relative border size-6 rounded-full flex items-center justify-center shadow-xs",
-                currentStep === index && "bg-basic-blue-accent",
-                currentStep > index &&
+                currentStepIndex === index && "bg-basic-blue-accent",
+                currentStepIndex > index &&
                   "bg-basic-green-accent border-border-darker text-white"
               )}
             >
               <h1
                 className={cn(
                   "text-xs font-inter font-medium",
-                  currentStep === index && "text-white"
+                  currentStepIndex === index && "text-white"
                 )}
               >
                 {index + 1}
@@ -38,7 +47,7 @@ export const DisplayStepper = () => {
               />
             </div>
             <div className="text-base font-inter font-medium text-text-default">
-              {step}
+              {stepNames[step as keyof typeof stepNames]}
             </div>
           </div>
         ))}
@@ -49,28 +58,36 @@ export const DisplayStepper = () => {
 
 export const MobileStepper = () => {
   const { steps, currentStep } = useStepperStore();
+  const currentStepIndex = steps.indexOf(currentStep);
+
+  const stepNames = {
+    choose: "Choose Platform",
+    "ad-details": "Ad Details",
+    "ad-budget": "Ad Budget",
+    summary: "Ad Summary",
+  } as const;
 
   return (
     <div className="absolute bottom-0 w-full flex h-14 gap-4 bg-bg-subtle items-center justify-center px-4">
       <div
         className={cn(
           "relative border-2 size-6 rounded-full flex items-center text-subtle justify-center shadow-xs",
-          currentStep === 0 && "bg-basic-blue-accent",
-          currentStep > 0 &&
+          currentStep === steps[0] && "bg-basic-blue-accent",
+          currentStep > steps[0] &&
             "bg-basic-green-accent border-border-darker text-white"
         )}
       >
         <h1
           className={cn(
             "text-xs font-inter font-medium",
-            currentStep === 0 && "text-white"
+            currentStep === steps[0] && "text-white"
           )}
         >
-          {currentStep + 1}
+          {currentStepIndex + 1}
         </h1>
       </div>
       <div className="text-base font-inter font-medium text-text-default">
-        {steps[currentStep]}
+        {stepNames[steps[currentStepIndex] as keyof typeof stepNames]}
       </div>
     </div>
   );

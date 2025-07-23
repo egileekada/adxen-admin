@@ -7,6 +7,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+
 import { Separator } from "@/components/ui/separator";
 import { useForm } from "react-hook-form";
 
@@ -20,7 +21,7 @@ const AdBudget = () => {
   };
 
   return (
-    <div className="px-4 pb-6 sm:px-0">
+    <div className="px-4 pb-6 sm:px-0 sm:max-w-md mx-auto">
       <h1 className="text-2xl sm:text-3xl font-semibold text-text-default font-inter">
         Add Initail funding
       </h1>
@@ -28,7 +29,7 @@ const AdBudget = () => {
         Enter your starting ad budget. A minimum of $100 is required to activate
         your ad account
       </p>
-      <div className="max-w-[478px] mx-auto mt-6">
+      <div className="mx-auto mt-6">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleSubmit)}
