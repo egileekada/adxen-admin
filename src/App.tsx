@@ -18,15 +18,12 @@ function App() {
         <Route path="onboarding" element={<OnboardingLayout />} >
           <Route index element={<>
             </>}  />
-        </Route>
-        <Route path="dashboard" element={<DashboardLayout />} >
-        <Route index element={<AuthPage />} />
+        </Route> 
         <Route path="dashboard" element={<DashboardLayout />}>
           <Route index element={<HomePage />} />
           <Route path="account" element={<AdAccountPage />} />
           <Route path="account/request" element={<AdAccountPage />} />
-        </Route>
-        </Route>
+        </Route> 
       </Route>
     )
   );
