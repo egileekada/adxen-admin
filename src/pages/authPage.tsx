@@ -1,9 +1,11 @@
+import { SigninForm } from "@/components/auth"
+import { AuthLayout } from "@/components/layouts"
 
 function AuthPage () {
     return(
-        <div className=" w-full h-screen bg-red-400 " >
-            Auth
-        </div>
+        <AuthLayout home={true} >
+            <SigninForm />
+        </AuthLayout>
     )
 }
 
