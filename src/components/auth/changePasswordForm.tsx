@@ -11,6 +11,11 @@ export default function ChangePasswordForm() {
     const [hidePasswordOld, setHidePasswordOld] = useState("password")
     const [hidePassword, setHidePassword] = useState("password")
 
+    const changeHandler = (name: string, value: string) => {
+        console.log(name);
+        console.log(value); 
+    }
+
     return (
         <div className=" w-full flex gap-5 flex-col items-center " >
             <div className=" p-6 w-full gap-6 flex justify-center flex-col items-center " >
@@ -34,9 +39,7 @@ export default function ChangePasswordForm() {
                             }
                             hasBackIcon={true}
                             type={hidePasswordOld}
-                            placeholder="Enter password" label="Password" name={""} setValue={function (name: string, value: string): void {
-                                throw new Error("Function not implemented.");
-                            }} />
+                            placeholder="Enter password" label="Password" name={""} setValue={changeHandler} />
 
                         <CustomInput
                             iconback={
@@ -49,9 +52,7 @@ export default function ChangePasswordForm() {
                             }
                             hasBackIcon={true}
                             type={hidePassword}
-                            placeholder="Enter password" label="Confirm Password" name={""} setValue={function (name: string, value: string): void {
-                                throw new Error("Function not implemented.");
-                            }} />
+                            placeholder="Enter password" label="Confirm Password" name={""} setValue={changeHandler} />
                         <CustomButton onClick={() => navigate("/auth/reset?succes=true")} className=" w-full mt-2 " >
                             Update password
                         </CustomButton>

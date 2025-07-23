@@ -8,6 +8,11 @@ export default function ResetForm() {
     const navigate = useNavigate()
     const { search } = useLocation();
 
+    const changeHandler = (name: string, value: string) => {
+        console.log(name);
+        console.log(value); 
+    }
+
     return (
         <div className=" w-full flex gap-5 flex-col items-center " >
             <div className=" p-6 w-full gap-6 flex justify-center flex-col items-center " >
@@ -23,9 +28,7 @@ export default function ResetForm() {
                 {!search && (
                     <div className=" w-full flex flex-col gap-3 items-center " >
                         <div className=" w-full flex flex-col gap-3 items-center " >
-                            <CustomInput placeholder="mail@domain.com" label="Email" name={""} setValue={function (name: string, value: string): void {
-                                throw new Error("Function not implemented.");
-                            }} />
+                            <CustomInput placeholder="mail@domain.com" label="Email" name={""} setValue={changeHandler} />
                             <CustomButton onClick={() => navigate("/auth/reset?succes=true")} className=" w-full mt-2 " >
                                 Reset password
                             </CustomButton>
