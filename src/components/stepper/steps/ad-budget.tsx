@@ -20,15 +20,15 @@ const AdBudget = () => {
   };
 
   return (
-    <div className="px-4 pb-6 sm:px-0">
-      <h1 className="text-2xl sm:text-3xl font-semibold text-text-default font-inter">
-        Add Initail funding
+    <div className="mb-6 max-w-[478px] mx-auto sm:px-0">
+      <h1 className="text-2xl sm:text-3xl font-semibold text-default font-inter">
+        Add Initial Funding
       </h1>
       <p className="text-sm sm:text-base font-inter font-normal text-subtle mt-2 sm:mt-4 sm:max-w-md">
         Enter your starting ad budget. A minimum of $100 is required to activate
         your ad account
       </p>
-      <div className="max-w-[478px] mx-auto mt-6">
+      <div className="mx-auto mt-6">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleSubmit)}
@@ -40,19 +40,17 @@ const AdBudget = () => {
                 name="addacount"
                 render={() => (
                   <FormItem>
-                    <FormLabel>How much do you want to allocate?</FormLabel>
+                    <FormLabel className="text-default text-sm font-inter font-medium">
+                      How much do you want to allocate?
+                    </FormLabel>
                     <FormControl>
-                      {/* <Input
-                        placeholder="Enter your ad account name"
-                        className="bg-accent border border-border-darker outline-none shadow-sm focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-subtle"
-                      /> */}
                       <CurrencyCombo />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <p className="text-sm font-inter font-normal text-muted">
+              <p className="text-sm font-inter font-normal text-muted ">
                 Wallet Balance:{" "}
                 <span className="text-blue-infomative tracking-wide">
                   $1234.56
@@ -87,7 +85,9 @@ const AdBudget = () => {
                 name="addacount"
                 render={() => (
                   <FormItem>
-                    <FormLabel>Ad Budget</FormLabel>
+                    <FormLabel className="text-default text-sm font-inter font-medium">
+                      Ad Budget
+                    </FormLabel>
                     <FormControl>
                       <CurrencyCombo />
                     </FormControl>

@@ -27,7 +27,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { CheckIcon, ChevronsUpDownIcon, XIcon } from "lucide-react";
+import { CheckIcon, ChevronsUpDownIcon, PlusIcon, XIcon } from "lucide-react";
 import {
   SelectTrigger,
   SelectValue,
@@ -39,6 +39,9 @@ import { CountryDropdown } from "@/components/shared/country-dropdown";
 import { useCountry } from "@/hooks/use-country";
 import { CircleFlag } from "react-circle-flags";
 import { Badge } from "@/components/ui/badge";
+import { usePlatformSelect } from "@/hooks/use-stepper-store";
+import { useModal } from "@/hooks/use-modal";
+import { LinkingModal } from "@/components/shared/linking-modal";
 
 const timezones = [
   {
@@ -66,16 +69,31 @@ const businessCategories = [
 const AdDetails = () => {
   const [open, setOpen] = useState(false);
   const [openBusinessCategory, setOpenBusinessCategory] = useState(false);
+  const [openMetaBusinessManagerId, setOpenMetaBusinessManagerId] =
+    useState(false);
+  const [openTiktokBusinessManagerId, setOpenTiktokBusinessManagerId] =
+    useState(false);
+  const [openBingBusinessManagerId, setOpenBingBusinessManagerId] =
+    useState(false);
+  const [openSnapchatBusinessManagerId, setOpenSnapchatBusinessManagerId] =
+    useState(false);
+  const [openGoogleBusinessManagerId, setOpenGoogleBusinessManagerId] =
+    useState(false);
   const [timezone, setTimezone] = useState("");
   const [businessCategory, setBusinessCategory] = useState("");
+
   const { selectedCountries, removeSelectedCountry } = useCountry();
-
-  console.log("🌍 timezone: ", timezone);
-  console.log("selectedCountries: ", selectedCountries);
-
+  const { selectedPlatform } = usePlatformSelect();
+  const { openModal, isOpen } = useModal();
+  console.log("isOpen", isOpen);
   const form = useForm({
     defaultValues: {},
   });
+
+  const handleAddBusinessManager = (platform: string) => {
+    console.log("add business manager", platform);
+    openModal();
+  };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSubmit = (data: any) => {
@@ -83,18 +101,18 @@ const AdDetails = () => {
   };
 
   return (
-    <div className="px-4 pb-6 sm:px-0">
-      <h1 className="text-2xl sm:text-3xl font-semibold text-text-default font-inter">
+    <div className="sm:px-0 max-w-[478px] mx-auto mb-6">
+      <h1 className="text-2xl sm:text-3xl font-semibold text-default font-inter">
         Set up your ad account
       </h1>
       <p className="text-sm sm:text-base font-inter font-normal text-subtle mt-2 sm:mt-4 sm:max-w-md">
         These help us configure and submit your request accurately.
       </p>
-      <div className="max-w-[478px] mx-auto mt-6">
+      <div className="mx-auto mt-6">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)} className="">
             <div className="flex flex-col">
-              <Label className="mb-6 text-text-default font-semibold text-lg font-inter">
+              <Label className="mb-6 text-default font-semibold text-lg font-inter">
                 Ad Account Setup
               </Label>
               <div className="flex flex-col gap-4">
@@ -107,7 +125,7 @@ const AdDetails = () => {
                       <FormControl>
                         <Input
                           placeholder="Enter your ad account name"
-                          className="bg-accent border border-border-darker outline-none shadow-sm focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-subtle"
+                          className="bg-accent border border-border-darker outline-none shadow-xs focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-subtle"
                         />
                       </FormControl>
                       <FormMessage />
@@ -123,7 +141,7 @@ const AdDetails = () => {
                       <FormControl>
                         <Popover open={open} onOpenChange={setOpen}>
                           <PopoverTrigger asChild className="">
-                            <Button className="w-full bg-accent font-normal font-inter hover:bg-accent text-subtle inline-flex items-center justify-between border border-border-darker shadow-sm">
+                            <Button className="w-full bg-accent font-normal font-inter hover:bg-accent text-subtle inline-flex items-center justify-between border border-border-darker shadow-xs">
                               {timezone || "Select Timezone"}
                               <ChevronsUpDownIcon className="w-4 h-4 opacity-35" />
                             </Button>
@@ -168,7 +186,7 @@ const AdDetails = () => {
                       <FormLabel>Currency</FormLabel>
                       <FormControl className="w-full">
                         <Select>
-                          <SelectTrigger className="w-full bg-accent text-subtle border border-border-darker shadow-sm outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
+                          <SelectTrigger className="w-full bg-accent text-subtle border border-border-darker shadow-xs outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
                             <SelectValue
                               placeholder="Select a currency"
                               className=""
@@ -189,7 +207,7 @@ const AdDetails = () => {
             </div>
             <Separator className="my-6" />
             <div className="flex flex-col">
-              <Label className="mb-6  text-text-default font-semibold text-lg font-inter">
+              <Label className="mb-6  text-default font-semibold text-lg font-inter">
                 Ad Account Planning
               </Label>
               <div className="flex flex-col gap-4">
@@ -202,7 +220,7 @@ const AdDetails = () => {
                       <FormControl>
                         <Input
                           placeholder="Enter your ad account name"
-                          className="bg-accent border border-border-darker shadow-sm outline-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-subtle"
+                          className="bg-accent border border-border-darker shadow-xs outline-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-subtle"
                         />
                       </FormControl>
                       <FormMessage />
@@ -219,7 +237,7 @@ const AdDetails = () => {
                       </FormLabel>
                       <FormControl>
                         <Select>
-                          <SelectTrigger className="w-full bg-accent text-subtle border border-border-darker shadow-sm outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
+                          <SelectTrigger className="w-full bg-accent text-subtle border border-border-darker shadow-xs outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
                             <SelectValue placeholder="Select a spend" />
                           </SelectTrigger>
                           <SelectContent>
@@ -250,7 +268,7 @@ const AdDetails = () => {
             </div>
             <Separator className="my-6" />
             <div className="flex flex-col">
-              <Label className="mb-6  text-text-default font-semibold text-lg font-inter">
+              <Label className="mb-6  text-default font-semibold text-lg font-inter">
                 Business & Campaign Info
               </Label>
               <div className="flex flex-col gap-4">
@@ -266,7 +284,7 @@ const AdDetails = () => {
                           onOpenChange={setOpenBusinessCategory}
                         >
                           <PopoverTrigger asChild>
-                            <Button className="w-full bg-accent font-normal font-inter hover:bg-accent text-subtle inline-flex items-center justify-between border border-border-darker shadow-sm">
+                            <Button className="w-full bg-accent font-normal shadow-xs font-inter hover:bg-accent text-subtle inline-flex items-center justify-between border border-border-darker">
                               {businessCategory || "Select a category"}
                               <ChevronsUpDownIcon className="w-4 h-4 opacity-35" />
                             </Button>
@@ -309,7 +327,7 @@ const AdDetails = () => {
                         <div className="relative">
                           <Input
                             placeholder="Enter your ad account name"
-                            className="bg-accent border border-border-darker shadow-sm outline-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-subtle pl-20"
+                            className="bg-accent border border-border-darker shadow-xs outline-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-subtle pl-20"
                           />
                           <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted">
                             https://
@@ -353,7 +371,7 @@ const AdDetails = () => {
                         </div>
                       )}
                       <FormControl>
-                        <CountryDropdown className="bg-accent border border-border-darker shadow-sm" />
+                        <CountryDropdown className="bg-accent border border-border-darker shadow-xs" />
                       </FormControl>
                       <FormDescription className="text-muted text-xs/4 font-inter font-normal">
                         One or more geo-locations where ads will run. ad account
@@ -367,42 +385,296 @@ const AdDetails = () => {
               </div>
             </div>
             <Separator className="my-6" />
-            <div className="flex flex-col">
-              <Label className="mb-6  text-text-default font-semibold text-lg font-inter">
-                Meta Linking Access
-              </Label>
-              <div className="flex flex-col gap-4">
+            {selectedPlatform === "meta" && (
+              <div className="flex flex-col">
+                <Label className="mb-6  text-default font-semibold text-lg font-inter">
+                  Meta Linking Access
+                </Label>
+                <div className="flex flex-col gap-4">
+                  <FormField
+                    // control={form.control}
+                    name="addacount"
+                    render={() => (
+                      <FormItem>
+                        <FormLabel>Meta Business Manager ID</FormLabel>
+                        <FormControl>
+                          <Popover
+                            open={openMetaBusinessManagerId}
+                            onOpenChange={setOpenMetaBusinessManagerId}
+                          >
+                            <PopoverTrigger asChild>
+                              <Button className="w-full bg-accent font-normal font-inter hover:bg-accent text-subtle inline-flex items-center justify-between border border-border-darker shadow-xs">
+                                {"Choose"}
+                                <ChevronsUpDownIcon className="w-4 h-4 opacity-35" />
+                              </Button>
+                            </PopoverTrigger>
+                            <PopoverContent className="p-0 w-full min-w-[var(--radix-popover-trigger-width)]">
+                              <Command>
+                                <CommandInput placeholder="Search for a category" />
+                                <CommandList>
+                                  <CommandEmpty>
+                                    No category found.
+                                  </CommandEmpty>
+                                  <CommandGroup></CommandGroup>
+                                </CommandList>
+                              </Command>
+                              <Button
+                                className="w-full bg-accent rounded-none rounded-b-md font-normal font-inter hover:bg-accent text-subtle inline-flex items-center border border-border-darker"
+                                onClick={() => handleAddBusinessManager("meta")}
+                              >
+                                <PlusIcon className="w-4 h-4 text-muted" />
+                                <p className="text-default text-sm font-medium">
+                                  Add business manager
+                                </p>
+                              </Button>
+                            </PopoverContent>
+                          </Popover>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    // control={form.control}
+                    name="addacount"
+                    render={() => (
+                      <FormItem>
+                        <FormLabel>Facebook Page Links</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder="Enter your ad account name"
+                            className="bg-accent border border-border-darker shadow-xs outline-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-subtle"
+                          ></Textarea>
+                        </FormControl>
+                        <FormMessage />
+                        <FormDescription className="text-muted text-xs/4 font-inter font-normal">
+                          Must include at least one (admin access required
+                          temporarily)
+                        </FormDescription>
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+            )}
+            {selectedPlatform === "google" && (
+              <div>
+                <Label className="mb-6  text-default font-semibold text-lg font-inter">
+                  Google Linking &amp; Access
+                </Label>
                 <FormField
                   // control={form.control}
                   name="addacount"
                   render={() => (
                     <FormItem>
-                      <FormLabel>Meta Business Manager ID</FormLabel>
+                      <FormLabel>Google Ads Email &amp; Access</FormLabel>
                       <FormControl>
-                        <Input placeholder="Enter your ad account name" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  // control={form.control}
-                  name="addacount"
-                  render={() => (
-                    <FormItem>
-                      <FormLabel>Facebook Page Links</FormLabel>
-                      <FormControl>
-                        <Textarea placeholder="Enter your ad account name"></Textarea>
+                        <Popover
+                          open={openGoogleBusinessManagerId}
+                          onOpenChange={setOpenGoogleBusinessManagerId}
+                        >
+                          <PopoverTrigger asChild>
+                            <Button className="w-full bg-accent font-normal font-inter hover:bg-accent text-subtle inline-flex items-center justify-between border border-border-darker shadow-xs">
+                              {"Choose"}
+                              <ChevronsUpDownIcon className="w-4 h-4 opacity-35" />
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="p-0 w-full min-w-[var(--radix-popover-trigger-width)]">
+                            <Command>
+                              <CommandInput placeholder="Search for a category" />
+                              <CommandList>
+                                <CommandEmpty>No category found.</CommandEmpty>
+                                <CommandGroup></CommandGroup>
+                              </CommandList>
+                            </Command>
+                            <Button
+                              className="w-full bg-accent rounded-none rounded-b-md font-normal font-inter hover:bg-accent text-subtle inline-flex items-center border border-border-darker"
+                              onClick={() => handleAddBusinessManager("google")}
+                            >
+                              <PlusIcon className="w-4 h-4 text-muted" />
+                              <p className="text-default text-sm font-medium">
+                                Add business manager
+                              </p>
+                            </Button>
+                          </PopoverContent>
+                        </Popover>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
               </div>
-            </div>
+            )}
+            {selectedPlatform === "tiktok" && (
+              <div>
+                <Label className="mb-6  text-default font-semibold text-lg font-inter">
+                  TikTok Linking &amp; Access
+                </Label>
+                <FormField
+                  // control={form.control}
+                  name="addacount"
+                  render={() => (
+                    <FormItem>
+                      <FormLabel>TikTok Business Center ID</FormLabel>
+                      <FormControl>
+                        <Popover
+                          open={openTiktokBusinessManagerId}
+                          onOpenChange={setOpenTiktokBusinessManagerId}
+                        >
+                          <PopoverTrigger asChild>
+                            <Button className="w-full bg-accent font-normal font-inter hover:bg-accent text-subtle inline-flex items-center justify-between border border-border-darker shadow-xs">
+                              {"Choose"}
+                              <ChevronsUpDownIcon className="w-4 h-4 opacity-35" />
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="p-0 w-full min-w-[var(--radix-popover-trigger-width)]">
+                            <Command>
+                              <CommandInput placeholder="Search for a category" />
+                              <CommandList>
+                                <CommandEmpty>No category found.</CommandEmpty>
+                                <CommandGroup></CommandGroup>
+                              </CommandList>
+                            </Command>
+                            <Button
+                              className="w-full bg-accent rounded-none rounded-b-md font-normal font-inter hover:bg-accent text-subtle inline-flex items-center border border-border-darker"
+                              onClick={() => handleAddBusinessManager("tiktok")}
+                            >
+                              <PlusIcon className="w-4 h-4 text-muted" />
+                              <p className="text-default text-sm font-medium">
+                                Add business manager
+                              </p>
+                            </Button>
+                          </PopoverContent>
+                        </Popover>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            )}
+            {selectedPlatform === "snapchat" && (
+              <div>
+                <Label className="mb-6  text-default font-semibold text-lg font-inter">
+                  Snapchat Linking &amp; Access
+                </Label>
+                <div className="flex flex-col gap-4">
+                  <FormField
+                    // control={form.control}
+                    name="addacount"
+                    render={() => (
+                      <FormItem>
+                        <FormLabel>Public Profile name</FormLabel>
+                        <FormControl>
+                          <Popover
+                            open={openSnapchatBusinessManagerId}
+                            onOpenChange={setOpenSnapchatBusinessManagerId}
+                          >
+                            <PopoverTrigger asChild>
+                              <Button className="w-full bg-accent font-normal font-inter hover:bg-accent text-subtle inline-flex items-center justify-between border border-border-darker shadow-xs">
+                                {"Choose"}
+                                <ChevronsUpDownIcon className="w-4 h-4 opacity-35" />
+                              </Button>
+                            </PopoverTrigger>
+                            <PopoverContent className="p-0 w-full min-w-[var(--radix-popover-trigger-width)]">
+                              <Command>
+                                <CommandInput placeholder="Search for a category" />
+                                <CommandList>
+                                  <CommandEmpty>
+                                    No category found.
+                                  </CommandEmpty>
+                                  <CommandGroup></CommandGroup>
+                                </CommandList>
+                              </Command>
+                              <Button
+                                className="w-full bg-accent rounded-none rounded-b-md font-normal font-inter hover:bg-accent text-subtle inline-flex items-center border border-border-darker"
+                                onClick={() =>
+                                  handleAddBusinessManager("snapchat")
+                                }
+                              >
+                                <PlusIcon className="w-4 h-4 text-muted" />
+                                <p className="text-default text-sm font-medium">
+                                  Add business manager
+                                </p>
+                              </Button>
+                            </PopoverContent>
+                          </Popover>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    // control={form.control}
+                    name="addacount"
+                    render={() => (
+                      <FormItem>
+                        <FormLabel>Organization ID</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Enter your ad account name"
+                            className="bg-accent border border-border-darker shadow-xs outline-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-subtle"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+            )}
+            {selectedPlatform === "bing" && (
+              <div>
+                <Label className="mb-6  text-default font-semibold text-lg font-inter">
+                  Bing Linking &amp; Access
+                </Label>
+                <FormField
+                  // control={form.control}
+                  name="addacount"
+                  render={() => (
+                    <FormItem>
+                      <FormLabel>Bing Business Center ID</FormLabel>
+                      <FormControl>
+                        <Popover
+                          open={openBingBusinessManagerId}
+                          onOpenChange={setOpenBingBusinessManagerId}
+                        >
+                          <PopoverTrigger asChild>
+                            <Button className="w-full bg-accent font-normal font-inter hover:bg-accent text-subtle inline-flex items-center justify-between border border-border-darker shadow-xs">
+                              {"Choose"}
+                              <ChevronsUpDownIcon className="w-4 h-4 opacity-35" />
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="p-0 w-full min-w-[var(--radix-popover-trigger-width)]">
+                            <Command>
+                              <CommandInput placeholder="Search for a category" />
+                              <CommandList>
+                                <CommandEmpty>No category found.</CommandEmpty>
+                                <CommandGroup></CommandGroup>
+                              </CommandList>
+                            </Command>
+                            <Button
+                              className="w-full bg-accent rounded-none rounded-b-md font-normal font-inter hover:bg-accent text-subtle inline-flex items-center border border-border-darker"
+                              onClick={() => handleAddBusinessManager("bing")}
+                            >
+                              <PlusIcon className="w-4 h-4 text-muted" />
+                              <p className="text-default text-sm font-medium">
+                                Add business manager
+                              </p>
+                            </Button>
+                          </PopoverContent>
+                        </Popover>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            )}
           </form>
         </Form>
       </div>
+      <LinkingModal />
     </div>
   );
 };

@@ -127,7 +127,7 @@ export default function CurrencyCombo({
           value={internalValue.currency}
           onValueChange={handleCurrencyChange}
         >
-          <SelectTrigger className="w-40 rounded-r-none border-r-0 focus:z-10">
+          <SelectTrigger className="w-40 rounded-r-none border-r-0 focus:z-10 bg-soft">
             <SelectValue>
               {selectedOption && (
                 <div className="flex items-center gap-2">
@@ -178,7 +178,7 @@ export default function CurrencyCombo({
             value={internalValue.amount}
             onChange={handleAmountChange}
             placeholder={placeholder}
-            className="rounded-l-none focus:z-10 text-right font-medium pr-3 text-[20px]"
+            className="rounded-l-none focus:z-10 text-right font-medium pr-3 text-[20px] bg-soft"
             inputMode="decimal"
             style={{
               paddingLeft: internalValue.amount

@@ -7,38 +7,80 @@ import { ForwardIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { MobileStepper } from "./display-stepper";
+import { useEffect, useRef } from "react";
+import { useQueryState } from "nuqs";
+
+const STEP_QUERY_KEY = "step";
 
 const StepperWrapper = () => {
   const isMobile = useIsMobile();
-  const { currentStep, nextStep, prevStep, isLastStep } = useStepperStore();
 
-  const stepComponents = [
-    <ChoosePlatform />,
-    <AdDetails />,
-    <AdBudget />,
-    <AdSummary />,
-  ];
+  const {
+    currentStep,
+    nextStep,
+    prevStep,
+    isLastStep,
+    isFirstStep,
+    setCurrentStep,
+  } = useStepperStore();
+
+  const [stepQuery, setQueryStep] = useQueryState(STEP_QUERY_KEY, {
+    defaultValue: "choose",
+  });
+
+  const stepComponents = {
+    choose: ChoosePlatform,
+    "ad-details": AdDetails,
+    "ad-budget": AdBudget,
+    summary: AdSummary,
+  } as const;
+
+  const StepComponent =
+    stepComponents[currentStep as keyof typeof stepComponents];
+
+  const didSync = useRef(false);
+
+  useEffect(() => {
+    if (!didSync.current) {
+      didSync.current = true;
+      setCurrentStep(stepQuery as keyof typeof stepComponents);
+    }
+  }, [currentStep, setCurrentStep, stepQuery]);
+
+  useEffect(() => {
+    if (currentStep !== stepQuery) {
+      setQueryStep(currentStep);
+    }
+  }, [currentStep, setQueryStep, stepQuery]);
+
+  const handleNextStep = () => {
+    nextStep();
+  };
+
+  const handlePrevStep = () => {
+    prevStep();
+  };
 
   return (
     <div className="flex-1 w-full h-full flex flex-col items-center justify-center">
       <div className="pb-16">
-        {stepComponents[currentStep]}
+        <StepComponent />
 
-        <div className="flex gap-4 px-4 sm:px-0">
-          {currentStep > 0 && (
+        <div className="flex gap-4 sm:px-0">
+          {!isFirstStep() && (
             <Button
-              onClick={() => prevStep()}
-              className="flex gap-2 bg-white hover:bg-transparent cursor-pointer border border-border-darker text-text-default rounded-md"
+              onClick={handlePrevStep}
+              className="flex gap-2 bg-white hover:bg-transparent cursor-pointer border border-border-darker text-default rounded-md"
             >
               Back
             </Button>
           )}
 
           <Button
-            onClick={() => nextStep()}
+            onClick={handleNextStep}
             className="flex gap-2 bg-accent-foreground text-white rounded-md cursor-pointer"
           >
-            {isLastStep ? "Submit" : "Continue"}
+            {isLastStep() ? "Submit" : "Continue"}
 
             <ForwardIcon className="size-4" />
           </Button>
