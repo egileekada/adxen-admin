@@ -99,7 +99,7 @@ const data = {
 
 export default function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     return (
-        <Sidebar  collapsible="icon" {...props}>
+        <Sidebar variant="inset" {...props} >
             <SidebarHeader className=" bg-[#FAFAFA] text-sidebarcolor " >
                 <TeamSwitcher />
             </SidebarHeader>
