@@ -1,11 +1,5 @@
-
-
 function HomePage() {
-    return(
-        <div className=" w-full h-full bg-gray-300 " >
-            Home
-        </div>
-    )
+  return <div className=" w-full h-full ">Home Page</div>;
 }
 
-export default HomePage
+export default HomePage;
