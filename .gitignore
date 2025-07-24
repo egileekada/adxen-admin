@@ -6,12 +6,15 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-bun.lock
+bun-debug.log*
+
+*.lock
 
 node_modules
 dist
 dist-ssr
 *.local
+.env
 
 # Editor directories and files
 .vscode/*
