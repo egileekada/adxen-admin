@@ -47,7 +47,7 @@ export default function VerifyForm() {
                         </InputOTPGroup>
                     </InputOTP>
                     <p className=" text-sm " >Resend code in <span className=" text-[#E35706]  " >00:59</span></p>
-                    <CustomButton onClick={() => navigate("/auth/verify")} className=" w-full mt-2 " >
+                    <CustomButton onClick={() => navigate("/onboarding")} className=" w-full mt-2 " >
                         Verify
                     </CustomButton>
                 </div>

@@ -21,6 +21,7 @@ import {
 import { NavMain } from "./nav-main" 
 import { TeamSwitcher } from "./team-switcher"
 import { NavUser } from "./nav-user"
+import { RiCoinLine, RiHome5Line, RiReceiptLine, RiSettings3Line, RiUserStarLine, RiVideoLine, RiWalletLine } from "@remixicon/react"
 
 // This is sample data.
 const data = {
@@ -40,14 +41,14 @@ const data = {
         {
             title: "Home",
             url: "/dashboard",
-            icon: HomeIcon,
+            icon: RiHome5Line,
             isActive: false,
             items: []
         },
         {
             title: "Ad account",
             url: "#",
-            icon: PlaySquareIcon,
+            icon: RiVideoLine,
             isActive: true,
             items: [
                 {
@@ -67,28 +68,35 @@ const data = {
         {
             title: "Wallet",
             url: "/dashboard/wallet",
-            icon: Wallet2,
+            icon: RiWalletLine,
+            isActive: false,
+            items: []
+        },
+        {
+            title: "Teams",
+            url: "/dashboard/teams",
+            icon: RiUserStarLine,
             isActive: false,
             items: []
         },
         {
             title: "Billing",
             url: "/dashboard/billing",
-            icon: ScrollText,
+            icon: RiReceiptLine,
             isActive: false,
             items: []
         },
         {
             title: "Affiliate program",
             url: "/dashboard/affiliate",
-            icon: CircleDollarSignIcon,
+            icon: RiCoinLine,
             isActive: false,
             items: []
         },
         {
             title: "Settings",
             url: "/dashboard/settings",
-            icon: Settings,
+            icon: RiSettings3Line,
             isActive: false,
             items: []
         },

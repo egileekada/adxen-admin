@@ -1,6 +1,6 @@
 
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
-import { AuthPage, HomePage, SignupPage } from "./pages";
+import { AuthPage, HomePage, OnboardingPage, SignupPage } from "./pages";
 import { AuthLayout, DashboardLayout, OnboardingLayout } from "./components/layouts";
 import { ChangePasswordForm, ResetForm, VerifyForm } from "./components/auth";
 
@@ -17,8 +17,7 @@ function App() {
           <Route path="password" element={<ChangePasswordForm />} />  
         </Route> 
         <Route path="onboarding" element={<OnboardingLayout />} >
-          <Route index element={<>
-            </>}  />
+          <Route index element={<OnboardingPage />}  />
         </Route>
         <Route path="dashboard" element={<DashboardLayout />} >
           <Route index element={<HomePage />} />
