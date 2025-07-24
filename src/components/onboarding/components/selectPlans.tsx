@@ -3,7 +3,7 @@ import {
     RadioGroupItem,
 } from "@/components/ui/radio-group"
 import { plans } from "@/components/utils/databank"
-import { RiCheckLine, RiListCheck } from "@remixicon/react"
+import { RiCheckLine } from "@remixicon/react"
 import { useState } from "react"
 
 export default function SelectPlans() {
@@ -34,7 +34,7 @@ export default function SelectPlans() {
                             <div className=" w-full text-sm text-subtle flex flex-col gap-2 " >
                                 {item.features.map((subitem, subindex) => {
                                     return (
-                                        <div className=" flex w-full gap-3 " >
+                                        <div key={subindex} className=" flex w-full gap-3 " >
                                             <RiCheckLine size={"20px"}  />
                                             <p className="" >{subitem}</p>
                                         </div>
@@ -43,21 +43,7 @@ export default function SelectPlans() {
                             </div>
                         </label>
                     )
-                })}
-                {/* <label htmlFor="r2" className={` ${value === "vip" ? "  border-blue-infomative " :value === "vvip" ? " border-r-0 " : value === "regular" ? " border-l-0 " : " border-l-0 border-border-darker "} cursor-pointer border w-full flex gap-3 p-4 `}>
-                    <RadioGroupItem value="vip" className=" mt-[2px] " id="r2" />
-                    <div className=" flex flex-col " >
-                        <p className=" text-sm font-medium " >Business</p>
-                        <p className=" text-sm " >For companies or agencies managing multiple accounts.</p>
-                    </div>
-                </label>
-                <label htmlFor="r3" className={` ${value === "vvip" ? "  border-blue-infomative " : " border-l-0 border-border-darker "} cursor-pointer border w-full flex gap-3 p-4 rounded-r-2xl   `}>
-                    <RadioGroupItem value="vvip" className=" mt-[2px] " id="r3" />
-                    <div className=" flex flex-col " >
-                        <p className=" text-sm font-medium " >Business</p>
-                        <p className=" text-sm " >For companies or agencies managing multiple accounts.</p>
-                    </div>
-                </label> */}
+                })} 
             </div>
         </RadioGroup>
     )

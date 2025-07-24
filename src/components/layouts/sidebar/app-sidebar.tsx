@@ -1,14 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { 
-    CircleDollarSignIcon,  
-    GalleryVerticalEnd,
-    HomeIcon, 
-    PlaySquareIcon,  
-    ScrollText, 
-    Settings,  
-    Wallet2,
+import {  
+    GalleryVerticalEnd, 
 } from "lucide-react"
 
 import {
