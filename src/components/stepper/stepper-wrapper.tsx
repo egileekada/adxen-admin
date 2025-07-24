@@ -8,9 +8,9 @@ import { Button } from "../ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { MobileStepper } from "./display-stepper";
 import { useEffect, useRef } from "react";
-import { useQueryState } from "nuqs";
+// import { useQueryState } from "nuqs";
 
-const STEP_QUERY_KEY = "step";
+// const STEP_QUERY_KEY = "step";
 
 const StepperWrapper = () => {
   const isMobile = useIsMobile();
@@ -24,9 +24,9 @@ const StepperWrapper = () => {
     setCurrentStep,
   } = useStepperStore();
 
-  const [stepQuery, setQueryStep] = useQueryState(STEP_QUERY_KEY, {
-    defaultValue: "choose",
-  });
+  // const [stepQuery, setQueryStep] = useQueryState(STEP_QUERY_KEY, {
+  //   defaultValue: "choose",
+  // });
 
   const stepComponents = {
     choose: ChoosePlatform,
@@ -43,15 +43,15 @@ const StepperWrapper = () => {
   useEffect(() => {
     if (!didSync.current) {
       didSync.current = true;
-      setCurrentStep(stepQuery as keyof typeof stepComponents);
+      // setCurrentStep(stepQuery as keyof typeof stepComponents);
     }
-  }, [currentStep, setCurrentStep, stepQuery]);
+  }, [currentStep, setCurrentStep]);
 
-  useEffect(() => {
-    if (currentStep !== stepQuery) {
-      setQueryStep(currentStep);
-    }
-  }, [currentStep, setQueryStep, stepQuery]);
+  // useEffect(() => {
+  //   if (currentStep !== stepQuery) {
+  //     setQueryStep(currentStep);
+  //   }
+  // }, [currentStep, setQueryStep, stepQuery]);
 
   const handleNextStep = () => {
     nextStep();

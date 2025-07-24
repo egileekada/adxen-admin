@@ -12,8 +12,8 @@ export default function DashboardLayout() {
   return (
     <SidebarProvider className=" p-3 !bg-[#FAFAFA] h-screen " >
       {isAdAccountRequest ? <AdAccountSidebar /> : <AppSidebar />}
-      <SidebarInset className=" flex-1 relative rounded-lg h-full overflow-y-auto " > 
-        <div className="flex flex-1 flex-col px-4 sm:px-6 pt-0 mt-4 overflow-x-hidden ">
+      <SidebarInset className=" flex-1 relative rounded-lg overflow-y-auto " > 
+        <div className="flex flex-1 flex-col px-4 py-4 sm:px-6  overflow-x-hidden ">
           {isAdAccountRequest ? <StepperWrapper /> : <Outlet />}
         </div>
       </SidebarInset>

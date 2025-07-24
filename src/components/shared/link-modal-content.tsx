@@ -10,45 +10,45 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { ChevronRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormLabel,
-  FormItem,
-} from "@/components/ui/form";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "@/components/ui/input";
+// import {
+//   Form,
+//   FormControl,
+//   FormField,
+//   FormLabel,
+//   FormItem,
+// } from "@/components/ui/form";
+// import { z } from "zod";
+// import { useForm } from "react-hook-form";
+// import { zodResolver } from "@hookform/resolvers/zod";
+// import { Input } from "@/components/ui/input";
 
-const formSchema = z.object({
-  "business-manager-name": z
-    .string()
-    .min(1, "Business manager name is required"),
-  "meta-business-manager-id": z
-    .string()
-    .min(1, "Meta Business Manager ID is required"),
-});
+// const formSchema = z.object({
+//   "business-manager-name": z
+//     .string()
+//     .min(1, "Business manager name is required"),
+//   "meta-business-manager-id": z
+//     .string()
+//     .min(1, "Meta Business Manager ID is required"),
+// });
 
 interface LinkingModalContentProps {
   onClose?: () => void;
 }
 
 export const LinkingModalContent = ({ onClose }: LinkingModalContentProps) => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      "business-manager-name": "",
-      "meta-business-manager-id": "",
-    },
-  });
+  // const form = useForm<z.infer<typeof formSchema>>({
+  //   resolver: zodResolver(formSchema),
+  //   defaultValues: {
+  //     "business-manager-name": "",
+  //     "meta-business-manager-id": "",
+  //   },
+  // });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log("Form submitted:", values);
-    // Handle form submission here
-    onClose?.();
-  };
+  // const onSubmit = (values: z.infer<typeof formSchema>) => {
+  //   console.log("Form submitted:", values);
+  //   // Handle form submission here
+  //   onClose?.();
+  // };
 
   return (
     <div className="w-full">
@@ -99,7 +99,7 @@ export const LinkingModalContent = ({ onClose }: LinkingModalContentProps) => {
           </div>
 
           <div className="flex flex-col gap-4">
-            <Form {...form}>
+            {/* <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-4"
@@ -139,7 +139,7 @@ export const LinkingModalContent = ({ onClose }: LinkingModalContentProps) => {
                   )}
                 />
               </form>
-            </Form>
+            </Form> */}
           </div>
         </div>
       </div>
@@ -158,7 +158,7 @@ export const LinkingModalContent = ({ onClose }: LinkingModalContentProps) => {
           </Button>
           <Button
             size="sm"
-            onClick={form.handleSubmit(onSubmit)}
+            // onClick={form.handleSubmit(onSubmit)}
             className="cursor-pointer px-4 py-2 text-sm h-8 rounded-sm"
           >
             Request connection
