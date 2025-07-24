@@ -117,7 +117,7 @@ function AdAccountPage() {
         description="View and manage your advertising account details"
         handleRequestAdAccount={handleRequestAdAccount}
       />
-      <div className="flex flex-col md:flex-row justify-between border border-default rounded-lg mt-6 ">
+      <div className="flex flex-col md:flex-row justify-between border border-border-darker rounded-lg mt-6 ">
         {accounts.map((account) => (
           <AccountStat
             key={account.id}

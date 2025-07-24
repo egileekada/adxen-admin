@@ -1,29 +1,43 @@
-
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
-import { AuthPage, HomePage, SignupPage, AdAccountPage } from "./pages";
-import { AuthLayout, DashboardLayout, OnboardingLayout } from "./components/layouts";
-import { ChangePasswordForm, ResetForm, VerifyForm } from "./components/auth";   
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+import {
+  AuthPage,
+  HomePage,
+  SignupPage,
+  AdAccountPage,
+  ViewDetailsPage,
+} from "./pages";
+import {
+  AuthLayout,
+  DashboardLayout,
+  OnboardingLayout,
+} from "./components/layouts";
+import { ChangePasswordForm, ResetForm, VerifyForm } from "./components/auth";
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/">
-        <Route index element={<AuthPage />} /> 
-        <Route path="auth" element={<AuthLayout />} >
-          <Route path="signup" element={<SignupPage />} /> 
-          <Route path="verify" element={<VerifyForm />} /> 
-          <Route path="reset" element={<ResetForm />} />  
-          <Route path="password" element={<ChangePasswordForm />} />  
-        </Route> 
-        <Route path="onboarding" element={<OnboardingLayout />} >
-          <Route index element={<>
-            </>}  />
-        </Route> 
+        <Route index element={<AuthPage />} />
+        <Route path="auth" element={<AuthLayout />}>
+          <Route path="signup" element={<SignupPage />} />
+          <Route path="verify" element={<VerifyForm />} />
+          <Route path="reset" element={<ResetForm />} />
+          <Route path="password" element={<ChangePasswordForm />} />
+        </Route>
+        <Route path="onboarding" element={<OnboardingLayout />}>
+          <Route index element={<></>} />
+        </Route>
         <Route path="dashboard" element={<DashboardLayout />}>
           <Route index element={<HomePage />} />
           <Route path="account" element={<AdAccountPage />} />
           <Route path="account/request" element={<AdAccountPage />} />
-        </Route> 
+          <Route path="account/:id" element={<ViewDetailsPage />} />
+        </Route>
       </Route>
     )
   );
@@ -34,4 +48,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
