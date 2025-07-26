@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { BsBing } from "react-icons/bs";
 import {
   RiMetaFill,
@@ -125,6 +126,12 @@ const ChoosePlatform = () => {
       </div>
     </div>
   );
+=======
+import React from "react";
+
+const ChoosePlatform = () => {
+  return <div>ChoosePlatform</div>;
+>>>>>>> d2698d3 (made update on request sidebar(click request add account to view))
 };
 
 export default ChoosePlatform;

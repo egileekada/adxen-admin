@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { CircleFlag } from "react-circle-flags";
@@ -128,6 +129,12 @@ const Summary = () => {
       </div>
     </div>
   );
+=======
+import React from "react";
+
+const Summary = () => {
+  return <div>Summary</div>;
+>>>>>>> d2698d3 (made update on request sidebar(click request add account to view))
 };
 
 export default Summary;

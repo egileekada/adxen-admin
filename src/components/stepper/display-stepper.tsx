@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useStepperStore } from "@/hooks/use-stepper-store";
 import { cn } from "@/lib/utils";
 
@@ -12,6 +13,14 @@ export const DisplayStepper = () => {
     summary: "Ad Summary",
   } as const;
 
+=======
+import { useStepper } from "@/hooks/use-stepper";
+import { cn } from "@/lib/utils";
+
+export const DisplayStepper = () => {
+  const { steps, currentStep } = useStepper();
+  console.log(steps, currentStep);
+>>>>>>> d2698d3 (made update on request sidebar(click request add account to view))
   return (
     <div className="h-full flex flex-col items-start justify-center px-6 gap-4">
       <h2 className="text-base font-inter font-normal text-subtle">
@@ -21,6 +30,7 @@ export const DisplayStepper = () => {
       {/* start the stepper */}
       <div className="relative w-full space-y-6">
         {steps.map((step, index) => (
+<<<<<<< HEAD
           <div key={step} className="flex gap-6 items-start">
             <div
               className={cn(
@@ -38,6 +48,11 @@ export const DisplayStepper = () => {
               >
                 {index + 1}
               </h1>
+=======
+          <div key={index} className="flex gap-6 items-start">
+            <div className="relative border size-6 rounded-full flex items-center justify-center shadow-xs">
+              <h1>{index + 1}</h1>
+>>>>>>> d2698d3 (made update on request sidebar(click request add account to view))
               <div
                 className={cn(
                   "absolute flex-auto left-1/2 top-1/2 mt-1.5 transition duration-300 ease-in-out translate-y-1/2 w-px h-4.5 bg-bordercolor",
@@ -46,7 +61,11 @@ export const DisplayStepper = () => {
               />
             </div>
             <div className="text-base font-inter font-medium text-text-default">
+<<<<<<< HEAD
               {stepNames[step as keyof typeof stepNames]}
+=======
+              {step}
+>>>>>>> d2698d3 (made update on request sidebar(click request add account to view))
             </div>
           </div>
         ))}
@@ -56,6 +75,7 @@ export const DisplayStepper = () => {
 };
 
 export const MobileStepper = () => {
+<<<<<<< HEAD
   const { steps, currentStep } = useStepperStore();
   const currentStepIndex = steps.indexOf(currentStep);
 
@@ -90,4 +110,7 @@ export const MobileStepper = () => {
       </div>
     </div>
   );
+=======
+  return <div>MobileStepper</div>;
+>>>>>>> d2698d3 (made update on request sidebar(click request add account to view))
 };

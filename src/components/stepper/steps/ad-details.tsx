@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
   Form,
   FormControl,
@@ -677,6 +678,12 @@ const AdDetails = () => {
       <LinkingModal />
     </div>
   );
+=======
+import React from "react";
+
+const AdDetails = () => {
+  return <div>AdDetails</div>;
+>>>>>>> d2698d3 (made update on request sidebar(click request add account to view))
 };
 
 export default AdDetails;

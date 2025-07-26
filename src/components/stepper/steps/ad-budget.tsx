@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import CurrencyCombo from "@/components/shared/currency-selector";
 import {
   Form,
@@ -101,6 +102,12 @@ const AdBudget = () => {
       </div>
     </div>
   );
+=======
+import React from "react";
+
+const AdBudget = () => {
+  return <div>AdBudget</div>;
+>>>>>>> d2698d3 (made update on request sidebar(click request add account to view))
 };
 
 export default AdBudget;
