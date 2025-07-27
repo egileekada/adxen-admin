@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-function HomePage() {
-  return <div className=" w-full h-full ">Home Page</div>;
-=======
-import AccountStat from "@/components/shared/accounts/accountStat";
-import { DataTable } from "@/components/shared/accounts/accountTable";
+import { AccountTable } from "@/components/shared/accounts/account-table";
 import { columns } from "@/components/shared/accounts/column";
 import HeaderDescription from "@/components/shared/headerDecription";
+import Stats from "@/components/shared/stats";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useNavigate } from "react-router-dom";
 
@@ -123,11 +119,7 @@ function HomePage() {
       />
       <div className="flex flex-col md:flex-row justify-between border border-default rounded-lg mt-6 ">
         {accounts.map((account) => (
-          <AccountStat
-            key={account.id}
-            name={account.name}
-            value={account.value}
-          />
+          <Stats key={account.id} name={account.name} value={account.value} />
         ))}
       </div>
       {/* add account tabs */}
@@ -148,16 +140,15 @@ function HomePage() {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="opened" className="mt-5">
-            <DataTable columns={columns} data={data} />
+            <AccountTable columns={columns} data={data} />
           </TabsContent>
           <TabsContent value="requests" className="mt-5">
-            <DataTable columns={columns} data={data} />
+            <AccountTable columns={columns} data={data} />
           </TabsContent>
         </Tabs>
       </div>
     </div>
   );
->>>>>>> d2698d3 (made update on request sidebar(click request add account to view))
 }
 
 export default HomePage;

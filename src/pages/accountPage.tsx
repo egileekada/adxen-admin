@@ -1,7 +1,8 @@
-import AccountStat from "@/components/shared/accounts/accountStat";
-import { DataTable } from "@/components/shared/accounts/accountTable";
+import { AccountTable } from "@/components/shared/accounts/account-table";
 import { columns } from "@/components/shared/accounts/column";
+import { TransactionTable } from "@/components/shared/accounts/transaction-table";
 import HeaderDescription from "@/components/shared/headerDecription";
+import Stats from "@/components/shared/stats";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useNavigate } from "react-router-dom";
 
@@ -119,11 +120,7 @@ function AdAccountPage() {
       />
       <div className="flex flex-col md:flex-row justify-between border border-border-darker rounded-lg mt-6 ">
         {accounts.map((account) => (
-          <AccountStat
-            key={account.id}
-            name={account.name}
-            value={account.value}
-          />
+          <Stats key={account.id} name={account.name} value={account.value} />
         ))}
       </div>
       {/* add account tabs */}
@@ -144,10 +141,10 @@ function AdAccountPage() {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="opened" className="mt-5">
-            <DataTable columns={columns} data={data} />
+            <AccountTable columns={columns} data={data} />
           </TabsContent>
           <TabsContent value="requests" className="mt-5">
-            <DataTable columns={columns} data={data} />
+            <TransactionTable columns={columns} data={data} />
           </TabsContent>
         </Tabs>
       </div>

@@ -121,23 +121,14 @@
   --color-bordercolor: #e1e1e1;
   --color-error: #f93c65;
   --color-badge-blue: #65a0fd1a;
-<<<<<<< HEAD
-  --color-success: #4FC660; 
-  
+  --color-success: #4fc660;
   --color-muted: #6f6f77;
   --color-default: #111115;
-=======
-  --color-muted: #6f6f77;
-  --color-text-default: #111115;
->>>>>>> d2698d3 (made update on request sidebar(click request add account to view))
   --color-basic-green: #33803f;
   --color-basic-fusia: #9a15b1;
   --color-basic-orange: #a73b0c;
   --color-basic-red: #b11e1b;
-<<<<<<< HEAD
   --color-badge-green: #66dc7e;
-=======
->>>>>>> d2698d3 (made update on request sidebar(click request add account to view))
   --color-badge-green-10: #66dc7e1a;
   --color-badge-fusia-10: #dd72fa1a;
   --color-badge-orange-10: #f38f361a;
@@ -149,24 +140,18 @@
   --color-hint: #27272a4d;
   --color-soft: #27272a0f;
   --color-border-darker: #27272a26;
-<<<<<<< HEAD
   --color-bg-subtle: #fafafa;
   --color-basic-blue-accent: #437dfc;
   --color-basic-green-accent: #4fc660;
   --color-blue-infomative: #2b5df3;
   --color-blue-subtle: #deeafd;
-=======
->>>>>>> d2698d3 (made update on request sidebar(click request add account to view))
 
   /* fonts */
   --font-inter: "Inter", sans-serif;
 
   /* border */
   --border-default: #27272a1a;
-<<<<<<< HEAD
   --border-darker: #27272a;
-=======
->>>>>>> d2698d3 (made update on request sidebar(click request add account to view))
 }
 
 @layer base {

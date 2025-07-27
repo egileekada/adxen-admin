@@ -1,42 +1,24 @@
-<<<<<<< HEAD
-import * as React from "react"
-import {
-  GalleryVerticalEnd,
-} from "lucide-react"
-=======
-"use client";
-
-import * as React from "react";
-import {
-  CircleDollarSignIcon,
-  GalleryVerticalEnd,
-  HomeIcon,
-  PlaySquareIcon,
-  ScrollText,
-  Settings,
-  Wallet2,
-} from "lucide-react";
->>>>>>> d2698d3 (made update on request sidebar(click request add account to view))
-
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-<<<<<<< HEAD
-} from "@/components/ui/sidebar"
-import { NavMain } from "./nav-main"
-import { TeamSwitcher } from "./team-switcher"
-import { NavUser } from "./nav-user"
-import { RiCoinLine, RiHome5Line, RiReceiptLine, RiSettings3Line, RiUserStarLine, RiVideoLine, RiWalletLine } from "@remixicon/react"
-
-=======
 } from "@/components/ui/sidebar";
 import { NavMain } from "./nav-main";
 import { TeamSwitcher } from "./team-switcher";
 import { NavUser } from "./nav-user";
->>>>>>> d2698d3 (made update on request sidebar(click request add account to view))
+import { GalleryVerticalEnd } from "lucide-react";
+import {
+  RiCoinLine,
+  RiHome5Line,
+  RiReceiptLine,
+  RiSettings3Line,
+  RiUserStarLine,
+  RiVideoLine,
+  RiWalletLine,
+} from "@remixicon/react";
+
 // This is sample data.
 const data = {
   user: {
@@ -55,24 +37,14 @@ const data = {
     {
       title: "Home",
       url: "/dashboard",
-<<<<<<< HEAD
       icon: RiHome5Line,
       isActive: false,
-      items: []
-=======
-      icon: HomeIcon,
-      isActive: false,
       items: [],
->>>>>>> d2698d3 (made update on request sidebar(click request add account to view))
     },
     {
       title: "Ad account",
       url: "#",
-<<<<<<< HEAD
       icon: RiVideoLine,
-=======
-      icon: PlaySquareIcon,
->>>>>>> d2698d3 (made update on request sidebar(click request add account to view))
       isActive: true,
       items: [
         {
@@ -92,69 +64,35 @@ const data = {
     {
       title: "Wallet",
       url: "/dashboard/wallet",
-<<<<<<< HEAD
       icon: RiWalletLine,
       isActive: false,
-      items: []
+      items: [],
     },
     {
       title: "Teams",
       url: "/dashboard/teams",
       icon: RiUserStarLine,
       isActive: false,
-      items: []
-=======
-      icon: Wallet2,
-      isActive: false,
       items: [],
->>>>>>> d2698d3 (made update on request sidebar(click request add account to view))
     },
     {
       title: "Billing",
       url: "/dashboard/billing",
-<<<<<<< HEAD
       icon: RiReceiptLine,
       isActive: false,
-      items: []
-=======
-      icon: ScrollText,
-      isActive: false,
       items: [],
->>>>>>> d2698d3 (made update on request sidebar(click request add account to view))
     },
     {
       title: "Affiliate program",
       url: "/dashboard/affiliate",
-<<<<<<< HEAD
       icon: RiCoinLine,
       isActive: false,
-      items: []
-=======
-      icon: CircleDollarSignIcon,
-      isActive: false,
       items: [],
->>>>>>> d2698d3 (made update on request sidebar(click request add account to view))
     },
     {
       title: "Settings",
       url: "/dashboard/settings",
-<<<<<<< HEAD
       icon: RiSettings3Line,
-      isActive: false,
-      items: []
-    },
-  ]
-}
-
-export default function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  return (
-    <Sidebar variant="inset" {...props} >
-      <SidebarHeader className=" bg-[#FAFAFA] text-sidebarcolor " >
-        <TeamSwitcher />
-      </SidebarHeader>
-      <SidebarContent className=" bg-[#FAFAFA] text-sidebarcolor " >
-=======
-      icon: Settings,
       isActive: false,
       items: [],
     },
@@ -165,12 +103,11 @@ export default function AppSidebar({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar variant="inset" {...props}>
       <SidebarHeader className=" bg-[#FAFAFA] text-sidebarcolor ">
         <TeamSwitcher />
       </SidebarHeader>
-      <SidebarContent className="flex-1 bg-[#FAFAFA] text-sidebarcolor ">
->>>>>>> d2698d3 (made update on request sidebar(click request add account to view))
+      <SidebarContent className=" bg-[#FAFAFA] text-sidebarcolor ">
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
@@ -178,9 +115,5 @@ export default function AppSidebar({
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-<<<<<<< HEAD
-  )
-=======
   );
->>>>>>> d2698d3 (made update on request sidebar(click request add account to view))
 }

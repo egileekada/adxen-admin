@@ -1,5 +1,4 @@
 import { createContext, useContext } from "react";
-import type { FormData } from "@/lib/schemas/step-schema";
 
 interface StepperContextType {
   steps: string[];

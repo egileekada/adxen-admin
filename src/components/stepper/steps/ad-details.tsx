@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import {
   Form,
   FormControl,
@@ -102,7 +101,7 @@ const AdDetails = () => {
   };
 
   return (
-    <div className="sm:px-0 max-w-[478px] mx-auto mb-6">
+    <div className="sm:px-0 max-w-[478px] h-full overflow-y-auto mx-auto mb-6">
       <h1 className="text-2xl sm:text-3xl font-semibold text-default font-inter">
         Set up your ad account
       </h1>
@@ -678,12 +677,6 @@ const AdDetails = () => {
       <LinkingModal />
     </div>
   );
-=======
-import React from "react";
-
-const AdDetails = () => {
-  return <div>AdDetails</div>;
->>>>>>> d2698d3 (made update on request sidebar(click request add account to view))
 };
 
 export default AdDetails;
