@@ -101,14 +101,14 @@ const AdDetails = () => {
   };
 
   return (
-    <div className="sm:px-0 max-w-[478px] h-full overflow-y-auto mx-auto mb-6">
+    <div className="sm:px-0 max-w-[478px] mx-auto mb-6">
       <h1 className="text-2xl sm:text-3xl font-semibold text-default font-inter">
         Set up your ad account
       </h1>
       <p className="text-sm sm:text-base font-inter font-normal text-subtle mt-2 sm:mt-4 sm:max-w-md">
         These help us configure and submit your request accurately.
       </p>
-      <div className="mx-auto mt-6">
+      <div className="mx-auto mt-6 overflow-y-auto">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)} className="">
             <div className="flex flex-col">

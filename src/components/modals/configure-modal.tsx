@@ -2,27 +2,156 @@ import { useModal } from "@/hooks/use-modal";
 import { Drawer, DrawerDescription, DrawerTitle } from "../ui/drawer";
 import { DrawerContent } from "../ui/drawer";
 import { DrawerHeader } from "../ui/drawer";
+import AdAccountForm from "../forms/ad-account-form";
+import InitialFundingForm from "../forms/initial-funding-form";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "../ui/breadcrumb";
+import { X } from "lucide-react";
+import { Button } from "../ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
+import {
+  SheetContent,
+  Sheet,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from "../ui/sheet";
+import { useState } from "react";
+
+const steps = ["configure", "funding"] as const;
 
 const ConfigureModal = () => {
-  const { isOpen, closeModal } = useModal();
+  const { isOpen, closeModal, openModal } = useModal();
+  const isMobile = useIsMobile();
 
-  console.log(isOpen);
+  const [stepIndex, setStepIndex] = useState(0);
+
+  const stepsMap = {
+    configure: <AdAccountForm />,
+    funding: <InitialFundingForm />,
+  };
+
+  const currentStep = stepsMap[steps[stepIndex]];
+
+  const handleNext = () => {
+    if (stepIndex < steps.length - 1) setStepIndex(stepIndex + 1);
+  };
+
+  const handlePrevious = () => {
+    if (stepIndex > 0) setStepIndex(stepIndex - 1);
+  };
+
+  const handleProceed = () => {
+    closeModal();
+    setTimeout(() => {
+      openModal("processing");
+    }, 200);
+  };
+
+  if (isMobile) {
+    return (
+      <Drawer open={isOpen} onOpenChange={closeModal}>
+        <DrawerContent className="w-full mt-2 sm:max-w-md md:max-w-md  mx-auto">
+          <DrawerHeader className="flex flex-col relative w-full bg-[#27272A1A]/10 border-b border-[#27272A1A] gap-2 p-6">
+            <DrawerTitle className="">
+              <Breadcrumb className="text-sm font-normal flex items-center gap-2">
+                <BreadcrumbList>
+                  <BreadcrumbItem>View Details</BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>Edit configuration</BreadcrumbItem>
+                </BreadcrumbList>
+              </Breadcrumb>
+            </DrawerTitle>
+            <div
+              className="absolute top-1/2 -translate-y-1/2 right-6 cursor-pointer"
+              onClick={closeModal}
+            >
+              <X className="size-4 text-default" />
+            </div>
+            <DrawerDescription className="flex text-xl font-bold text-default">
+              Configure your ad account
+            </DrawerDescription>
+          </DrawerHeader>
+          <div className="px-6 overflow-y-auto">{currentStep}</div>
+          <div className="p-6 mt-2 flex w-full justify-between gap-2 border-t border-soft pt-6">
+            {stepIndex > 0 && (
+              <Button
+                size="sm"
+                variant="outline"
+                className="bg-transparent text-default"
+                onClick={handlePrevious}
+              >
+                Back
+              </Button>
+            )}
+            <Button
+              size="sm"
+              className="ml-auto"
+              onClick={
+                stepIndex === steps.length - 1 ? handleProceed : handleNext
+              }
+            >
+              {stepIndex === steps.length - 1 ? "Proceed" : "Next"}
+            </Button>
+          </div>
+        </DrawerContent>
+      </Drawer>
+    );
+  }
 
   return (
-    <Drawer open={isOpen} onOpenChange={closeModal}>
-      <DrawerContent className="w-full mt-2 rounded-t-md h-fit sm:max-w-md md:max-w-md  mx-auto">
-        <DrawerHeader className="sr-only">
-          <DrawerTitle>Add Meta Business Manager ID</DrawerTitle>
-          <DrawerDescription>
-            Complete the form to request connection to your Meta Business
-            Manager account
-          </DrawerDescription>
-        </DrawerHeader>
-        <div className="p-6">
-          <h1 className="text-2xl font-bold">Configure</h1>
+    <Sheet open={isOpen} onOpenChange={closeModal}>
+      <SheetContent className="w-[430px] mt-2  rounded-md sm:max-w-md md:max-w-md  mx-auto overflow-y-auto">
+        <SheetHeader className=" relative w-full bg-[#27272A1A]/10 border-b border-[#27272A1A] p-6 flex flex-col gap-2">
+          <SheetTitle>
+            <Breadcrumb className="text-sm font-normal flex items-center gap-2">
+              <BreadcrumbList>
+                <BreadcrumbItem>View Details</BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>Edit configuration</BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </SheetTitle>
+          <div
+            className="absolute top-1/2 -translate-y-1/2 right-10 cursor-pointer"
+            onClick={closeModal}
+          >
+            <X className="size-4 text-default" />
+          </div>
+          <SheetDescription className="text-xl font-bold text-default">
+            Configure your ad account
+          </SheetDescription>
+        </SheetHeader>
+        <div className="px-6">
+          <AdAccountForm />
         </div>
-      </DrawerContent>
-    </Drawer>
+        <div className="p-6 mt-2 flex w-full justify-between gap-2 border-t border-soft pt-6">
+          {stepIndex > 0 && (
+            <Button
+              size="sm"
+              variant="outline"
+              className="bg-transparent text-default"
+              onClick={handlePrevious}
+            >
+              Back
+            </Button>
+          )}
+          <Button
+            size="sm"
+            className="ml-auto"
+            onClick={
+              stepIndex === steps.length - 1 ? handleProceed : handleNext
+            }
+          >
+            {stepIndex === steps.length - 1 ? "Proceed" : "Next"}
+          </Button>
+        </div>
+      </SheetContent>
+    </Sheet>
   );
 };
 

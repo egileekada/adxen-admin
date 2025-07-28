@@ -1,5 +1,6 @@
 import { AccountTable } from "@/components/shared/accounts/account-table";
-import { columns } from "@/components/shared/accounts/column";
+import { accountColumns } from "@/components/shared/accounts/account-column";
+import { requestColumns } from "@/components/shared/accounts/request-column";
 import { TransactionTable } from "@/components/shared/accounts/transaction-table";
 import HeaderDescription from "@/components/shared/headerDecription";
 import Stats from "@/components/shared/stats";
@@ -104,6 +105,41 @@ const data = [
   },
 ];
 
+const requestData = [
+  {
+    date: "2021-01-01",
+    requestId: "1234567890",
+    accountName: "Amazon - Mexico",
+    platform: "Google",
+    timezone: "(GMT+2) Paris",
+    status: "pending",
+  },
+  {
+    date: "2021-01-01",
+    requestId: "1234567890",
+    accountName: "Amazon - Mexico",
+    platform: "Google",
+    timezone: "(GMT+2) Paris",
+    status: "pending",
+  },
+  {
+    date: "2021-01-01",
+    requestId: "1234567890",
+    accountName: "Amazon - Mexico",
+    platform: "Google",
+    timezone: "(GMT+2) Paris",
+    status: "rejected",
+  },
+  {
+    date: "2021-01-01",
+    requestId: "1234567890",
+    accountName: "Amazon - Mexico",
+    platform: "Google",
+    timezone: "(GMT+2) Paris",
+    status: "pending",
+  },
+];
+
 function AdAccountPage() {
   const navigate = useNavigate();
 
@@ -141,10 +177,10 @@ function AdAccountPage() {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="opened" className="mt-5">
-            <AccountTable columns={columns} data={data} />
+            <AccountTable columns={accountColumns} data={data} />
           </TabsContent>
           <TabsContent value="requests" className="mt-5">
-            <TransactionTable columns={columns} data={data} />
+            <TransactionTable columns={requestColumns} data={requestData} />
           </TabsContent>
         </Tabs>
       </div>

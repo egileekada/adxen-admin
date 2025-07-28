@@ -19,10 +19,12 @@ import {
   SheetHeader,
   SheetTitle,
 } from "../ui/sheet";
+import TransferFundForm from "../forms/transfer-fund-form";
 
-const TopupModal = () => {
+const TransferFundModal = () => {
   const { isOpen, closeModal, openModal } = useModal();
   const isMobile = useIsMobile();
+  console.log(isMobile);
 
   const handleProceed = () => {
     closeModal();
@@ -41,7 +43,7 @@ const TopupModal = () => {
                 <BreadcrumbList>
                   <BreadcrumbItem>View Details</BreadcrumbItem>
                   <BreadcrumbSeparator />
-                  <BreadcrumbItem>Fund Wallet</BreadcrumbItem>
+                  <BreadcrumbItem>Transfer Funds</BreadcrumbItem>
                 </BreadcrumbList>
               </Breadcrumb>
             </DrawerTitle>
@@ -52,13 +54,13 @@ const TopupModal = () => {
               <X className="size-4 text-default" />
             </div>
             <DrawerDescription className="text-xl font-bold text-default">
-              Top up ad account
+              Transfer funds to ad account
             </DrawerDescription>
           </DrawerHeader>
           <div className="px-6">
-            <InitialFundingForm />
+            <TransferFundForm />
           </div>
-          <div className="p-6 flex item-center justify-between gap-2 border-t border-soft pt-6">
+          <div className="p-6 mt-2 flex item-center justify-between gap-2 border-t border-soft pt-6">
             <Button variant="outline" size="sm" className="">
               Cancel
             </Button>
@@ -79,7 +81,7 @@ const TopupModal = () => {
               <BreadcrumbList>
                 <BreadcrumbItem>View Details</BreadcrumbItem>
                 <BreadcrumbSeparator />
-                <BreadcrumbItem>Fund Wallet</BreadcrumbItem>
+                <BreadcrumbItem>Transfer Funds</BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
           </SheetTitle>
@@ -90,13 +92,13 @@ const TopupModal = () => {
             <X className="size-4 text-default" />
           </div>
           <SheetDescription className="text-xl font-bold text-default">
-            Top up ad account
+            Transfer funds to ad account
           </SheetDescription>
         </SheetHeader>
         <div className="px-6">
           <InitialFundingForm />
         </div>
-        <div className="p-6  bg-[#27272A1A]/10 flex item-center justify-between gap-2 border-t border-[#27272A1A] pt-6">
+        <div className="p-6 mt-6  bg-[#27272A1A]/10 flex item-center justify-between gap-2 border-t border-[#27272A1A] pt-6">
           <Button variant="outline" size="sm" className="">
             Cancel
           </Button>
@@ -109,4 +111,4 @@ const TopupModal = () => {
   );
 };
 
-export default TopupModal;
+export default TransferFundModal;

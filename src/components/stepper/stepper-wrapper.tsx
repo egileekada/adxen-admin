@@ -62,7 +62,9 @@ const StepperWrapper = () => {
   };
 
   return (
-    <div className="flex-1 w-full h-full flex flex-col items-center justify-center">
+    <div className="relative flex-1 flex flex-col items-center justify-center">
+      {/* header with a cancel button */}
+      {/* <div className="h-20 w-full bg-soft"></div> */}
       <div className="pb-16">
         <StepComponent />
 

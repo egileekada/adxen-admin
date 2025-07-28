@@ -1,6 +1,12 @@
 import { create } from "zustand";
 
-export type ModalType = "topup" | "configure" | "fund-transfer" | "withdraw";
+export type ModalType =
+  | "topup"
+  | "configure"
+  | "fund-transfer"
+  | "withdraw"
+  | "processing"
+  | "archive";
 
 type ModalStore = {
   isOpen: boolean;

@@ -284,9 +284,12 @@ function AdAccountPage() {
               </Button>
               <Button className="w-full inline-flex items-center justify-start p-2 gap-2 text-sm font-inter font-normal bg-white text-default hover:bg-soft hover:text-subtle border-none shadow-none rounded-sm">
                 <RiUserLine className="size-4" />
-                <span>Acces / Permission</span>
+                <span>Access / Permission</span>
               </Button>
-              <Button className="w-full inline-flex items-center justify-start p-2 gap-2 text-sm font-inter font-normal bg-white text-default hover:bg-soft hover:text-subtle border-none shadow-none rounded-sm">
+              <Button
+                className="w-full inline-flex items-center justify-start p-2 gap-2 text-sm font-inter font-normal bg-white text-default hover:bg-soft hover:text-subtle border-none shadow-none rounded-sm"
+                onClick={() => handleMore("archive")}
+              >
                 <RiInboxArchiveLine className="size-4" />
                 <span>Archive account</span>
               </Button>

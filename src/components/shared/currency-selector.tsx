@@ -127,7 +127,7 @@ export default function CurrencyCombo({
           value={internalValue.currency}
           onValueChange={handleCurrencyChange}
         >
-          <SelectTrigger className="w-40 rounded-r-none border-r-0 focus:z-10 bg-soft">
+          <SelectTrigger className="w-28 rounded-r-none border-r-0 focus:z-10 bg-soft">
             <SelectValue>
               {selectedOption && (
                 <div className="flex items-center gap-2">
@@ -145,7 +145,7 @@ export default function CurrencyCombo({
               )}
             </SelectValue>
           </SelectTrigger>
-          <SelectContent className="max-h-60">
+          <SelectContent className="max-h-60 w-50">
             {currencyOptions.map((option) => (
               <SelectItem
                 key={`${option.currency}-${option.countryCode}`}
@@ -193,7 +193,7 @@ export default function CurrencyCombo({
                 right: `${internalValue.amount.length * 0.6 + 1.5}rem`,
               }}
             >
-              $
+              {internalValue.currency}
             </span>
           )}
         </div>
