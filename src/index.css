@@ -121,8 +121,7 @@
   --color-bordercolor: #e1e1e1;
   --color-error: #f93c65;
   --color-badge-blue: #65a0fd1a;
-  --color-success: #4FC660; 
-  
+  --color-success: #4fc660;
   --color-muted: #6f6f77;
   --color-default: #111115;
   --color-basic-green: #33803f;
@@ -131,6 +130,7 @@
   --color-basic-red: #b11e1b;
   --color-badge-green: #66dc7e;
   --color-badge-green-10: #66dc7e1a;
+  --color-badge-red-10: #ee6e6c1a;
   --color-badge-fusia-10: #dd72fa1a;
   --color-badge-orange-10: #f38f361a;
 

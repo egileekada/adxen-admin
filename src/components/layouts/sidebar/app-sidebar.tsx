@@ -1,19 +1,23 @@
-import * as React from "react"
-import {
-  GalleryVerticalEnd,
-} from "lucide-react"
-
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@/components/ui/sidebar"
-import { NavMain } from "./nav-main"
-import { TeamSwitcher } from "./team-switcher"
-import { NavUser } from "./nav-user"
-import { RiCoinLine, RiHome5Line, RiReceiptLine, RiSettings3Line, RiUserStarLine, RiVideoLine, RiWalletLine } from "@remixicon/react"
+} from "@/components/ui/sidebar";
+import { NavMain } from "./nav-main";
+import { TeamSwitcher } from "./team-switcher";
+import { NavUser } from "./nav-user";
+import { GalleryVerticalEnd } from "lucide-react";
+import {
+  RiCoinLine,
+  RiHome5Line,
+  RiReceiptLine,
+  RiSettings3Line,
+  RiUserStarLine,
+  RiVideoLine,
+  RiWalletLine,
+} from "@remixicon/react";
 
 // This is sample data.
 const data = {
@@ -35,7 +39,7 @@ const data = {
       url: "/dashboard",
       icon: RiHome5Line,
       isActive: false,
-      items: []
+      items: [],
     },
     {
       title: "Ad account",
@@ -62,46 +66,48 @@ const data = {
       url: "/dashboard/wallet",
       icon: RiWalletLine,
       isActive: false,
-      items: []
+      items: [],
     },
     {
       title: "Teams",
       url: "/dashboard/teams",
       icon: RiUserStarLine,
       isActive: false,
-      items: []
+      items: [],
     },
     {
       title: "Billing",
       url: "/dashboard/billing",
       icon: RiReceiptLine,
       isActive: false,
-      items: []
+      items: [],
     },
     {
       title: "Affiliate program",
       url: "/dashboard/affiliate",
       icon: RiCoinLine,
       isActive: false,
-      items: []
+      items: [],
     },
     {
       title: "Settings",
       url: "/dashboard/settings",
       icon: RiSettings3Line,
       isActive: false,
-      items: []
+      items: [],
     },
-  ]
-}
+  ],
+};
 
-export default function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export default function AppSidebar({
+  ...props
+}: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar variant="inset" {...props} >
-      <SidebarHeader className=" bg-[#FAFAFA] text-sidebarcolor " >
+    <Sidebar variant="inset" {...props}>
+      <SidebarHeader className=" bg-[#FAFAFA] text-sidebarcolor ">
         <TeamSwitcher />
       </SidebarHeader>
-      <SidebarContent className=" bg-[#FAFAFA] text-sidebarcolor " >
+      <SidebarContent className=" bg-[#FAFAFA] text-sidebarcolor ">
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
@@ -109,5 +115,5 @@ export default function AppSidebar({ ...props }: React.ComponentProps<typeof Sid
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }

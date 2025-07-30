@@ -74,7 +74,7 @@ const platformIcons = {
   [PlatformEnum.TIKTOK]: <FaTiktok />,
 };
 
-export const columns: ColumnDef<TableData>[] = [
+export const accountColumns: ColumnDef<TableData>[] = [
   {
     accessorKey: "checkbox",
     header: ({ table }) => {

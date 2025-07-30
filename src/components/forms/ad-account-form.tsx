@@ -1,0 +1,665 @@
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import { Button } from "@/components/ui/button";
+import { CheckIcon, ChevronsUpDownIcon, PlusIcon, XIcon } from "lucide-react";
+import { CountryDropdown } from "@/components/shared/country-dropdown";
+import { useState } from "react";
+import { usePlatformSelect } from "@/hooks/use-stepper-store";
+import { useModal } from "@/hooks/use-modal";
+import { useForm } from "react-hook-form";
+import { useCountry } from "@/hooks/use-country";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
+import { CircleFlag } from "react-circle-flags";
+import { Badge } from "../ui/badge";
+
+const timezones = [
+  {
+    value: "America/New_York",
+    label: "America/New_York",
+  },
+  {
+    value: "America/Los_Angeles",
+    label: "America/Los_Angeles",
+  },
+  {
+    value: "America/Chicago",
+    label: "America/Chicago",
+  },
+];
+
+const businessCategories = [
+  { label: "E-commerce", value: "ecommerce" },
+  { label: "Software Developer", value: "developer" },
+  { label: "Content Creator", value: "content_creator" },
+  { label: "Freelancer", value: "freelancer" },
+  { label: "Consultant", value: "consultant" },
+];
+
+const AdAccountForm = () => {
+  const [open, setOpen] = useState(false);
+  const [openBusinessCategory, setOpenBusinessCategory] = useState(false);
+  const [openMetaBusinessManagerId, setOpenMetaBusinessManagerId] =
+    useState(false);
+  const [openTiktokBusinessManagerId, setOpenTiktokBusinessManagerId] =
+    useState(false);
+  const [openBingBusinessManagerId, setOpenBingBusinessManagerId] =
+    useState(false);
+  const [openSnapchatBusinessManagerId, setOpenSnapchatBusinessManagerId] =
+    useState(false);
+  const [openGoogleBusinessManagerId, setOpenGoogleBusinessManagerId] =
+    useState(false);
+  const [timezone, setTimezone] = useState("");
+  const [businessCategory, setBusinessCategory] = useState("");
+
+  const { selectedCountries, removeSelectedCountry } = useCountry();
+  const { selectedPlatform } = usePlatformSelect();
+  const { openModal, isOpen } = useModal();
+  console.log("isOpen", isOpen);
+  const form = useForm({
+    defaultValues: {},
+  });
+
+  const handleAddBusinessManager = (platform: string) => {
+    console.log("add business manager", platform);
+    openModal();
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleSubmit = (data: any) => {
+    console.log(data);
+  };
+  return (
+    <div className="mx-auto mt-6 overflow-y-auto">
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(handleSubmit)} className="">
+          <div className="flex flex-col">
+            <Label className="mb-6 text-default font-semibold text-lg font-inter">
+              Ad Account Setup
+            </Label>
+            <div className="flex flex-col gap-4">
+              <FormField
+                // control={form.control}
+                name="addacount"
+                render={() => (
+                  <FormItem>
+                    <FormLabel>Ad Account Name</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Enter your ad account name"
+                        className="bg-accent border border-border-darker outline-none shadow-xs focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-subtle"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                // control={form.control}
+                name="addacount"
+                render={() => (
+                  <FormItem className="w-full">
+                    <FormLabel>Timezone</FormLabel>
+                    <FormControl>
+                      <Popover open={open} onOpenChange={setOpen}>
+                        <PopoverTrigger asChild className="">
+                          <Button className="w-full bg-accent font-normal font-inter hover:bg-accent text-subtle inline-flex items-center justify-between border border-border-darker shadow-xs">
+                            {timezone || "Select Timezone"}
+                            <ChevronsUpDownIcon className="w-4 h-4 opacity-35" />
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent
+                          className="p-0 w-full min-w-[var(--radix-popover-trigger-width)]"
+                          align="start"
+                        >
+                          <Command className="bg-accent">
+                            <CommandInput placeholder="Search timezone" />
+                            <CommandList>
+                              <CommandEmpty>No timezone found.</CommandEmpty>
+                              <CommandGroup>
+                                {timezones.map((timezone) => (
+                                  <CommandItem
+                                    key={timezone.value}
+                                    value={timezone.value}
+                                    onSelect={() => {
+                                      setTimezone(timezone.value);
+                                      setOpen(false);
+                                    }}
+                                  >
+                                    <CheckIcon className="w-4 h-4" />
+                                    <span>{timezone.label}</span>
+                                  </CommandItem>
+                                ))}
+                              </CommandGroup>
+                            </CommandList>
+                          </Command>
+                        </PopoverContent>
+                      </Popover>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                // control={form.control}
+                name="addacount"
+                render={() => (
+                  <FormItem className="w-full">
+                    <FormLabel>Currency</FormLabel>
+                    <FormControl className="w-full">
+                      <Select>
+                        <SelectTrigger className="w-full bg-accent text-subtle border border-border-darker shadow-xs outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
+                          <SelectValue
+                            placeholder="Select a currency"
+                            className=""
+                          />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="USD">USD</SelectItem>
+                          <SelectItem value="EUR">EUR</SelectItem>
+                          <SelectItem value="GBP">GBP</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
+          <Separator className="my-6" />
+          <div className="flex flex-col">
+            <Label className="mb-6  text-default font-semibold text-lg font-inter">
+              Ad Account Planning
+            </Label>
+            <div className="flex flex-col gap-4">
+              <FormField
+                // control={form.control}
+                name="addacount"
+                render={() => (
+                  <FormItem>
+                    <FormLabel className="">How many ad accounts?</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Enter your ad account name"
+                        className="bg-accent border border-border-darker shadow-xs outline-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-subtle"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                // control={form.control}
+                name="addacount"
+                render={() => (
+                  <FormItem>
+                    <FormLabel>
+                      How much do you estimate your monthly ad spend to be?
+                    </FormLabel>
+                    <FormControl>
+                      <Select>
+                        <SelectTrigger className="w-full bg-accent text-subtle border border-border-darker shadow-xs outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
+                          <SelectValue placeholder="Select a spend" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="1000">0 - $1k /month</SelectItem>
+                          <SelectItem value="2000">$1k - $5k /month</SelectItem>
+                          <SelectItem value="3000">
+                            $5k - $10k /month
+                          </SelectItem>
+                          <SelectItem value="4000">
+                            $10k - $25k /month
+                          </SelectItem>
+                          <SelectItem value="5000">
+                            $25k - $50k /month
+                          </SelectItem>
+                          <SelectItem value="6000">
+                            $50k - $100k /month
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
+          <Separator className="my-6" />
+          <div className="flex flex-col">
+            <Label className="mb-6  text-default font-semibold text-lg font-inter">
+              Business & Campaign Info
+            </Label>
+            <div className="flex flex-col gap-4">
+              <FormField
+                // control={form.control}
+                name="addacount"
+                render={() => (
+                  <FormItem>
+                    <FormLabel>Business Category</FormLabel>
+                    <FormControl>
+                      <Popover
+                        open={openBusinessCategory}
+                        onOpenChange={setOpenBusinessCategory}
+                      >
+                        <PopoverTrigger asChild>
+                          <Button className="w-full bg-accent font-normal shadow-xs font-inter hover:bg-accent text-subtle inline-flex items-center justify-between border border-border-darker">
+                            {businessCategory || "Select a category"}
+                            <ChevronsUpDownIcon className="w-4 h-4 opacity-35" />
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="p-0 w-full min-w-[var(--radix-popover-trigger-width)]">
+                          <Command>
+                            <CommandInput placeholder="Search for a category" />
+                            <CommandList>
+                              <CommandEmpty>No category found.</CommandEmpty>
+                              <CommandGroup>
+                                {businessCategories.map((category) => (
+                                  <CommandItem
+                                    key={category.value}
+                                    value={category.value}
+                                    onSelect={() => {
+                                      setBusinessCategory(category.label);
+                                      setOpenBusinessCategory(false);
+                                    }}
+                                  >
+                                    {category.label}
+                                  </CommandItem>
+                                ))}
+                              </CommandGroup>
+                            </CommandList>
+                          </Command>
+                        </PopoverContent>
+                      </Popover>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                // control={form.control}
+                name="addacount"
+                render={() => (
+                  <FormItem>
+                    <FormLabel>Website URL</FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <Input
+                          placeholder="Enter your ad account name"
+                          className="bg-accent border border-border-darker shadow-xs outline-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-subtle pl-20"
+                        />
+                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted">
+                          https://
+                        </span>
+                      </div>
+                    </FormControl>
+                    <FormDescription className="text-muted text-xs/4 font-inter font-normal">
+                      Make sure your page least 03 to 05 Posts (Image + Link +
+                      Text){" "}
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                // control={form.control}
+                name="addacount"
+                render={() => (
+                  <FormItem className="w-full">
+                    <FormLabel>Target Countries</FormLabel>
+                    {selectedCountries.length > 0 && (
+                      <div className="max-w-120 flex flex-wrap gap-2 mb-2 bg-accent py-1.5 px-2 rounded-md">
+                        {selectedCountries.map((c) => (
+                          <div className="flex items-center bg-white px-1 rounded-full shadow-sm">
+                            <Badge
+                              className="bg-transparent text-sm text-subtle"
+                              key={c.alpha2}
+                            >
+                              <CircleFlag
+                                countryCode={c.alpha2.toLowerCase()}
+                                className="w-4 h-4"
+                              />
+                              {c.name}
+                            </Badge>
+                            <XIcon
+                              className="w-4 h-4 cursor-pointer"
+                              onClick={() => removeSelectedCountry(c)}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    <FormControl>
+                      <CountryDropdown className="bg-accent border border-border-darker shadow-xs" />
+                    </FormControl>
+                    <FormDescription className="text-muted text-xs/4 font-inter font-normal">
+                      One or more geo-locations where ads will run. ad account
+                      will target worldwide, entered countries is for
+                      informative purpose
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
+          <Separator className="my-6" />
+          {selectedPlatform === "meta" && (
+            <div className="flex flex-col">
+              <Label className="mb-6  text-default font-semibold text-lg font-inter">
+                Meta Linking Access
+              </Label>
+              <div className="flex flex-col gap-4">
+                <FormField
+                  // control={form.control}
+                  name="addacount"
+                  render={() => (
+                    <FormItem>
+                      <FormLabel>Meta Business Manager ID</FormLabel>
+                      <FormControl>
+                        <Popover
+                          open={openMetaBusinessManagerId}
+                          onOpenChange={setOpenMetaBusinessManagerId}
+                        >
+                          <PopoverTrigger asChild>
+                            <Button className="w-full bg-accent font-normal font-inter hover:bg-accent text-subtle inline-flex items-center justify-between border border-border-darker shadow-xs">
+                              {"Choose"}
+                              <ChevronsUpDownIcon className="w-4 h-4 opacity-35" />
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="p-0 w-full min-w-[var(--radix-popover-trigger-width)]">
+                            <Command>
+                              <CommandInput placeholder="Search for a category" />
+                              <CommandList>
+                                <CommandEmpty>No category found.</CommandEmpty>
+                                <CommandGroup></CommandGroup>
+                              </CommandList>
+                            </Command>
+                            <Button
+                              className="w-full bg-accent rounded-none rounded-b-md font-normal font-inter hover:bg-accent text-subtle inline-flex items-center border border-border-darker"
+                              onClick={() => handleAddBusinessManager("meta")}
+                            >
+                              <PlusIcon className="w-4 h-4 text-muted" />
+                              <p className="text-default text-sm font-medium">
+                                Add business manager
+                              </p>
+                            </Button>
+                          </PopoverContent>
+                        </Popover>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  // control={form.control}
+                  name="addacount"
+                  render={() => (
+                    <FormItem>
+                      <FormLabel>Facebook Page Links</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Enter your ad account name"
+                          className="bg-accent border border-border-darker shadow-xs outline-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-subtle"
+                        ></Textarea>
+                      </FormControl>
+                      <FormMessage />
+                      <FormDescription className="text-muted text-xs/4 font-inter font-normal">
+                        Must include at least one (admin access required
+                        temporarily)
+                      </FormDescription>
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+          )}
+          {selectedPlatform === "google" && (
+            <div>
+              <Label className="mb-6  text-default font-semibold text-lg font-inter">
+                Google Linking &amp; Access
+              </Label>
+              <FormField
+                // control={form.control}
+                name="addacount"
+                render={() => (
+                  <FormItem>
+                    <FormLabel>Google Ads Email &amp; Access</FormLabel>
+                    <FormControl>
+                      <Popover
+                        open={openGoogleBusinessManagerId}
+                        onOpenChange={setOpenGoogleBusinessManagerId}
+                      >
+                        <PopoverTrigger asChild>
+                          <Button className="w-full bg-accent font-normal font-inter hover:bg-accent text-subtle inline-flex items-center justify-between border border-border-darker shadow-xs">
+                            {"Choose"}
+                            <ChevronsUpDownIcon className="w-4 h-4 opacity-35" />
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="p-0 w-full min-w-[var(--radix-popover-trigger-width)]">
+                          <Command>
+                            <CommandInput placeholder="Search for a category" />
+                            <CommandList>
+                              <CommandEmpty>No category found.</CommandEmpty>
+                              <CommandGroup></CommandGroup>
+                            </CommandList>
+                          </Command>
+                          <Button
+                            className="w-full bg-accent rounded-none rounded-b-md font-normal font-inter hover:bg-accent text-subtle inline-flex items-center border border-border-darker"
+                            onClick={() => handleAddBusinessManager("google")}
+                          >
+                            <PlusIcon className="w-4 h-4 text-muted" />
+                            <p className="text-default text-sm font-medium">
+                              Add business manager
+                            </p>
+                          </Button>
+                        </PopoverContent>
+                      </Popover>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          )}
+          {selectedPlatform === "tiktok" && (
+            <div>
+              <Label className="mb-6  text-default font-semibold text-lg font-inter">
+                TikTok Linking &amp; Access
+              </Label>
+              <FormField
+                // control={form.control}
+                name="addacount"
+                render={() => (
+                  <FormItem>
+                    <FormLabel>TikTok Business Center ID</FormLabel>
+                    <FormControl>
+                      <Popover
+                        open={openTiktokBusinessManagerId}
+                        onOpenChange={setOpenTiktokBusinessManagerId}
+                      >
+                        <PopoverTrigger asChild>
+                          <Button className="w-full bg-accent font-normal font-inter hover:bg-accent text-subtle inline-flex items-center justify-between border border-border-darker shadow-xs">
+                            {"Choose"}
+                            <ChevronsUpDownIcon className="w-4 h-4 opacity-35" />
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="p-0 w-full min-w-[var(--radix-popover-trigger-width)]">
+                          <Command>
+                            <CommandInput placeholder="Search for a category" />
+                            <CommandList>
+                              <CommandEmpty>No category found.</CommandEmpty>
+                              <CommandGroup></CommandGroup>
+                            </CommandList>
+                          </Command>
+                          <Button
+                            className="w-full bg-accent rounded-none rounded-b-md font-normal font-inter hover:bg-accent text-subtle inline-flex items-center border border-border-darker"
+                            onClick={() => handleAddBusinessManager("tiktok")}
+                          >
+                            <PlusIcon className="w-4 h-4 text-muted" />
+                            <p className="text-default text-sm font-medium">
+                              Add business manager
+                            </p>
+                          </Button>
+                        </PopoverContent>
+                      </Popover>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          )}
+          {selectedPlatform === "snapchat" && (
+            <div>
+              <Label className="mb-6  text-default font-semibold text-lg font-inter">
+                Snapchat Linking &amp; Access
+              </Label>
+              <div className="flex flex-col gap-4">
+                <FormField
+                  // control={form.control}
+                  name="addacount"
+                  render={() => (
+                    <FormItem>
+                      <FormLabel>Public Profile name</FormLabel>
+                      <FormControl>
+                        <Popover
+                          open={openSnapchatBusinessManagerId}
+                          onOpenChange={setOpenSnapchatBusinessManagerId}
+                        >
+                          <PopoverTrigger asChild>
+                            <Button className="w-full bg-accent font-normal font-inter hover:bg-accent text-subtle inline-flex items-center justify-between border border-border-darker shadow-xs">
+                              {"Choose"}
+                              <ChevronsUpDownIcon className="w-4 h-4 opacity-35" />
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="p-0 w-full min-w-[var(--radix-popover-trigger-width)]">
+                            <Command>
+                              <CommandInput placeholder="Search for a category" />
+                              <CommandList>
+                                <CommandEmpty>No category found.</CommandEmpty>
+                                <CommandGroup></CommandGroup>
+                              </CommandList>
+                            </Command>
+                            <Button
+                              className="w-full bg-accent rounded-none rounded-b-md font-normal font-inter hover:bg-accent text-subtle inline-flex items-center border border-border-darker"
+                              onClick={() =>
+                                handleAddBusinessManager("snapchat")
+                              }
+                            >
+                              <PlusIcon className="w-4 h-4 text-muted" />
+                              <p className="text-default text-sm font-medium">
+                                Add business manager
+                              </p>
+                            </Button>
+                          </PopoverContent>
+                        </Popover>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  // control={form.control}
+                  name="addacount"
+                  render={() => (
+                    <FormItem>
+                      <FormLabel>Organization ID</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter your ad account name"
+                          className="bg-accent border border-border-darker shadow-xs outline-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-subtle"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+          )}
+          {selectedPlatform === "bing" && (
+            <div>
+              <Label className="mb-6  text-default font-semibold text-lg font-inter">
+                Bing Linking &amp; Access
+              </Label>
+              <FormField
+                // control={form.control}
+                name="addacount"
+                render={() => (
+                  <FormItem>
+                    <FormLabel>Bing Business Center ID</FormLabel>
+                    <FormControl>
+                      <Popover
+                        open={openBingBusinessManagerId}
+                        onOpenChange={setOpenBingBusinessManagerId}
+                      >
+                        <PopoverTrigger asChild>
+                          <Button className="w-full bg-accent font-normal font-inter hover:bg-accent text-subtle inline-flex items-center justify-between border border-border-darker shadow-xs">
+                            {"Choose"}
+                            <ChevronsUpDownIcon className="w-4 h-4 opacity-35" />
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="p-0 w-full min-w-[var(--radix-popover-trigger-width)]">
+                          <Command>
+                            <CommandInput placeholder="Search for a category" />
+                            <CommandList>
+                              <CommandEmpty>No category found.</CommandEmpty>
+                              <CommandGroup></CommandGroup>
+                            </CommandList>
+                          </Command>
+                          <Button
+                            className="w-full bg-accent rounded-none rounded-b-md font-normal font-inter hover:bg-accent text-subtle inline-flex items-center border border-border-darker"
+                            onClick={() => handleAddBusinessManager("bing")}
+                          >
+                            <PlusIcon className="w-4 h-4 text-muted" />
+                            <p className="text-default text-sm font-medium">
+                              Add business manager
+                            </p>
+                          </Button>
+                        </PopoverContent>
+                      </Popover>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          )}
+        </form>
+      </Form>
+    </div>
+  );
+};
+
+export default AdAccountForm;

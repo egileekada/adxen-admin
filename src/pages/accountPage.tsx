@@ -1,7 +1,9 @@
-import AccountStat from "@/components/shared/accounts/accountStat";
-import { DataTable } from "@/components/shared/accounts/accountTable";
-import { columns } from "@/components/shared/accounts/column";
+import { AccountTable } from "@/components/shared/accounts/account-table";
+import { accountColumns } from "@/components/shared/accounts/account-column";
+import { requestColumns } from "@/components/shared/accounts/request-column";
+import { TransactionTable } from "@/components/shared/accounts/transaction-table";
 import HeaderDescription from "@/components/shared/headerDecription";
+import Stats from "@/components/shared/stats";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useNavigate } from "react-router-dom";
 
@@ -103,6 +105,41 @@ const data = [
   },
 ];
 
+const requestData = [
+  {
+    date: "2021-01-01",
+    requestId: "1234567890",
+    accountName: "Amazon - Mexico",
+    platform: "Google",
+    timezone: "(GMT+2) Paris",
+    status: "pending",
+  },
+  {
+    date: "2021-01-01",
+    requestId: "1234567890",
+    accountName: "Amazon - Mexico",
+    platform: "Google",
+    timezone: "(GMT+2) Paris",
+    status: "pending",
+  },
+  {
+    date: "2021-01-01",
+    requestId: "1234567890",
+    accountName: "Amazon - Mexico",
+    platform: "Google",
+    timezone: "(GMT+2) Paris",
+    status: "rejected",
+  },
+  {
+    date: "2021-01-01",
+    requestId: "1234567890",
+    accountName: "Amazon - Mexico",
+    platform: "Google",
+    timezone: "(GMT+2) Paris",
+    status: "pending",
+  },
+];
+
 function AdAccountPage() {
   const navigate = useNavigate();
 
@@ -119,11 +156,7 @@ function AdAccountPage() {
       />
       <div className="flex flex-col md:flex-row justify-between border border-border-darker rounded-lg mt-6 ">
         {accounts.map((account) => (
-          <AccountStat
-            key={account.id}
-            name={account.name}
-            value={account.value}
-          />
+          <Stats key={account.id} name={account.name} value={account.value} />
         ))}
       </div>
       {/* add account tabs */}
@@ -144,10 +177,10 @@ function AdAccountPage() {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="opened" className="mt-5">
-            <DataTable columns={columns} data={data} />
+            <AccountTable columns={accountColumns} data={data} />
           </TabsContent>
           <TabsContent value="requests" className="mt-5">
-            <DataTable columns={columns} data={data} />
+            <TransactionTable columns={requestColumns} data={requestData} />
           </TabsContent>
         </Tabs>
       </div>

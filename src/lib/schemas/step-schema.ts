@@ -1,28 +1,20 @@
+import * as yup from "yup";
+
 // import { z } from "zod";
 
-// export const choosePlatformSchema = 
-// z.object({
-//   fullName: z.string().min(2),
-// });
+export const choosePlatformSchema = yup.object({
+  platform: yup.string().min(2),
+});
+export const adBudgetSchema = yup.object({
+  adBudget: yup.string().min(2),
+});
 
-// export const adBudgetSchema = 
-// z.object({
-//   fullName: z.string().min(2),
-// });
+export const adDetailsSchema = yup.object({
+  adDetails: yup.string().min(2),
+});
 
-// export const adDetailsSchema = 
-// z.object({
-//   email: z.string().email(),
-// });
-
-// export const adSummarySchema = 
-// z.object({
-//   password: z.string().min(6),
-// });
-
-// export const combinedSchema = choosePlatformSchema
-//   .and(adBudgetSchema)
-//   .and(adDetailsSchema)
-//   .and(adSummarySchema);
-
-// export type FormData = z.infer<typeof combinedSchema>;
+export const combinedSchema = yup.object({
+  platform: yup.string().min(2),
+  adBudget: yup.string().min(2),
+  adDetails: yup.string().min(2),
+});

@@ -1,13 +1,22 @@
 import { create } from "zustand";
 
+export type ModalType =
+  | "topup"
+  | "configure"
+  | "fund-transfer"
+  | "withdraw"
+  | "processing"
+  | "archive";
+
 type ModalStore = {
   isOpen: boolean;
-  openModal: () => void;
+  type?: ModalType;
+  openModal: (type?: ModalType) => void;
   closeModal: () => void;
 };
 
 export const useModal = create<ModalStore>((set) => ({
   isOpen: false,
-  openModal: () => set({ isOpen: true }),
-  closeModal: () => set({ isOpen: false }),
+  openModal: (type?: ModalType) => set({ isOpen: true, type }),
+  closeModal: () => set({ isOpen: false, type: undefined }),
 }));

@@ -108,7 +108,7 @@ const AdDetails = () => {
       <p className="text-sm sm:text-base font-inter font-normal text-subtle mt-2 sm:mt-4 sm:max-w-md">
         These help us configure and submit your request accurately.
       </p>
-      <div className="mx-auto mt-6">
+      <div className="mx-auto mt-6 overflow-y-auto">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)} className="">
             <div className="flex flex-col">
