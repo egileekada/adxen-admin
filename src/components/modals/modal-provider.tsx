@@ -5,6 +5,9 @@ import FundTransferModal from "./transfer-fund-modal";
 import WithdrawModal from "./withdraw-modal";
 import ProcessingModal from "./processing-modal";
 import ArchiveModal from "./archive-modal";
+import TopupAdModal from "./topup-ad-modal";
+import BusinessManagerModal from "./business-manager-modal";
+import SubaccountRequestModal from "./subaccount-request-modal";
 
 const ModalProvider = () => {
   const { type } = useModal();
@@ -23,6 +26,12 @@ const ModalProvider = () => {
         return <ProcessingModal />;
       case "archive":
         return <ArchiveModal />;
+      case "topup-ad":
+        return <TopupAdModal />;
+      case "business-manager":
+        return <BusinessManagerModal />;
+      case "subaccount-request":
+        return <SubaccountRequestModal />;
     }
   };
 

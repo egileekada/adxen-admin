@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { ListFilter, RefreshCcw } from "lucide-react";
 
-const TableFilter = () => {
+const TableFilter = ({
+  showRefreshButton = true,
+}: {
+  showRefreshButton?: boolean;
+}) => {
   return (
     <div className="flex flex-col flex-wrap md:flex-row gap-2 md:gap-0 items-start md:items-center justify-between mb-4">
       <div className="flex items-center flex-wrap gap-1">
@@ -34,14 +38,16 @@ const TableFilter = () => {
           Status
         </Button>
       </div>
-      <Button
-        variant="outline"
-        size="sm"
-        className="bg-soft text-subtle border-none"
-      >
-        <RefreshCcw className="w-4 h-4 text-muted" />
-        Refresh
-      </Button>
+      {showRefreshButton && (
+        <Button
+          variant="outline"
+          size="sm"
+          className="bg-soft text-subtle border-none"
+        >
+          <RefreshCcw className="w-4 h-4 text-muted" />
+          Refresh
+        </Button>
+      )}
     </div>
   );
 };

@@ -122,6 +122,7 @@
   --color-error: #f93c65;
   --color-badge-blue: #65a0fd1a;
   --color-success: #4fc660;
+  --color-destructive: #d42422;
 
   --color-muted: #6f6f77;
   --color-default: #111115;
@@ -142,8 +143,10 @@
   --color-soft: #27272a0f;
   --color-border-darker: #27272a26;
   --color-bg-subtle: #fafafa;
+  --color-red-subtle: #fae3e3;
   --color-basic-blue-accent: #437dfc;
   --color-basic-green-accent: #4fc660;
+  --color-basic-red-accent: #e74341;
   --color-blue-infomative: #2b5df3;
   --color-blue-subtle: #deeafd;
 

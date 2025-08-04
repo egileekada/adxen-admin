@@ -9,6 +9,7 @@ const WithdrawForm = () => {
   const handleSubmit = (data: unknown) => {
     console.log(data);
   };
+
   return (
     <div className="mt-6">
       <Formik
@@ -46,6 +47,7 @@ const WithdrawForm = () => {
             <div className="p-6 mt-6  bg-[#27272A1A]/10 flex item-center justify-between gap-2 border-t border-[#27272A1A] pt-6">
               <Button
                 variant="outline"
+                type="button"
                 size="sm"
                 className=""
                 onClick={() => {}}

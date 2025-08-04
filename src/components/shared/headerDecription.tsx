@@ -5,44 +5,56 @@ import { CopyIcon } from "lucide-react";
 type IHeaderDescription = {
   title: string;
   description: string;
-  handleRequestAdAccount?: () => void;
+  actionText?: string;
+  handleAction?: () => void;
   showActionButton?: boolean;
   showCopyButton?: boolean;
   className?: string;
+  icon?: React.ReactNode;
+  showIcon?: boolean;
 };
 
 const HeaderDescription = ({
   title,
   description,
-  handleRequestAdAccount,
+  actionText,
+  handleAction,
   showActionButton = true,
   showCopyButton = true,
   className,
+  icon,
+  showIcon = true,
 }: IHeaderDescription) => {
   return (
-    <div className={cn("flex items-end justify-between gap-1.5", className)}>
+    <div
+      className={cn(
+        "w-full flex flex-col sm:flex-row items-start sm:items-end gap-4",
+        className
+      )}
+    >
       <div className="flex flex-col gap-1.5">
         <h1 className="text-2xl font-inter font-medium">{title}</h1>
-        <p className="flex items-center gap-2 text-sm text-muted text-balance">
-          {description}{" "}
+        <div className="flex items-end gap-2 ">
+          <p className="text-sm text-muted">{description} </p>
           {showCopyButton && (
             <Button
-              className="hidden sm:block cursor-pointer text-sm size-4 font-medium"
-              onClick={handleRequestAdAccount}
+              className="cursor-pointer text-sm size-4 font-medium"
+              onClick={() => {}}
               variant="ghost"
               size="icon"
             >
               <CopyIcon className="w-4 h-4" />
             </Button>
           )}
-        </p>
+        </div>
       </div>
       {showActionButton && (
         <Button
-          className="hidden sm:block cursor-pointer text-sm font-medium"
-          onClick={handleRequestAdAccount}
+          className="inline-flex items-center cursor-pointer text-sm h-7 font-medium sm:ml-auto"
+          onClick={handleAction}
         >
-          Request Ad Account
+          {showIcon && icon}
+          {actionText}
         </Button>
       )}
     </div>

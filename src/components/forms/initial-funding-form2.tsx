@@ -1,10 +1,9 @@
 import CurrencyCombo from "@/components/shared/currency-selector";
 import { Formik, Form as FormikForm, ErrorMessage } from "formik";
 import { Separator } from "@/components/ui/separator";
-import { Button } from "../ui/button";
 import { initialFundingFormSchema } from "@/lib/schemas/initial-fund-schema";
 
-const InitialFundingForm = () => {
+const InitialFundingForm2 = () => {
   const handleSubmit = (data: unknown) => {
     console.log(data);
   };
@@ -23,7 +22,7 @@ const InitialFundingForm = () => {
       >
         {({ values, setFieldValue }) => (
           <FormikForm className="space-y-5 mb-6">
-            <div className="px-6 flex flex-col gap-4">
+            <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-4">
                 <label htmlFor="allocations">
                   How much do you want to allocate?
@@ -71,21 +70,6 @@ const InitialFundingForm = () => {
                 />
                 <ErrorMessage name="adBudget" component="div" />
               </div>
-            </div>
-
-            <div className="px-6  bg-[#27272A1A]/10 flex item-center justify-between gap-2 border-t border-[#27272A1A] pt-6">
-              <Button
-                variant="outline"
-                type="button"
-                size="sm"
-                className=""
-                onClick={() => {}}
-              >
-                Cancel
-              </Button>
-              <Button size="sm" className="" type="submit">
-                Proceed
-              </Button>
             </div>
           </FormikForm>
         )}
@@ -160,4 +144,4 @@ const InitialFundingForm = () => {
   );
 };
 
-export default InitialFundingForm;
+export default InitialFundingForm2;

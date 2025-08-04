@@ -18,17 +18,19 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+
 import Pagination from "../pagination";
-import { ListFilter } from "lucide-react";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  showPagination?: boolean;
 }
 
-export function TransactionTable<TData, TValue>({
+export function AccountTable<TData, TValue>({
   columns,
   data,
+  showPagination = false,
 }: DataTableProps<TData, TValue>) {
   const [pagination, setPagination] = useState({
     pageIndex: 0,
@@ -47,31 +49,6 @@ export function TransactionTable<TData, TValue>({
 
   return (
     <div className="flex flex-col">
-      <div className="flex flex-col flex-wrap md:flex-row gap-2 md:gap-0 items-start md:items-center justify-between mb-4">
-        <div className="flex items-center flex-wrap gap-1">
-          <Button
-            variant="ghost"
-            className="bg-white border border-dashed border-border-darker rounded-full text-muted py-1 px-2"
-          >
-            <ListFilter className="w-4 h-4" />
-            Account ID
-          </Button>
-          <Button
-            variant="ghost"
-            className="bg-white border border-dashed border-border-darker rounded-full text-muted"
-          >
-            <ListFilter className="w-4 h-4" />
-            Platform
-          </Button>
-          <Button
-            variant="ghost"
-            className="bg-white border border-dashed border-border-darker rounded-full text-muted"
-          >
-            <ListFilter className="w-4 h-4" />
-            Date
-          </Button>
-        </div>
-      </div>
       {data.length > 0 ? (
         <>
           <div>
@@ -128,8 +105,8 @@ export function TransactionTable<TData, TValue>({
                 )}
               </TableBody>
             </Table>
-            <Pagination table={table} />
           </div>
+          {showPagination && <Pagination table={table} />}
         </>
       ) : (
         <div className="text-subtle text-sm flex text-center flex-col items-center justify-center py-16 gap-6 border-t">
@@ -141,7 +118,7 @@ export function TransactionTable<TData, TValue>({
               </span>
             </p>
           </div>
-          <Button className="py-1.5 px-2.5 text-sm cursor-pointer">
+          <Button className="py-1.5 px-2.5 text-sm h-7 cursor-pointer">
             Request an Ad Account
           </Button>
         </div>

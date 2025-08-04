@@ -83,8 +83,8 @@ const AdAccountForm = () => {
 
   const { selectedCountries, removeSelectedCountry } = useCountry();
   const { selectedPlatform } = usePlatformSelect();
-  const { openModal, isOpen } = useModal();
-  console.log("isOpen", isOpen);
+  const { openModal } = useModal();
+
   const form = useForm({
     defaultValues: {},
   });
@@ -99,7 +99,7 @@ const AdAccountForm = () => {
     console.log(data);
   };
   return (
-    <div className="mx-auto mt-6 overflow-y-auto">
+    <div className="mx-auto overflow-y-auto">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleSubmit)} className="">
           <div className="flex flex-col">

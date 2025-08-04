@@ -3,7 +3,7 @@ import { Drawer, DrawerDescription, DrawerTitle } from "../ui/drawer";
 import { DrawerContent } from "../ui/drawer";
 import { DrawerHeader } from "../ui/drawer";
 import AdAccountForm from "../forms/ad-account-form";
-import InitialFundingForm from "../forms/initial-funding-form";
+import InitialFundingForm2 from "../forms/initial-funding-form2";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -25,14 +25,14 @@ import { useState } from "react";
 const steps = ["configure", "funding"] as const;
 
 const ConfigureModal = () => {
-  const { isOpen, closeModal, openModal } = useModal();
+  const { isOpen, closeModal } = useModal();
   const isMobile = useIsMobile();
 
   const [stepIndex, setStepIndex] = useState(0);
 
   const stepsMap = {
     configure: <AdAccountForm />,
-    funding: <InitialFundingForm />,
+    funding: <InitialFundingForm2 />,
   };
 
   const currentStep = stepsMap[steps[stepIndex]];
@@ -45,11 +45,8 @@ const ConfigureModal = () => {
     if (stepIndex > 0) setStepIndex(stepIndex - 1);
   };
 
-  const handleProceed = () => {
-    closeModal();
-    setTimeout(() => {
-      openModal("processing");
-    }, 200);
+  const handleSubmit = (data: unknown) => {
+    console.log(data);
   };
 
   if (isMobile) {
@@ -92,7 +89,7 @@ const ConfigureModal = () => {
               size="sm"
               className="ml-auto"
               onClick={
-                stepIndex === steps.length - 1 ? handleProceed : handleNext
+                stepIndex === steps.length - 1 ? handleSubmit : handleNext
               }
             >
               {stepIndex === steps.length - 1 ? "Proceed" : "Next"}
@@ -105,7 +102,7 @@ const ConfigureModal = () => {
 
   return (
     <Sheet open={isOpen} onOpenChange={closeModal}>
-      <SheetContent className="w-[430px] mt-2  rounded-md sm:max-w-md md:max-w-md  mx-auto overflow-y-auto">
+      <SheetContent className="w-[430px] mt-2 max-h-fit  rounded-md sm:max-w-md md:max-w-md  mx-auto overflow-y-auto">
         <SheetHeader className=" relative w-full bg-[#27272A1A]/10 border-b border-[#27272A1A] p-6 flex flex-col gap-2">
           <SheetTitle>
             <Breadcrumb className="text-sm font-normal flex items-center gap-2">
@@ -126,10 +123,8 @@ const ConfigureModal = () => {
             Configure your ad account
           </SheetDescription>
         </SheetHeader>
-        <div className="px-6">
-          <AdAccountForm />
-        </div>
-        <div className="p-6 mt-2 flex w-full justify-between gap-2 border-t border-soft pt-6">
+        <div className="px-6">{currentStep}</div>
+        <div className="p-6 flex w-full justify-between gap-2 border-t border-soft">
           {stepIndex > 0 && (
             <Button
               size="sm"
@@ -143,9 +138,7 @@ const ConfigureModal = () => {
           <Button
             size="sm"
             className="ml-auto"
-            onClick={
-              stepIndex === steps.length - 1 ? handleProceed : handleNext
-            }
+            onClick={stepIndex === steps.length - 1 ? handleSubmit : handleNext}
           >
             {stepIndex === steps.length - 1 ? "Proceed" : "Next"}
           </Button>
