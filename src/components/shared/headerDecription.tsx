@@ -12,6 +12,8 @@ type IHeaderDescription = {
   className?: string;
   icon?: React.ReactNode;
   showIcon?: boolean;
+  actionName?: string;
+  subtitle?: boolean
 };
 
 const HeaderDescription = ({
@@ -24,6 +26,7 @@ const HeaderDescription = ({
   className,
   icon,
   showIcon = true,
+  actionName, 
 }: IHeaderDescription) => {
   return (
     <div
@@ -54,7 +57,7 @@ const HeaderDescription = ({
           onClick={handleAction}
         >
           {showIcon && icon}
-          {actionText}
+          {actionText ?? actionName }
         </Button>
       )}
     </div>

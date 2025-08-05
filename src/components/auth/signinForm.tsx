@@ -9,11 +9,11 @@ export default function SigninForm() {
 
     const { search } = useLocation();
     const navigate = useNavigate()
-    const [ hidePassword, setHidePassword ] = useState("password")  
+    const [hidePassword, setHidePassword] = useState("password")
 
     const changeHandler = (name: string, value: string) => {
         console.log(name);
-        console.log(value); 
+        console.log(value);
     }
 
     return (
@@ -50,22 +50,22 @@ export default function SigninForm() {
                     </div>
                 )}
                 {search && (
-                    <form className=" flex w-full flex-col gap-4 " >
+                    <form onSubmit={()=> navigate("/dashboard")} className=" flex w-full flex-col gap-4 " >
                         <CustomInput placeholder="mail@domain.com" label="Email" name={""} setValue={changeHandler} />
                         <CustomInput
                             labelbtn={
-                                <div onClick={()=> navigate("/auth/reset")} className=" text-sm text-[#2B5DF3] cursor-pointer " >
+                                <div onClick={() => navigate("/auth/reset")} className=" text-sm text-[#2B5DF3] cursor-pointer " >
                                     <p>Reset password</p>
                                 </div>
                             }
                             iconback={
-                                <div onClick={()=> setHidePassword((prev)=> prev === "password" ? "text" : "password")} className=" cursor-pointer " > 
-                                    {hidePassword === "password" ? 
+                                <div onClick={() => setHidePassword((prev) => prev === "password" ? "text" : "password")} className=" cursor-pointer " >
+                                    {hidePassword === "password" ?
                                         <RiEyeFill size={"16px"} color="#A1A1A9" /> :
                                         <RiEyeOffFill size={"16px"} color="#A1A1A9" />
                                     }
                                 </div>
-                            } 
+                            }
                             hasBackIcon={true}
                             type={hidePassword}
                             placeholder="Enter password" label="Password" name={""} setValue={changeHandler} />
