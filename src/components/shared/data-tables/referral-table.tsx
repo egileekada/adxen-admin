@@ -16,26 +16,18 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import Pagination from "../pagination";
-import { useLocation } from "react-router-dom";
-import TableFilter from "../table-filter";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  showPagination?: boolean;
 }
 
-export function TransactionTable<TData, TValue>({
+export function ReferralTable<TData, TValue>({
   columns,
   data,
-  showPagination = false,
 }: DataTableProps<TData, TValue>) {
-  const location = useLocation();
-  const isBudget = location.pathname.includes("budget");
-
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 5,
@@ -53,12 +45,6 @@ export function TransactionTable<TData, TValue>({
 
   return (
     <div className="flex flex-col">
-      {!isBudget && (
-        <TableFilter
-          options={["Account ID", "Platform", "Date"]}
-          showRefreshButton={false}
-        />
-      )}
       {data.length > 0 ? (
         <>
           <div>
@@ -115,23 +101,10 @@ export function TransactionTable<TData, TValue>({
                 )}
               </TableBody>
             </Table>
-            {showPagination && <Pagination table={table} />}
           </div>
         </>
       ) : (
-        <div className="text-subtle text-sm flex text-center flex-col items-center justify-center py-16 gap-6 border-t">
-          <div>
-            <p className="text-subtle text-sm max-w-[400px] md:inline-flex text-center flex-wrap items-center justify-center">
-              You haven't created or requested any ad accounts yet.
-              <span>
-                Start by requesting an ad account on your preferred platform.
-              </span>
-            </p>
-          </div>
-          <Button className="py-1.5 px-2.5 text-sm cursor-pointer">
-            Request an Ad Account
-          </Button>
-        </div>
+        <></>
       )}
     </div>
   );

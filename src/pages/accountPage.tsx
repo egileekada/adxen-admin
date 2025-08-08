@@ -183,7 +183,10 @@ function AdAccountPage() {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="opened" className="mt-5">
-            <TableFilter showRefreshButton={true} />
+            <TableFilter
+              options={["Account ID", "Platform", "Date", "More filters"]}
+              showRefreshButton={true}
+            />
             <AccountTable columns={accountColumns} data={data} />
           </TabsContent>
           <TabsContent value="requests" className="mt-5">

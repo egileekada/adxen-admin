@@ -13,6 +13,8 @@ import {
   ViewDetailsPage,
   BudgetPage,
   BusinessDetailsPage,
+  BillingPage,
+  AffiliatePage,
 } from "./pages";
 import {
   AuthLayout,
@@ -45,6 +47,8 @@ function App() {
           <Route path="budget" element={<BudgetPage />} />
           <Route path="business" element={<BusinessManagerPage />} />
           <Route path="business/:id" element={<BusinessDetailsPage />} />
+          <Route path="billing" element={<BillingPage />} />
+          <Route path="affiliate" element={<AffiliatePage />} />
         </Route>
       </Route>
     )
