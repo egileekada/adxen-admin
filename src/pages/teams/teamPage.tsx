@@ -32,19 +32,19 @@ export default function TeamPage() {
     }
 
     return (
-        <div className=" w-full h-full " >
+        <div className=" w-full h-full flex flex-col gap-6 " >
             <HeaderDescription
                 title="Team Members"
                 description="Manage who has access to your agency workspace."
                 handleAction={clickHandler}
                 actionName="Invite Team Member"
             />
-            <div className="flex flex-col md:flex-row justify-between border border-border-darker rounded-lg mt-6 ">
+            <div className="flex flex-col md:flex-row justify-between border border-border-darker rounded-lg">
                 {accounts.map((account) => (
                     <Stats key={account.id} name={account.name} value={account.value} />
                 ))}
             </div>
-            <div className="mt-6">
+            <div className="">
                 <Tabs defaultValue="active" className="w-full">
                     <TabsList className="bg-white text-sm font-medium font-inter border-b border-default">
                         <TabsTrigger

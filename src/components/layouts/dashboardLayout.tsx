@@ -14,7 +14,7 @@ export default function DashboardLayout() {
       <SidebarInset className=" flex-1 relative rounded-lg overflow-y-auto ">
         <div className="flex flex-1 flex-col px-4 py-4 sm:px-6  overflow-x-hidden ">
           {isAdAccountRequest ? <StepperWrapper /> : <Outlet />}
-        </div>
+        </div> 
       </SidebarInset>
     </SidebarProvider>
   );

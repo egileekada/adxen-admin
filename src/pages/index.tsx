@@ -7,8 +7,8 @@ export { default as ViewDetailsPage } from "./viewDetailsPage";
 export { default as BudgetPage } from "./budgetPage";
 export { default as BusinessDetailsPage } from "./businessDetailsPage";
 export { default as BillingPage } from "./billingPage";
-export { default as AffiliatePage } from "./affiliatePage";
-export { default as TeamPage } from "./teamPage";
+export { default as AffiliatePage } from "./affiliatePage"; 
+export { default as TeamPage } from "./teams/teamPage";
 
 // settings
 export { default as SettingsLayout } from "./setting/settingsLayout";
