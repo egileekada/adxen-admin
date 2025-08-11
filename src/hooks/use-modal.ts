@@ -6,7 +6,10 @@ export type ModalType =
   | "fund-transfer"
   | "withdraw"
   | "processing"
-  | "archive";
+  | "archive"
+  | "topup-ad"
+  | "business-manager"
+  | "subaccount-request";
 
 type ModalStore = {
   isOpen: boolean;

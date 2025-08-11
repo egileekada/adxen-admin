@@ -11,6 +11,10 @@ import {
   SignupPage,
   AdAccountPage,
   ViewDetailsPage,
+  BudgetPage,
+  BusinessDetailsPage,
+  BillingPage,
+  AffiliatePage,
 } from "./pages";
 import {
   AuthLayout,
@@ -19,6 +23,7 @@ import {
 } from "./components/layouts";
 import { ChangePasswordForm, ResetForm, VerifyForm } from "./components/auth";
 import ModalProvider from "./components/modals/modal-provider";
+import BusinessManagerPage from "./pages/businessManagerPage";
 
 function App() {
   const router = createBrowserRouter(
@@ -39,6 +44,11 @@ function App() {
           <Route path="account" element={<AdAccountPage />} />
           <Route path="account/request" element={<AdAccountPage />} />
           <Route path="account/:id" element={<ViewDetailsPage />} />
+          <Route path="budget" element={<BudgetPage />} />
+          <Route path="business" element={<BusinessManagerPage />} />
+          <Route path="business/:id" element={<BusinessDetailsPage />} />
+          <Route path="billing" element={<BillingPage />} />
+          <Route path="affiliate" element={<AffiliatePage />} />
         </Route>
       </Route>
     )

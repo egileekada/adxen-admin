@@ -1,11 +1,17 @@
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { RefreshCcw } from "lucide-react";
 import { CircleFlag } from "react-circle-flags";
-import { SiMeta } from "react-icons/si";
+import { RiMetaFill } from "react-icons/ri";
+
+import { useLocation } from "react-router-dom";
 
 const Summary = () => {
+  const location = useLocation();
+  const isSubaccount = location.search.includes("tab=request");
+
   return (
-    <div className="mb-6 sm:w-[512px] mx-auto sm:px-0">
+    <div className="mb-6 min-w-[480px] sm:min-w-[520px]">
       <h1 className="text-2xl sm:text-3xl font-semibold text-default font-inter">
         Summary
       </h1>
@@ -14,18 +20,18 @@ const Summary = () => {
       </p>
       <Separator className="bg-border-darker my-6" />
 
-      <div className="mt-6 flex flex-col gap-5">
-        <div className="flex flex-wrap justify-between items-start gap-y-2">
-          <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-5">
+        <div className="flex flex-col sm:flex-row flex-wrap justify-between items-start gap-y-2 ">
+          <div className="flex flex-1 items-start flex-col gap-1">
             <p className="text-default text-sm font-inter font-semibold">
               Platform
             </p>
             <div className="flex items-center gap-1 justify-center">
-              <SiMeta className="w-4 h-4 text-muted" />
+              <RiMetaFill className="w-4 h-4 text-muted" />
               <p className="text-muted text-sm font-inter font-normal">Meta</p>
             </div>
           </div>
-          <div className="flex flex-col items-end gap-1">
+          <div className="flex w-[250px] items-start flex-col gap-1">
             <p className="text-default text-sm font-inter font-semibold">
               Ad account name
             </p>
@@ -34,7 +40,29 @@ const Summary = () => {
             </p>
           </div>
         </div>
-        <div className="flex flex-wrap justify-between items-start gap-y-2">
+        {isSubaccount && (
+          <div className="flex flex-col sm:flex-row flex-wrap justify-between items-start gap-y-2">
+            <div className="flex flex-col gap-1">
+              <p className="text-default text-sm font-inter font-semibold">
+                Status
+              </p>
+              <Badge
+                variant="outline"
+                className="text-sm font-inter font-normal bg-badge-orange-10 text-basic-orange"
+              >
+                <RefreshCcw className="size-4 text-basic-orange" />
+                <p className="text-xs font-inter font-normal">Pending</p>
+              </Badge>
+            </div>
+            <div className="flex w-[250px] items-start  flex-col gap-1">
+              <p className="text-default text-sm font-inter font-semibold">
+                No. of accounts
+              </p>
+              <p className="text-muted text-sm font-inter font-normal">2</p>
+            </div>
+          </div>
+        )}
+        <div className="flex flex-col sm:flex-row flex-wrap justify-between items-start gap-y-2">
           <div className="flex flex-col gap-1">
             <p className="text-default text-sm font-inter font-semibold">
               Timezone
@@ -44,7 +72,7 @@ const Summary = () => {
               <span className="">Guadalajara, Mexico City</span>
             </p>
           </div>
-          <div className="flex flex-col items-end gap-1">
+          <div className="flex w-[250px] items-start flex-col gap-1">
             <p className="text-default text-sm font-inter font-semibold">
               Currency
             </p>
@@ -54,7 +82,7 @@ const Summary = () => {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-between items-start gap-y-2">
+        <div className="flex flex-col sm:flex-row flex-wrap justify-between items-start gap-y-2">
           <div className="flex flex-col gap-1">
             <p className="text-default text-sm font-inter font-semibold">
               Business category
@@ -63,7 +91,7 @@ const Summary = () => {
               E-Commerce
             </p>
           </div>
-          <div className="flex flex-col items-end gap-1">
+          <div className="flex w-[250px] items-start flex-col gap-1">
             <p className="text-default text-sm font-inter font-semibold">
               Website URL
             </p>
@@ -72,7 +100,7 @@ const Summary = () => {
             </p>
           </div>
         </div>
-        <div className="flex flex-wrap justify-between items-start gap-y-2">
+        <div className="flex flex-col sm:flex-row flex-wrap justify-between items-start gap-y-2">
           <div className="flex flex-col gap-1">
             <p className="text-default text-sm font-inter font-semibold">
               Target Countries
@@ -98,7 +126,7 @@ const Summary = () => {
               </Badge>
             </div>
           </div>
-          <div className="flex flex-col items-end gap-1">
+          <div className="flex w-[250px] items-start  flex-col gap-1">
             <p className="text-default text-sm font-inter font-semibold">
               Meta Business Manager ID
             </p>
@@ -108,7 +136,7 @@ const Summary = () => {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-between items-start gap-y-2">
+        <div className="flex flex-col sm:flex-row flex-wrap justify-between items-start gap-y-2">
           <div className="flex flex-col gap-1">
             <p className="text-default text-sm font-inter font-semibold">
               Facebook pages
@@ -118,7 +146,7 @@ const Summary = () => {
               <li>facebook.com/amazonmx</li>
             </ul>
           </div>
-          <div className="flex flex-col items-end gap-1">
+          <div className="flex w-[250px] items-start  flex-col gap-1">
             <p className="text-default text-sm font-inter font-semibold">
               Ad Budget
             </p>

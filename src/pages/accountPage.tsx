@@ -1,11 +1,13 @@
-import { AccountTable } from "@/components/shared/accounts/account-table";
-import { accountColumns } from "@/components/shared/accounts/account-column";
-import { requestColumns } from "@/components/shared/accounts/request-column";
-import { TransactionTable } from "@/components/shared/accounts/transaction-table";
+import { AccountTable } from "@/components/shared/data-tables/account-table";
+import { accountColumns } from "@/components/shared/tables-columns/account-column";
+import { requestColumns } from "@/components/shared/tables-columns/request-column";
+import { TransactionTable } from "@/components/shared/data-tables/transaction-table";
 import HeaderDescription from "@/components/shared/headerDecription";
 import Stats from "@/components/shared/stats";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useNavigate } from "react-router-dom";
+import TableFilter from "@/components/shared/table-filter";
+import { PlusIcon } from "lucide-react";
 
 const accounts = [
   {
@@ -152,7 +154,11 @@ function AdAccountPage() {
       <HeaderDescription
         title="Accounts"
         description="View and manage your advertising account details"
-        handleRequestAdAccount={handleRequestAdAccount}
+        handleAction={handleRequestAdAccount}
+        actionText="Request Ad Account"
+        showActionButton={true}
+        showIcon={true}
+        icon={<PlusIcon className="w-4 h-4" />}
       />
       <div className="flex flex-col md:flex-row justify-between border border-border-darker rounded-lg mt-6 ">
         {accounts.map((account) => (
@@ -177,6 +183,10 @@ function AdAccountPage() {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="opened" className="mt-5">
+            <TableFilter
+              options={["Account ID", "Platform", "Date", "More filters"]}
+              showRefreshButton={true}
+            />
             <AccountTable columns={accountColumns} data={data} />
           </TabsContent>
           <TabsContent value="requests" className="mt-5">

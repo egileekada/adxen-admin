@@ -10,7 +10,7 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "../ui/breadcrumb";
-import { Button } from "../ui/button";
+
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Sheet,
@@ -21,15 +21,8 @@ import {
 } from "../ui/sheet";
 
 const TopupModal = () => {
-  const { isOpen, closeModal, openModal } = useModal();
+  const { isOpen, closeModal } = useModal();
   const isMobile = useIsMobile();
-
-  const handleProceed = () => {
-    closeModal();
-    setTimeout(() => {
-      openModal("processing");
-    }, 200);
-  };
 
   if (isMobile)
     return (
@@ -55,17 +48,7 @@ const TopupModal = () => {
               Top up ad account
             </DrawerDescription>
           </DrawerHeader>
-          <div className="px-6">
-            <InitialFundingForm />
-          </div>
-          <div className="p-6 flex item-center justify-between gap-2 border-t border-soft pt-6">
-            <Button variant="outline" size="sm" className="">
-              Cancel
-            </Button>
-            <Button size="sm" className="" onClick={handleProceed}>
-              Proceed
-            </Button>
-          </div>
+          <InitialFundingForm />
         </DrawerContent>
       </Drawer>
     );
@@ -93,17 +76,7 @@ const TopupModal = () => {
             Top up ad account
           </SheetDescription>
         </SheetHeader>
-        <div className="px-6">
-          <InitialFundingForm />
-        </div>
-        <div className="p-6  bg-[#27272A1A]/10 flex item-center justify-between gap-2 border-t border-[#27272A1A] pt-6">
-          <Button variant="outline" size="sm" className="">
-            Cancel
-          </Button>
-          <Button size="sm" className="" onClick={handleProceed}>
-            Proceed
-          </Button>
-        </div>
+        <InitialFundingForm />
       </SheetContent>
     </Sheet>
   );

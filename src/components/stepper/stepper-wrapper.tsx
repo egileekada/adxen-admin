@@ -2,12 +2,12 @@ import { useStepperStore } from "@/hooks/use-stepper-store";
 import ChoosePlatform from "./steps/choose-platform";
 import AdBudget from "./steps/ad-budget";
 import AdDetails from "./steps/ad-details";
-import AdSummary from "./steps/summary";
 import { ForwardIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { MobileStepper } from "./display-stepper";
 import { useEffect, useRef } from "react";
+import Summary from "./steps/summary";
 // import { useQueryState } from "nuqs";
 
 // const STEP_QUERY_KEY = "step";
@@ -32,7 +32,7 @@ const StepperWrapper = () => {
     choose: ChoosePlatform,
     "ad-details": AdDetails,
     "ad-budget": AdBudget,
-    summary: AdSummary,
+    summary: Summary,
   } as const;
 
   const StepComponent =
@@ -65,7 +65,7 @@ const StepperWrapper = () => {
     <div className="relative flex-1 flex flex-col items-center justify-center">
       {/* header with a cancel button */}
       {/* <div className="h-20 w-full bg-soft"></div> */}
-      <div className="pb-16">
+      <div className="pb-16 overflow-x-auto">
         <StepComponent />
 
         <div className="flex gap-4 sm:px-0">

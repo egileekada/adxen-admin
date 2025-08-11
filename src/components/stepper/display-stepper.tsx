@@ -9,7 +9,7 @@ export const DisplayStepper = () => {
     choose: "Choose Platform",
     "ad-details": "Ad Details",
     "ad-budget": "Ad Budget",
-    summary: "Ad Summary",
+    summary: "Summary",
   } as const;
 
   return (

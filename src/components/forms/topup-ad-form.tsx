@@ -1,10 +1,27 @@
 import CurrencyCombo from "@/components/shared/currency-selector";
 import { Formik, Form as FormikForm, ErrorMessage } from "formik";
 import { Separator } from "@/components/ui/separator";
-import { Button } from "../ui/button";
 import { initialFundingFormSchema } from "@/lib/schemas/initial-fund-schema";
+import { Button } from "../ui/button";
+import { Popover, PopoverContent } from "../ui/popover";
+import { PopoverTrigger } from "../ui/popover";
+import {
+  Command,
+  CommandGroup,
+  CommandList,
+  CommandInput,
+  CommandEmpty,
+  CommandItem,
+} from "../ui/command";
+import { ChevronsUpDownIcon } from "lucide-react";
+import { RiGoogleLine, RiMetaLine } from "@remixicon/react";
+import { useState } from "react";
 
-const InitialFundingForm = () => {
+const TopupAdForm = () => {
+  const [open, setOpen] = useState(false);
+  const [selectedAdAccount, setSelectedAdAccount] = useState<string | null>(
+    null
+  );
   const handleSubmit = (data: unknown) => {
     console.log(data);
   };
@@ -13,6 +30,19 @@ const InitialFundingForm = () => {
     allocations: { currency: "USD", amount: "" },
     adBudget: { currency: "USD", amount: "" },
   };
+
+  const adAccounts = [
+    {
+      id: 1,
+      name: "Meta - 1234567890",
+      icon: <RiMetaLine className="text-blue-400" />,
+    },
+    {
+      id: 2,
+      name: "Google - 1234567890",
+      icon: <RiGoogleLine className="text-blue-400" />,
+    },
+  ];
 
   return (
     <div className="mt-6">
@@ -23,7 +53,45 @@ const InitialFundingForm = () => {
       >
         {({ values, setFieldValue }) => (
           <FormikForm className="space-y-5 mb-6">
-            <div className="px-6 flex flex-col gap-4">
+            <div className="flex flex-col gap-4 px-6">
+              <div className="flex flex-col gap-4">
+                <label htmlFor="allocations">Select Ad Account</label>
+                <Popover open={open} onOpenChange={setOpen}>
+                  <PopoverTrigger asChild className="">
+                    <Button className="w-full bg-accent font-normal font-inter hover:bg-accent text-subtle inline-flex items-center justify-between border border-border-darker shadow-xs">
+                      {selectedAdAccount || "Select Ad Account"}
+                      <ChevronsUpDownIcon className="w-4 h-4 opacity-35" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent
+                    className="p-0 w-full min-w-[var(--radix-popover-trigger-width)]"
+                    align="start"
+                  >
+                    <Command className="bg-accent">
+                      <CommandInput placeholder="Search timezone" />
+                      <CommandList>
+                        <CommandEmpty>No timezone found.</CommandEmpty>
+                        <CommandGroup>
+                          {adAccounts.map((adAccount) => (
+                            <CommandItem
+                              key={adAccount.id}
+                              value={adAccount.name}
+                              onSelect={() => {
+                                setOpen(false);
+                                setSelectedAdAccount(adAccount.name);
+                              }}
+                            >
+                              {adAccount.icon}
+                              <span>{adAccount.name}</span>
+                            </CommandItem>
+                          ))}
+                        </CommandGroup>
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
+                <ErrorMessage name="allocations" component="div" />
+              </div>
               <div className="flex flex-col gap-4">
                 <label htmlFor="allocations">
                   How much do you want to allocate?
@@ -72,18 +140,11 @@ const InitialFundingForm = () => {
                 <ErrorMessage name="adBudget" component="div" />
               </div>
             </div>
-
-            <div className="px-6  bg-[#27272A1A]/10 flex item-center justify-between gap-2 border-t border-[#27272A1A] pt-6">
-              <Button
-                variant="outline"
-                type="button"
-                size="sm"
-                className=""
-                onClick={() => {}}
-              >
+            <div className="flex justify-between px-6 py-4 border-t border-border-darker">
+              <Button variant="outline" size="sm" type="button">
                 Cancel
               </Button>
-              <Button size="sm" className="" type="submit">
+              <Button type="submit" size="sm">
                 Proceed
               </Button>
             </div>
@@ -160,4 +221,4 @@ const InitialFundingForm = () => {
   );
 };
 
-export default InitialFundingForm;
+export default TopupAdForm;
