@@ -1,14 +1,9 @@
 "use client";
 
 import type { ColumnDef } from "@tanstack/react-table";
-import { Checkbox } from "@/components/ui/checkbox";
-import { FaGoogle, FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa"; 
-import {
-  Check,
-  MoreHorizontal,
-  X,
-  AlertTriangle,
-  RefreshCcw,
+import { Checkbox } from "@/components/ui/checkbox"; 
+import { 
+  MoreHorizontal, 
 } from "lucide-react"; 
 
 export type TableData =  {

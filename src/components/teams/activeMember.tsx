@@ -18,8 +18,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { useState } from "react"; 
-import Pagination from "../shared/pagination";
-import TableFilter from "../shared/table-filter";
+import Pagination from "../shared/pagination"; 
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];

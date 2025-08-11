@@ -5,10 +5,8 @@ import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
 
 import {
   Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
+  CardContent, 
+  CardHeader, 
 } from "@/components/ui/card"
 import {
   type ChartConfig,
@@ -128,16 +126,8 @@ const chartConfig = {
 } satisfies ChartConfig
 
 export default function ChartBarInteractive() {
-  const [activeChart, setActiveChart] =
-    React.useState<keyof typeof chartConfig>("desktop")
-
-  const total = React.useMemo(
-    () => ({
-      desktop: chartData.reduce((acc: any, curr: any) => acc + curr.desktop, 0),
-      mobile: chartData.reduce((acc: any, curr: any) => acc + curr.mobile, 0),
-    }),
-    []
-  )
+  const [activeChart ] =
+    React.useState<keyof typeof chartConfig>("desktop") 
 
   return (
     <Card className="py-4">
