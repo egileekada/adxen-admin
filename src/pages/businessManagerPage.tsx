@@ -4,6 +4,7 @@ import { ListFilter, Plus, Users } from "lucide-react";
 import { businessColumns } from "@/components/shared/tables-columns/business-column";
 import { BusinessTable } from "@/components/shared/data-tables/business-table";
 import { useModal } from "@/hooks/use-modal";
+import TableFilter from "@/components/shared/table-filter";
 
 const accessStats = [
   {
@@ -118,8 +119,8 @@ const BusinessManagerPage = () => {
       </div>
 
       <div className="mt-6">
-        <div className="flex flex-col flex-wrap md:flex-row gap-2 md:gap-0 items-start md:items-center justify-between mb-4">
-          <div className="flex items-center flex-wrap gap-1">
+        <div className="flex flex-col flex-wrap md:flex-row gap-2 md:gap-0 items-start md:items-center justify-between">
+          {/* <div className="flex items-center flex-wrap gap-1">
             <Button
               variant="ghost"
               className="bg-white border border-dashed border-border-darker rounded-full text-muted"
@@ -141,11 +142,14 @@ const BusinessManagerPage = () => {
               <ListFilter className="w-4 h-4" />
               Status
             </Button>
-          </div>
+          </div> */}
+          <TableFilter
+            options={["Platform", "Usage", "Status"]}
+            showRefreshButton={false}
+          />
         </div>
-        <div className=" mt-6">
-          <BusinessTable columns={businessColumns} data={businessTable} />
-        </div>
+
+        <BusinessTable columns={businessColumns} data={businessTable} />
       </div>
     </div>
   );

@@ -50,7 +50,7 @@ const HeaderDescription = ({
       </div>
       {showActionButton && (
         <Button
-          className="inline-flex items-center cursor-pointer text-sm font-medium sm:ml-auto"
+          className="inline-flex items-center cursor-pointer text-sm h-8 font-medium sm:ml-auto"
           onClick={handleAction}
         >
           {showIcon && icon}

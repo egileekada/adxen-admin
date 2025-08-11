@@ -2,12 +2,11 @@ import { AccountTable } from "@/components/shared/data-tables/account-table";
 import { accountColumns } from "@/components/shared/tables-columns/account-column";
 import { requestColumns } from "@/components/shared/tables-columns/request-column";
 import { TransactionTable } from "@/components/shared/data-tables/transaction-table";
-import HeaderDescription from "@/components/shared/headerDecription";
 import Stats from "@/components/shared/stats";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useNavigate } from "react-router-dom";
 import TableFilter from "@/components/shared/table-filter";
-import { PlusIcon } from "lucide-react";
+import HeaderDescription from "@/components/shared/headerDecription";
 
 const accounts = [
   {
@@ -157,8 +156,6 @@ function AdAccountPage() {
         handleAction={handleRequestAdAccount}
         actionText="Request Ad Account"
         showActionButton={true}
-        showIcon={true}
-        icon={<PlusIcon className="w-4 h-4" />}
       />
       <div className="flex flex-col md:flex-row justify-between border border-border-darker rounded-lg mt-6 ">
         {accounts.map((account) => (

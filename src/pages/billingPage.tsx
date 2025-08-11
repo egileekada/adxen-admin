@@ -1,5 +1,5 @@
 import HeaderDescription from "@/components/shared/headerDecription";
-import { Button } from "@/components/ui/button";
+
 import { BillingTable } from "@/components/shared/data-tables/billing-table";
 import { billingColumns } from "@/components/shared/tables-columns/billing-column";
 import TableFilter from "@/components/shared/table-filter";
@@ -8,13 +8,14 @@ const BillingPage = () => {
   return (
     <div>
       <div className="flex items-end justify-between">
+        {/* the action button either take you to the upgrade page or open the modal */}
         <HeaderDescription
           title="Billing"
           description="View and manage your billing details"
-          showActionButton={false}
+          showActionButton={true}
           showCopyButton={false}
+          actionText="Upgrade"
         />
-        <Button className="text-sm font-medium px-12">Upgrade</Button>
       </div>
       {/* stats for billing */}
       <div className="mt-8 flex flex-col md:flex-row justify-between border border-gray-200 rounded-lg">

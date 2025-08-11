@@ -17,7 +17,7 @@ const TableFilter = ({
           <Button
             key={index}
             variant="ghost"
-            className="bg-white border border-dashed border-border-darker rounded-full text-muted py-1 px-2"
+            className="bg-white border border-dashed border-border-darker h-7 rounded-full text-muted py-1 px-2"
           >
             <ListFilter className="w-4 h-4" />
             {option}
@@ -28,8 +28,7 @@ const TableFilter = ({
       {showRefreshButton && (
         <Button
           variant="outline"
-          size="sm"
-          className="bg-soft text-subtle border-none"
+          className="bg-soft text-subtle border-none h-7"
         >
           <RefreshCcw className="w-4 h-4 text-muted" />
           Refresh

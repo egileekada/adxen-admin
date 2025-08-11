@@ -265,7 +265,7 @@ const BudgetPage = () => {
             <h2 className="text-base font-inter text-default font-medium">
               Recent transactions
             </h2>
-            <Button variant="outline" size="sm" className="p-0">
+            <Button variant="outline" size="sm" className="p-0 h-7">
               View All
               <ChevronRight className="w-4 h-4 text-muted" />
             </Button>
@@ -279,7 +279,7 @@ const BudgetPage = () => {
             <h2 className="text-base font-inter text-default font-medium">
               Ad accounts
             </h2>
-            <Button variant="outline" size="sm" className="py-1">
+            <Button variant="outline" className="py-1 h-7">
               View All
               <ChevronRight className="w-4 h-4 text-muted" />
             </Button>

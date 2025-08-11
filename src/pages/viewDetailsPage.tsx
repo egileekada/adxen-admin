@@ -1,11 +1,5 @@
 import { CircleFlag } from "react-circle-flags";
-import {
-  ArrowRightLeft,
-  Check,
-  Plus,
-  RefreshCcw,
-  Settings,
-} from "lucide-react";
+import { ArrowRightLeft, Check, Plus, Settings } from "lucide-react";
 import {
   RiAttachment2,
   RiBankLine,
@@ -29,7 +23,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ListFilter, MoreHorizontal } from "lucide-react";
 
-import HeaderDescription from "@/components/shared/headerDecription";
+// import { HeaderDetails } from "@/components/shared/headers";
 import Stats from "@/components/shared/stats";
 import Charts from "@/components/shared/charts";
 import { TransactionTable } from "@/components/shared/data-tables/transaction-table";
@@ -256,7 +250,7 @@ function AdAccountPage() {
   const { openModal } = useModal();
   const location = useLocation();
 
-  const isSubaccount = location.search.includes("tab=request");
+  const isSubaccount = location.search.includes("tabs=request");
   console.log(isSubaccount);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -272,12 +266,11 @@ function AdAccountPage() {
 
   return (
     <div className=" w-full h-full">
-      <HeaderDescription
+      {/* <HeaderDetails
         title="Account Promo - Summer"
-        description="Account ID: 59953990240902"
-        showActionButton={false}
-        showCopyButton={true}
-      />
+        description="Account ID"
+        copyText="59953990240902"
+      /> */}
       <div className="flex items-center gap-1 mt-4 sm:hidden">
         <Button
           onClick={() =>
@@ -354,20 +347,22 @@ function AdAccountPage() {
               Overview
             </TabsTrigger>
             {!isSubaccount && (
-              <TabsTrigger
-                value="transactions"
-                className="text-muted data-[state=active]:border-b-2 data-[state=active]:border-b-accent-foreground data-[state=active]:text-accent-foreground rounded-none"
-              >
-                Transactions
-              </TabsTrigger>
-            )}
-            <TabsTrigger
-              value="subaccounts"
-              className="text-muted data-[state=active]:border-b-2 data-[state=active]:border-b-accent-foreground data-[state=active]:text-accent-foreground rounded-none"
-            >
-              Subaccounts
-            </TabsTrigger>
+              <>
+                <TabsTrigger
+                  value="transactions"
+                  className="text-muted data-[state=active]:border-b-2 data-[state=active]:border-b-accent-foreground data-[state=active]:text-accent-foreground rounded-none"
+                >
+                  Transactions
+                </TabsTrigger>
 
+                <TabsTrigger
+                  value="subaccounts"
+                  className="text-muted data-[state=active]:border-b-2 data-[state=active]:border-b-accent-foreground data-[state=active]:text-accent-foreground rounded-none"
+                >
+                  Subaccounts
+                </TabsTrigger>
+              </>
+            )}
             <TabsTrigger
               value="logs"
               className="text-muted data-[state=active]:border-b-2 data-[state=active]:border-b-accent-foreground data-[state=active]:text-accent-foreground rounded-none"
@@ -377,23 +372,26 @@ function AdAccountPage() {
           </TabsList>
           <TabsContent value="opened" className="mt-5 pb-10">
             <div className="max-w-[720px] space-y-6">
-              <div className="flex gap-3 items-stretch rounded-sm p-3 w-full bg-red-100 max-w-[720px] shadow-sm border border-border-darker">
-                <div className="min-w-1 rounded-full  bg-basic-red" />
-                <div className="inline-flex flex-wrap items-center text-sm text-subtle">
-                  <p className="text-sm">
-                    <span className="text-subtle font-semibold">
-                      This request was rejected:
-                    </span>{" "}
-                    The details you provided couldn't be approved. You can
-                    review the reason below and make the necessary changes to
-                    resubmit. If you'd rather start fresh, you can also{" "}
-                    <span className="underline text-destructive">
-                      create a new request
-                    </span>{" "}
-                    with updated information..
-                  </p>
+              {isSubaccount && (
+                <div className="flex gap-3 items-stretch rounded-sm p-3 w-full bg-red-100 max-w-[720px] shadow-sm border border-border-darker">
+                  <div className="min-w-1 rounded-full  bg-basic-red" />
+                  <div className="inline-flex flex-wrap items-center text-sm text-subtle">
+                    <p className="text-sm">
+                      <span className="text-subtle font-semibold">
+                        This request was rejected:
+                      </span>{" "}
+                      The details you provided couldn't be approved. You can
+                      review the reason below and make the necessary changes to
+                      resubmit. If you'd rather start fresh, you can also{" "}
+                      <span className="underline text-destructive">
+                        create a new request
+                      </span>{" "}
+                      with updated information..
+                    </p>
+                  </div>
                 </div>
-              </div>
+              )}
+
               <div className="flex flex-col gap-5 max-w-[520px]">
                 <div className="flex flex-col sm:flex-row flex-wrap justify-between items-start gap-y-2 ">
                   <div className="flex flex-1 items-start flex-col gap-1">
@@ -416,32 +414,6 @@ function AdAccountPage() {
                     </p>
                   </div>
                 </div>
-                {isSubaccount && (
-                  <div className="flex flex-col sm:flex-row flex-wrap justify-between items-start gap-y-2">
-                    <div className="flex flex-col gap-1">
-                      <p className="text-default text-sm font-inter font-semibold">
-                        Status
-                      </p>
-                      <Badge
-                        variant="outline"
-                        className="text-sm font-inter font-normal bg-badge-orange-10 text-basic-orange"
-                      >
-                        <RefreshCcw className="size-4 text-basic-orange" />
-                        <p className="text-xs font-inter font-normal">
-                          Pending
-                        </p>
-                      </Badge>
-                    </div>
-                    <div className="flex w-[250px] items-start  flex-col gap-1">
-                      <p className="text-default text-sm font-inter font-semibold">
-                        No. of accounts
-                      </p>
-                      <p className="text-muted text-sm font-inter font-normal">
-                        3
-                      </p>
-                    </div>
-                  </div>
-                )}
 
                 <div className="flex flex-col sm:flex-row flex-wrap justify-between items-start gap-y-2">
                   <div className="flex flex-col gap-1">

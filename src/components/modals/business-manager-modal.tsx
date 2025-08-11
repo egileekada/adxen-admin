@@ -3,14 +3,6 @@ import { Drawer, DrawerDescription, DrawerTitle } from "../ui/drawer";
 import { DrawerContent } from "../ui/drawer";
 import { DrawerHeader } from "../ui/drawer";
 
-import { X } from "lucide-react";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-} from "../ui/breadcrumb";
-
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Sheet,
@@ -20,6 +12,7 @@ import {
   SheetTitle,
 } from "../ui/sheet";
 import BusinessManagerForm from "../forms/business-manager-form";
+import ModalTitle from "./modal-title";
 
 const BusinessManagerModal = () => {
   const { isOpen, closeModal } = useModal();
@@ -31,20 +24,12 @@ const BusinessManagerModal = () => {
         <DrawerContent className="w-full mt-2 rounded-t-md h-fit sm:max-w-md md:max-w-md  mx-auto overflow-hidden">
           <DrawerHeader className="flex flex-col items-start relative w-full bg-[#27272A1A]/10 border-b border-[#27272A1A] gap-2 p-6">
             <DrawerTitle>
-              <Breadcrumb className="text-sm font-normal flex items-center gap-1">
-                <BreadcrumbList>
-                  <BreadcrumbItem>Add access manager</BreadcrumbItem>
-                  <BreadcrumbSeparator />
-                  <BreadcrumbItem>Connect account</BreadcrumbItem>
-                </BreadcrumbList>
-              </Breadcrumb>
+              <ModalTitle
+                breadcrumb={["Add access manager", "Connect account"]}
+                closeModal={closeModal}
+              />
             </DrawerTitle>
-            <div
-              className="absolute top-1/2 -translate-y-1/2 right-10 cursor-pointer"
-              onClick={closeModal}
-            >
-              <X className="size-4 text-default" />
-            </div>
+
             <DrawerDescription className="text-xl font-bold text-default">
               Add access manager id
             </DrawerDescription>
@@ -59,20 +44,11 @@ const BusinessManagerModal = () => {
       <SheetContent className="w-[430px] mt-2 mr-2 rounded-md h-fit sm:max-w-md md:max-w-md  mx-auto overflow-hidden">
         <SheetHeader className=" relative w-full bg-[#27272A1A]/10 border-b border-[#27272A1A] p-6 flex flex-col gap-2">
           <SheetTitle>
-            <Breadcrumb className="text-sm font-normal flex items-center gap-1">
-              <BreadcrumbList>
-                <BreadcrumbItem>Add access manager</BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>Connect account</BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
+            <ModalTitle
+              breadcrumb={["Add access manager", "Connect account"]}
+              closeModal={closeModal}
+            />
           </SheetTitle>
-          <div
-            className="absolute top-1/2 -translate-y-1/2 right-10 cursor-pointer"
-            onClick={closeModal}
-          >
-            <X className="size-4 text-default" />
-          </div>
           <SheetDescription className="text-xl font-bold text-default">
             Add access manager id
           </SheetDescription>

@@ -4,13 +4,7 @@ import { DrawerContent } from "../ui/drawer";
 import { DrawerHeader } from "../ui/drawer";
 import AdAccountForm from "../forms/ad-account-form";
 import InitialFundingForm2 from "../forms/initial-funding-form2";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-} from "../ui/breadcrumb";
-import { X } from "lucide-react";
+
 import { Button } from "../ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
@@ -21,6 +15,7 @@ import {
   SheetDescription,
 } from "../ui/sheet";
 import { useState } from "react";
+import ModalTitle from "./modal-title";
 
 const steps = ["configure", "funding"] as const;
 
@@ -55,20 +50,12 @@ const ConfigureModal = () => {
         <DrawerContent className="w-full mt-2 sm:max-w-md md:max-w-md  mx-auto">
           <DrawerHeader className="flex flex-col relative w-full bg-[#27272A1A]/10 border-b border-[#27272A1A] gap-2 p-6">
             <DrawerTitle className="">
-              <Breadcrumb className="text-sm font-normal flex items-center gap-2">
-                <BreadcrumbList>
-                  <BreadcrumbItem>View Details</BreadcrumbItem>
-                  <BreadcrumbSeparator />
-                  <BreadcrumbItem>Edit configuration</BreadcrumbItem>
-                </BreadcrumbList>
-              </Breadcrumb>
+              <ModalTitle
+                breadcrumb={["View Details", "Edit configuration"]}
+                closeModal={closeModal}
+              />
             </DrawerTitle>
-            <div
-              className="absolute top-1/2 -translate-y-1/2 right-6 cursor-pointer"
-              onClick={closeModal}
-            >
-              <X className="size-4 text-default" />
-            </div>
+
             <DrawerDescription className="flex text-xl font-bold text-default">
               Configure your ad account
             </DrawerDescription>
@@ -105,20 +92,11 @@ const ConfigureModal = () => {
       <SheetContent className="w-[430px] mt-2 max-h-fit  rounded-md sm:max-w-md md:max-w-md  mx-auto overflow-y-auto">
         <SheetHeader className=" relative w-full bg-[#27272A1A]/10 border-b border-[#27272A1A] p-6 flex flex-col gap-2">
           <SheetTitle>
-            <Breadcrumb className="text-sm font-normal flex items-center gap-2">
-              <BreadcrumbList>
-                <BreadcrumbItem>View Details</BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>Edit configuration</BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
+            <ModalTitle
+              breadcrumb={["View Details", "Edit configuration"]}
+              closeModal={closeModal}
+            />
           </SheetTitle>
-          <div
-            className="absolute top-1/2 -translate-y-1/2 right-10 cursor-pointer"
-            onClick={closeModal}
-          >
-            <X className="size-4 text-default" />
-          </div>
           <SheetDescription className="text-xl font-bold text-default">
             Configure your ad account
           </SheetDescription>
