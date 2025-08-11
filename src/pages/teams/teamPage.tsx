@@ -1,6 +1,7 @@
 import HeaderDescription from "@/components/shared/headerDecription";
 import Stats from "@/components/shared/stats";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { TeamColumn, TeamTable } from "@/components/teams";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const accounts = [
     {
@@ -22,6 +23,71 @@ const accounts = [
         id: 4,
         name: "Pending Invites",
         value: 1,
+    },
+];
+
+
+const data = [
+    {
+        id: 1,
+        accountId: "1234567890",
+        accountName: "Carmen Noelia",
+        email: "ufisher@gmail.com",
+        role: "Admin",
+        active: "July 12, 2025"
+    },
+    {
+        id: 1,
+        accountId: "1234567890",
+        accountName: "Carmen Noelia",
+        email: "ufisher@gmail.com",
+        role: "Admin",
+        active: "July 12, 2025"
+    },
+    {
+        id: 1,
+        accountId: "1234567890",
+        accountName: "Carmen Noelia",
+        email: "ufisher@gmail.com",
+        role: "Admin",
+        active: "July 12, 2025"
+    },
+    {
+        id: 1,
+        accountId: "1234567890",
+        accountName: "Carmen Noelia",
+        email: "ufisher@gmail.com",
+        role: "Admin",
+        active: "July 12, 2025"
+    },
+];
+
+
+
+const dataSuspend = [
+    {
+        id: 1,
+        accountId: "1234567890",
+        accountName: "Carmen Noelia",
+        email: "ufisher@gmail.com",
+        role: "Admin",
+        active: "July 12, 2025"
+    },
+    {
+        id: 1,
+        accountId: "1234567890",
+        accountName: "Carmen Noelia",
+        email: "ufisher@gmail.com",
+        role: "Admin",
+        active: "July 12, 2025"
+    }, 
+    {
+        id: 1,
+        accountId: "1234567890",
+        accountName: "Carmen Noelia",
+        email: "ufisher@gmail.com",
+        role: "Admin",
+        active: "July 12, 2025"
     },
 ];
 
@@ -66,8 +132,18 @@ export default function TeamPage() {
                             Pending
                         </TabsTrigger>
                     </TabsList>
+            <TabsContent value="active" className="mt-5">
+                <TeamTable data={data} columns={TeamColumn} />
+            </TabsContent>
+            <TabsContent value="suspended" className="mt-5">
+                <TeamTable data={dataSuspend} columns={TeamColumn} />
+            </TabsContent>
+            <TabsContent value="pending" className="mt-5">
+                <TeamTable data={dataSuspend} columns={TeamColumn} />
+            </TabsContent>
                 </Tabs>
             </div>
+
         </div>
     )
 }

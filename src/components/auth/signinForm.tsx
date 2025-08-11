@@ -3,17 +3,19 @@ import { RiAppleFill, RiCornerUpLeftLine, RiEyeFill, RiEyeOffFill, RiGoogleFill,
 import AuthFooter from "./authFooter";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import useAuth from "@/hooks/useAuth";
 
 export default function SigninForm() {
-
 
     const { search } = useLocation();
     const navigate = useNavigate()
     const [hidePassword, setHidePassword] = useState("password")
 
-    const changeHandler = (name: string, value: string) => {
-        console.log(name);
-        console.log(value);
+    const { formik, signInPending } = useAuth()
+    
+    const loginHandler = (e: any) => {
+        e.preventDefault()
+        formik?.handleSubmit()
     }
 
     return (
@@ -50,8 +52,8 @@ export default function SigninForm() {
                     </div>
                 )}
                 {search && (
-                    <form onSubmit={()=> navigate("/dashboard")} className=" flex w-full flex-col gap-4 " >
-                        <CustomInput placeholder="mail@domain.com" label="Email" name={""} setValue={changeHandler} />
+                    <form onSubmit={loginHandler} className=" flex w-full flex-col gap-4 " >
+                        <CustomInput placeholder="mail@domain.com" label="Email" value={formik?.values} name={"email"} setValue={formik?.setFieldValue} errors={formik?.errors} touched={formik?.touched} />
                         <CustomInput
                             labelbtn={
                                 <div onClick={() => navigate("/auth/reset")} className=" text-sm text-[#2B5DF3] cursor-pointer " >
@@ -68,8 +70,8 @@ export default function SigninForm() {
                             }
                             hasBackIcon={true}
                             type={hidePassword}
-                            placeholder="Enter password" label="Password" name={""} setValue={changeHandler} />
-                        <CustomButton className=" mt-2 w-full " >
+                            placeholder="Enter password" label="Password" value={formik?.values} name="password" setValue={formik?.setFieldValue} errors={formik?.errors} touched={formik?.touched}  />
+                        <CustomButton onClick={loginHandler} type="submit" isLoading={signInPending} className=" mt-2 w-full " >
                             Sign in
                         </CustomButton>
 

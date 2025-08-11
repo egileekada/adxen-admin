@@ -1,4 +1,3 @@
-import { CustomButton } from "@/components/custom";
 import HeaderDescription from "@/components/shared/headerDecription";
 import Stats from "@/components/shared/stats";
 import WalletBtn from "@/components/shared/walletBtn";
