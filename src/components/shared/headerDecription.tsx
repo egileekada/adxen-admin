@@ -12,6 +12,8 @@ type IHeaderDescription = {
   className?: string;
   icon?: React.ReactNode;
   showIcon?: boolean;
+  actionName?: string;
+  subtitle?: boolean
 };
 
 const HeaderDescription = ({
@@ -24,6 +26,7 @@ const HeaderDescription = ({
   className,
   icon,
   showIcon = true,
+  actionName, 
 }: IHeaderDescription) => {
   return (
     <div
@@ -33,8 +36,8 @@ const HeaderDescription = ({
       )}
     >
       <div className="flex flex-col gap-1.5">
-        <h1 className="text-2xl font-inter font-medium">{title}</h1>
-        <div className="flex items-end gap-2 ">
+        <h1 className=" text-lg lg:text-2xl font-inter font-medium">{title}</h1>
+        <div className="flex items-end lg:mt-0 -mt-1 gap-2 ">
           <p className="text-sm text-muted">{description} </p>
           {showCopyButton && (
             <Button
@@ -54,7 +57,7 @@ const HeaderDescription = ({
           onClick={handleAction}
         >
           {showIcon && icon}
-          {actionText}
+          {actionText ?? actionName }
         </Button>
       )}
     </div>

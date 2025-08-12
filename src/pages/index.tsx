@@ -7,4 +7,14 @@ export { default as ViewDetailsPage } from "./viewDetailsPage";
 export { default as BudgetPage } from "./budgetPage";
 export { default as BusinessDetailsPage } from "./businessDetailsPage";
 export { default as BillingPage } from "./billingPage";
-export { default as AffiliatePage } from "./affiliatePage";
+export { default as AffiliatePage } from "./affiliatePage"; 
+export { default as TeamPage } from "./teams/teamPage";
+export { default as TeamInformationPage } from "./teams/teamInformation";
+
+// settings
+export { default as SettingsLayout } from "./setting/settingsLayout";
+export { default as ProfilePage } from "./setting/profilePage";
+export { default as PayoutPage } from "./setting/payoutPage";
+export { default as SecurityPage } from "./setting/securityPage";
+export { default as RolesAndPermissions } from "./setting/rolesAndPermissions";
+export { default as NotificationPage } from "./setting/notificationPage";

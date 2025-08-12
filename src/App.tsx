@@ -15,6 +15,14 @@ import {
   BusinessDetailsPage,
   BillingPage,
   AffiliatePage,
+  TeamPage,
+  SettingsLayout,
+  ProfilePage,
+  PayoutPage,
+  SecurityPage,
+  NotificationPage,
+  RolesAndPermissions, 
+  TeamInformationPage,
 } from "./pages";
 import {
   AuthLayout,
@@ -24,6 +32,7 @@ import {
 import { ChangePasswordForm, ResetForm, VerifyForm } from "./components/auth";
 import ModalProvider from "./components/modals/modal-provider";
 import BusinessManagerPage from "./pages/businessManagerPage";
+import WalletPage from "./pages/walletPage";
 
 function App() {
   const router = createBrowserRouter(
@@ -42,6 +51,16 @@ function App() {
         <Route path="dashboard" element={<DashboardLayout />}>
           <Route index element={<HomePage />} />
           <Route path="account" element={<AdAccountPage />} />
+          <Route path="teams" element={<TeamPage />} />
+          <Route path="teams/details" element={<TeamInformationPage />} />
+          <Route path="wallet" element={<WalletPage />} />
+          <Route path="settings" element={<SettingsLayout />} >
+            <Route index element={<ProfilePage />} />
+            <Route path="payout" element={<PayoutPage />} />
+            <Route path="security" element={<SecurityPage />} />
+            <Route path="notifications" element={<NotificationPage />} />
+            <Route path="rolespermission" element={<RolesAndPermissions />} />
+          </Route>
           <Route path="account/request" element={<AdAccountPage />} />
           <Route path="account/:id" element={<ViewDetailsPage />} />
           <Route path="budget" element={<BudgetPage />} />

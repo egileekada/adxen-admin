@@ -7,7 +7,7 @@ import {
 export default function SelectAccountType() {
     return (
         <div className=" w-full flex flex-col gap-4 " >
-            <RadioGroup defaultValue="comfortable">
+            <RadioGroup defaultValue="">
                 <div className="flex gap-3 p-4 rounded-md border-2 border-border-darker hover:border-blue-infomative "> 
                         <RadioGroupItem value="default" className=" mt-[2px] " id="r1" />
                         <div className=" flex flex-col " >
@@ -16,7 +16,7 @@ export default function SelectAccountType() {
                         </div> 
                 </div>
                 <div className="flex gap-3 p-4 rounded-md border-2 border-border-darker hover:border-blue-infomative "> 
-                        <RadioGroupItem value="default" className=" mt-[2px] " id="r1" />
+                        <RadioGroupItem value="second" className=" mt-[2px] " id="r1" />
                         <div className=" flex flex-col " >
                             <p className=" text-sm font-medium " >Business</p>
                             <p className=" text-sm " >For companies or agencies managing multiple accounts.</p>

@@ -41,7 +41,7 @@ export default function FormInput({
   };
 
   return (
-    <div className=" w-full flex gap-2 flex-col ">
+    <div className=" w-full flex gap-1 flex-col ">
       <div className=" w-full flex justify-between items-center ">
         <p className=" font-medium text-sm ">{label}</p>
         {labelbtn && <>{labelbtn}</>}
