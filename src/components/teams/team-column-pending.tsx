@@ -1,16 +1,15 @@
 "use client";
 
 import type { ColumnDef } from "@tanstack/react-table";
-import { Checkbox } from "@/components/ui/checkbox"; 
+import { Checkbox } from "@/components/ui/checkbox";
 import { 
-  MoreHorizontal, 
-} from "lucide-react"; 
-import { useNavigate } from "react-router-dom";
+  RefreshCcw,
+} from "lucide-react";
 
-export type TableData =  {
+export type TableData = {
   id: number,
   accountId: string,
-  accountName: string, 
+  accountName: string,
   email: string,
   role: string,
   active: string
@@ -34,7 +33,7 @@ enum StatusEnum {
   REVOKED = "revoked",
 }
 
-const teamColumns: ColumnDef<TableData>[] = [
+const teamColumnsPending: ColumnDef<TableData>[] = [
   {
     accessorKey: "checkbox",
     header: ({ table }) => {
@@ -68,32 +67,31 @@ const teamColumns: ColumnDef<TableData>[] = [
         </div>
       );
     },
-  }, 
+  },
   {
     accessorKey: "email",
     header: "Email"
-  }, 
+  },
   {
     accessorKey: "role",
-    header: "Role", 
+    header: "Role",
   },
   {
     accessorKey: "active",
-    header: "Last Active", 
+    header: "Last Active",
   },
   {
     accessorKey: "action",
     header: () => <div className="" />,
     cell: () => {
-      const navigate = useNavigate()
       return (
-        <div onClick={()=> navigate("/dashboard/teams/details")} className="flex cursor-pointer items-center gap-8 w-full justify-end"> 
-        {/* <RefreshCcw /> */}
-          <MoreHorizontal className="text-muted" />
+        <div className="flex items-center text-blue-infomative gap-2 w-full justify-end">
+          <RefreshCcw size={"16px"} />
+          <p className=" text-sm font-medium " >Resend</p>
         </div>
       );
     },
   },
 ];
 
-export default teamColumns
+export default teamColumnsPending

@@ -3,6 +3,7 @@ import { Graph } from "@/components/home";
 import HeaderDescription from "@/components/shared/headerDecription";
 import Stats from "@/components/shared/stats";
 import WalletBtn from "@/components/shared/walletBtn";
+import { useModal } from "@/hooks/use-modal";
 import { RiInformation2Fill } from "@remixicon/react";
 
 export default function HomePage() {
@@ -25,6 +26,8 @@ export default function HomePage() {
     }
   ];
 
+  const { openModal } = useModal();
+  
   return (
     <div className=" w-full h-auto flex flex-1 flex-col gap-6 " >
       <HeaderDescription
@@ -39,7 +42,7 @@ export default function HomePage() {
             <RiInformation2Fill size={"14px"} />
             <p >Complete these steps to unlock full access.</p>
           </div>
-          <CustomButton>
+          <CustomButton onClick={()=> openModal("notification")} >
             <p>Continue</p>
           </CustomButton>
         </div>

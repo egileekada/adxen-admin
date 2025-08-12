@@ -36,8 +36,8 @@ const HeaderDescription = ({
       )}
     >
       <div className="flex flex-col gap-1.5">
-        <h1 className="text-2xl font-inter font-medium">{title}</h1>
-        <div className="flex items-end gap-2 ">
+        <h1 className=" text-lg lg:text-2xl font-inter font-medium">{title}</h1>
+        <div className="flex items-end lg:mt-0 -mt-1 gap-2 ">
           <p className="text-sm text-muted">{description} </p>
           {showCopyButton && (
             <Button

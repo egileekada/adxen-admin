@@ -16,14 +16,14 @@ export default function SettingsPage() {
     }
 
     return (
-        <div className=" w-full h-full " >
+        <div className=" w-full h-full flex flex-col  " >
             <HeaderDescription
                 title="Settings"
                 description="Manage your account, preferences, and security all in one place."
                 showActionButton={false}
                 showCopyButton={false}
             />
-            <div className="mt-6">
+            <div className="mt-6 overflow-x-auto ">
                 <Tabs defaultValue={location.pathname === "/dashboard/settings" ? `profile` : location.pathname?.replace("/dashboard/settings/", "")} className="w-full border-b border-border-default ">
                     <TabsList className="bg-white text-sm font-medium font-inter">
                         <TabsTrigger

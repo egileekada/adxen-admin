@@ -21,7 +21,8 @@ import {
   PayoutPage,
   SecurityPage,
   NotificationPage,
-  RolesAndPermissions,
+  RolesAndPermissions, 
+  TeamInformationPage,
 } from "./pages";
 import {
   AuthLayout,
@@ -51,6 +52,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="account" element={<AdAccountPage />} />
           <Route path="teams" element={<TeamPage />} />
+          <Route path="teams/details" element={<TeamInformationPage />} />
           <Route path="wallet" element={<WalletPage />} />
           <Route path="settings" element={<SettingsLayout />} >
             <Route index element={<ProfilePage />} />

@@ -1,8 +1,9 @@
 import { CustomButton } from "@/components/custom";
 import HeaderDescription from "@/components/shared/headerDecription";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Switch } from "@/components/ui/switch";
 import { useQuery } from "@/components/utils/useQuery";
-import { RiKey2Line, RiUserStarLine } from "@remixicon/react";
+import { RiArrowDropDownLine, RiKey2Line, RiUserStarLine } from "@remixicon/react";
 import { useNavigate } from "react-router-dom";
 
 export default function RolesAndPermission() {
@@ -10,9 +11,9 @@ export default function RolesAndPermission() {
     const navigate = useNavigate()
     const type = query.get('type');
     return (
-        <div className=" w-full flex gap-6 " >
-            <div className=" w-fit " >
-                <div className=" w-[258px] rounded-md border p-[10px] border-border-default gap-2 flex flex-col " >
+        <div className=" w-full flex gap-6 lg:flex-row flex-col " >
+            <div className=" w-full lg:w-fit " >
+                <div className=" w-[258px] rounded-md border p-[10px] border-border-default gap-2 lg:flex hidden flex-col " >
                     <p className=" uppercase text-xs text-muted " >select menu</p>
                     <div onClick={() => navigate("/dashboard/settings/rolespermission")} className={` cursor-pointer ${!type ? " bg-badge-blue text-blue-infomative " : ""} p-[6px] text-sm font-medium rounded-sm h-[32px] gap-[6px] flex items-center `} >
                         <RiUserStarLine size={"18px"} />
@@ -22,6 +23,21 @@ export default function RolesAndPermission() {
                         <RiKey2Line size={"18px"} />
                         <p>Permission</p>
                     </div>
+                </div>
+                <div className=" w-full flex flex-1 lg:hidden "  >
+                    <DropdownMenu>
+                        <DropdownMenuTrigger className=" h-[36px] w-full rounded-md border flex gap-1 items-center justify-center " >{!type ? "Roles" : "Permission"}<RiArrowDropDownLine size={"25px"} /></DropdownMenuTrigger>
+                        <DropdownMenuContent className=" w-[90vw] flex flex-col gap-1 " >
+                            <DropdownMenuItem onClick={() => navigate("/dashboard/settings/rolespermission")} className={` cursor-pointer ${!type ? " bg-badge-blue text-blue-infomative " : ""} p-[6px] text-sm font-medium rounded-sm h-[32px] gap-[6px] flex items-center `} >
+                                <RiUserStarLine color={!type ? "#2b5df3" : ""} size={"18px"} />
+                                <p>Roles</p>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => navigate("?type=permission")} className={` cursor-pointer ${type === "permission" ? " bg-badge-blue text-blue-infomative " : ""} p-[6px] text-sm font-medium rounded-sm h-[32px] gap-[6px] flex items-center `} >
+                                <RiKey2Line color={type === "permission" ? "#2b5df3" : ""} size={"18px"} />
+                                <p>Permission</p>
+                            </DropdownMenuItem> 
+                        </DropdownMenuContent>
+                    </DropdownMenu>
                 </div>
             </div>
             <div className=" w-full " >

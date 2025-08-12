@@ -9,7 +9,18 @@ export type ModalType =
   | "archive"
   | "topup-ad"
   | "business-manager"
-  | "subaccount-request";
+  | "subaccount-request"
+  | "verfication"
+  | "notification"
+  | "inviteteam"
+  | "addbankdetail"
+  | "crypto"
+  | "payoneer"
+  | "wise-account"
+  | "wallet" 
+  | "withdraw-balance"
+  | "withdraw-success"
+  | "withdraw-details"; 
 
 type ModalStore = {
   isOpen: boolean;

@@ -1,7 +1,8 @@
 import HeaderDescription from "@/components/shared/headerDecription";
 import Stats from "@/components/shared/stats";
-import { TeamColumn, TeamTable } from "@/components/teams";
+import { TeamColumn, teamColumnsPending, TeamTable } from "@/components/teams";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useModal } from "@/hooks/use-modal";
 
 const accounts = [
     {
@@ -80,7 +81,7 @@ const dataSuspend = [
         email: "ufisher@gmail.com",
         role: "Admin",
         active: "July 12, 2025"
-    }, 
+    },
     {
         id: 1,
         accountId: "1234567890",
@@ -93,8 +94,10 @@ const dataSuspend = [
 
 export default function TeamPage() {
 
-    const clickHandler = () => {
+    const { openModal } = useModal();
 
+    const clickHandler = () => {
+        openModal("inviteteam")
     }
 
     return (
@@ -112,7 +115,7 @@ export default function TeamPage() {
             </div>
             <div className="">
                 <Tabs defaultValue="active" className="w-full">
-                    <TabsList className="bg-white text-sm font-medium font-inter border-b border-default">
+                    <TabsList className="bg-white text-sm font-medium font-inter border-b border-[#27272A1A] ">
                         <TabsTrigger
                             value="active"
                             className="text-muted data-[state=active]:border-b-2 data-[state=active]:border-b-accent-foreground data-[state=active]:text-accent-foreground rounded-none pb-3"
@@ -132,15 +135,15 @@ export default function TeamPage() {
                             Pending
                         </TabsTrigger>
                     </TabsList>
-            <TabsContent value="active" className="mt-5">
-                <TeamTable data={data} columns={TeamColumn} />
-            </TabsContent>
-            <TabsContent value="suspended" className="mt-5">
-                <TeamTable data={dataSuspend} columns={TeamColumn} />
-            </TabsContent>
-            <TabsContent value="pending" className="mt-5">
-                <TeamTable data={dataSuspend} columns={TeamColumn} />
-            </TabsContent>
+                    <TabsContent value="active" className="mt-5">
+                        <TeamTable data={data} columns={TeamColumn} />
+                    </TabsContent>
+                    <TabsContent value="suspended" className="mt-5">
+                        <TeamTable data={dataSuspend} columns={TeamColumn} />
+                    </TabsContent>
+                    <TabsContent value="pending" className="mt-5">
+                        <TeamTable data={dataSuspend} columns={teamColumnsPending} />
+                    </TabsContent>
                 </Tabs>
             </div>
 

@@ -1,8 +1,9 @@
 import { CustomButton, CustomInput } from "@/components/custom";
 import HeaderDescription from "@/components/shared/headerDecription";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { RadioGroupItem, RadioGroup } from "@/components/ui/radio-group";
 import { useQuery } from "@/components/utils/useQuery";
-import { RiEyeFill, RiEyeOffFill, RiKey2Line, RiLock2Line } from "@remixicon/react";
+import { RiArrowDropDownLine, RiEyeFill, RiEyeOffFill, RiKey2Line, RiLock2Line } from "@remixicon/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -22,9 +23,9 @@ export default function SecurityPage() {
     }
 
     return (
-        <div className=" w-full flex gap-6 " >
-            <div className=" w-fit " >
-                <div className=" w-[258px] rounded-md border p-[10px] border-border-default gap-2 flex flex-col " >
+        <div className=" w-full flex lg:flex-row flex-col gap-6 " >
+            <div className=" w-full lg:w-fit " >
+                <div className=" w-[258px] rounded-md border p-[10px] border-border-default gap-2 lg:flex hidden flex-col " >
                     <p className=" uppercase text-xs text-muted " >select menu</p>
                     <div onClick={() => navigate("/dashboard/settings/security")} className={` cursor-pointer ${!type ? " bg-badge-blue text-blue-infomative " : ""} p-[6px] text-sm font-medium rounded-sm h-[32px] gap-[6px] flex items-center `} >
                         <RiLock2Line size={"18px"} />
@@ -34,6 +35,22 @@ export default function SecurityPage() {
                         <RiKey2Line size={"18px"} />
                         <p>2FA</p>
                     </div>
+                </div>
+
+                <div className=" w-full flex flex-1 lg:hidden "  >
+                    <DropdownMenu>
+                        <DropdownMenuTrigger className=" h-[36px] w-full rounded-md border flex gap-1 items-center justify-center " >{!type ? "Change password" : "2FA"}<RiArrowDropDownLine size={"25px"} /></DropdownMenuTrigger>
+                        <DropdownMenuContent className=" w-[90vw] flex flex-col gap-1 " >
+                            <DropdownMenuItem onClick={() => navigate("/dashboard/settings/security")} className={` cursor-pointer ${!type ? " bg-badge-blue text-blue-infomative " : ""} p-[6px] text-sm font-medium rounded-sm h-[32px] gap-[6px] flex items-center `} >
+                                <RiLock2Line color={!type ? "#2b5df3" : ""} size={"18px"} />
+                                <p>Change password</p>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => navigate("?type=2fa")} className={` cursor-pointer ${type === "2fa" ? " bg-badge-blue text-blue-infomative " : ""} p-[6px] text-sm font-medium rounded-sm h-[32px] gap-[6px] flex items-center `} >
+                                <RiKey2Line color={type === "2fa" ? "#2b5df3" : ""} size={"18px"} />
+                                <p>2FA</p>
+                            </DropdownMenuItem> 
+                        </DropdownMenuContent>
+                    </DropdownMenu>
                 </div>
             </div>
             <div className=" w-full " >
