@@ -1,6 +1,5 @@
 import HeaderDescription from "@/components/shared/headerDecription";
-import { Button } from "@/components/ui/button";
-import { ListFilter, Plus, Users } from "lucide-react";
+import { Plus, Users } from "lucide-react";
 import { businessColumns } from "@/components/shared/tables-columns/business-column";
 import { BusinessTable } from "@/components/shared/data-tables/business-table";
 import { useModal } from "@/hooks/use-modal";
