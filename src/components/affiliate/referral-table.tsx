@@ -24,7 +24,7 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
 }
 
-export function ReferralTable<TData, TValue>({
+function AffiliateReferralTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
@@ -109,3 +109,6 @@ export function ReferralTable<TData, TValue>({
     </div>
   );
 }
+
+
+export default AffiliateReferralTable

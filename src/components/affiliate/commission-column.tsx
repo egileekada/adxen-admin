@@ -41,7 +41,7 @@ const statusTextColors = {
   [StatusEnum.PAID]: "text-basic-green-strong",
 };
 
-export const commissionColumns: ColumnDef<CommissionData>[] = [
+const AffiliateCommissionColumns: ColumnDef<CommissionData>[] = [
   {
     accessorKey: "date",
     header: "Date",
@@ -152,3 +152,6 @@ export const commissionColumns: ColumnDef<CommissionData>[] = [
     },
   },
 ];
+
+
+export default AffiliateCommissionColumns

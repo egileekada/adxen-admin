@@ -1,11 +1,8 @@
+import { AffiliateCommissionColumns, AffiliateCommissionTable, AffiliateReferralColumn, AffiliateReferralTable } from "@/components/affiliate";
 import HeaderDescription from "@/components/shared/headerDecription";
 import TableFilter from "@/components/shared/table-filter";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CommissionTable } from "@/components/shared/data-tables/commision-table";
-import { commissionColumns } from "@/components/shared/tables-columns/commission-column";
-import { ReferralTable } from "@/components/shared/data-tables/referral-table";
-import { referralColumns } from "@/components/shared/tables-columns/referral-columns";
 
 const AffiliatePage = () => {
   return (
@@ -98,8 +95,8 @@ const AffiliatePage = () => {
                 options={["Payment", "Date", "Status"]}
                 showRefreshButton={false}
               />
-              <CommissionTable
-                columns={commissionColumns}
+              <AffiliateCommissionTable
+                columns={AffiliateCommissionColumns}
                 data={commissionData}
               />
             </div>
@@ -109,7 +106,7 @@ const AffiliatePage = () => {
               <h2 className="text-base font-semibold text-default">
                 All Referrals
               </h2>
-              <ReferralTable columns={referralColumns} data={referralData} />
+              <AffiliateReferralTable columns={AffiliateReferralColumn} data={referralData} />
             </div>
           </TabsContent>
         </Tabs>

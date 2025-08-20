@@ -40,7 +40,7 @@ const statusTextColors = {
   [StatusEnum["NO TOP-UPS"]]: "text-subtle",
 };
 
-export const referralColumns: ColumnDef<ReferralData>[] = [
+const AffiliateReferralColumns: ColumnDef<ReferralData>[] = [
   {
     accessorKey: "referralName",
     header: "Referral Name",
@@ -129,3 +129,6 @@ export const referralColumns: ColumnDef<ReferralData>[] = [
     },
   },
 ];
+
+
+export default AffiliateReferralColumns

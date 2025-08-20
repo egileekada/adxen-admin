@@ -24,7 +24,7 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
 }
 
-export function CommissionTable<TData, TValue>({
+function AffiliateCommissionTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
@@ -104,19 +104,10 @@ export function CommissionTable<TData, TValue>({
           </div>
         </>
       ) : (
-        <></>
-        // <div className="text-subtle text-sm flex text-center flex-col items-center justify-center py-16 gap-6 border-t">
-        //   <div>
-        //     <p className="text-subtle text-sm max-w-[400px] md:inline-flex text-center flex-wrap items-center justify-center">
-        //       You haven't added any access managers yet.{" "}
-        //       <span>Add one now to simplify future ad account requests.</span>
-        //     </p>
-        //   </div>
-        //   <Button className="py-1.5 px-2.5 h-8 text-sm cursor-pointer">
-        //     Connect access manager
-        //   </Button>
-        // </div>
+<></>
       )}
     </div>
   );
 }
+
+export default AffiliateCommissionTable
