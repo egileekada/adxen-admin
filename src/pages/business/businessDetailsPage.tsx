@@ -1,9 +1,6 @@
-import { AccessLogTable } from "@/components/shared/data-tables/access-log-table";
-import { AdAccountTable } from "@/components/shared/data-tables/adaccount-table";
+import { AccessAdAccountColumns, AccessAdAccountTable, AccessLogTable,AccessLogColumn } from "@/components/access-manager";
 import HeaderDescription from "@/components/shared/headerDecription";
 import TableFilter from "@/components/shared/table-filter";
-import { accessLogColumns } from "@/components/shared/tables-columns/access-log-column";
-import { adAccountColumns } from "@/components/shared/tables-columns/adaccount-column";
 import { Button } from "@/components/ui/button";
 import {
   Popover,
@@ -188,7 +185,7 @@ const BusinessDetailsPage = () => {
           <TabsContent value="adaccounts">
             <div className="mt-6">
               <TableFilter showRefreshButton={false} />
-              <AdAccountTable columns={adAccountColumns} data={adAccountData} />
+              <AccessAdAccountTable columns={AccessAdAccountColumns} data={adAccountData} />
             </div>
           </TabsContent>
           <TabsContent value="logs">
@@ -204,7 +201,7 @@ const BusinessDetailsPage = () => {
                   </Button>
                 </div>
               </div>
-              <AccessLogTable columns={accessLogColumns} data={logData} />
+              <AccessLogTable columns={AccessLogColumn} data={logData} />
             </div>
           </TabsContent>
         </Tabs>

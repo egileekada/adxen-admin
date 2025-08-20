@@ -24,7 +24,7 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
 }
 
-export function AccessLogTable<TData, TValue>({
+function AccessManagerTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
@@ -107,17 +107,18 @@ export function AccessLogTable<TData, TValue>({
         <div className="text-subtle text-sm flex text-center flex-col items-center justify-center py-16 gap-6 border-t">
           <div>
             <p className="text-subtle text-sm max-w-[400px] md:inline-flex text-center flex-wrap items-center justify-center">
-              You haven't created or requested any ad accounts yet.
-              <span>
-                Start by requesting an ad account on your preferred platform.
-              </span>
+              You haven't added any access managers yet.{" "}
+              <span>Add one now to simplify future ad account requests.</span>
             </p>
           </div>
-          <Button className="py-1.5 px-2.5 text-sm cursor-pointer">
-            Request an Ad Account
+          <Button className="py-1.5 px-2.5 h-8 text-sm cursor-pointer">
+            Connect access manager
           </Button>
         </div>
       )}
     </div>
   );
 }
+
+
+export default AccessManagerTable

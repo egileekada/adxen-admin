@@ -38,7 +38,7 @@ const statusTextColors = {
   [StatusEnum.PENDING]: "text-basic-orange",
 };
 
-export const accessLogColumns: ColumnDef<TableData>[] = [
+const AccessLogColumns: ColumnDef<TableData>[] = [
   {
     accessorKey: "datehour",
     header: "Date & Hour",
@@ -111,3 +111,13 @@ export const accessLogColumns: ColumnDef<TableData>[] = [
     },
   },
 ];
+
+
+export default AccessLogColumns
+
+
+
+// {
+//   "email": "brice@gmail.com",
+//   "password": "brice1234"
+// }

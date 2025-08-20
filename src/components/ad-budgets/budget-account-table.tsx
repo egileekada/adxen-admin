@@ -20,7 +20,6 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
 import Pagination from "../shared/pagination";
-import { useNavigate } from "react-router-dom";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -33,7 +32,6 @@ function BudgetAccountTable<TData, TValue>({
   data,
   showPagination = false,
 }: DataTableProps<TData, TValue>) {
-  const navigate = useNavigate()
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 5,

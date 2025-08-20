@@ -9,7 +9,7 @@ import {
   RiTiktokFill,
   RiSnapchatFill,
 } from "@remixicon/react";
-import { Check, RefreshCcw, MoreHorizontal } from "lucide-react";
+import { Check, RefreshCcw, MoreHorizontal, X, TriangleAlert } from "lucide-react";
 import { BsBing } from "react-icons/bs";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -35,8 +35,8 @@ enum StatusEnum {
 const businessStatusIcons = {
   [StatusEnum.PENDING]: <RefreshCcw className="size-3.5 text-basic-orange" />,
   [StatusEnum.ACTIVE]: <Check className="size-3.5 text-basic-green" />,
-  [StatusEnum.UNUSED]: <Check className="size-3.5 text-icon-muted" />,
-  [StatusEnum.REJECTED]: <RefreshCcw className="size-3.5 text-basic-orange" />,
+  [StatusEnum.UNUSED]: <X className="size-3.5 text-icon-muted" />,
+  [StatusEnum.REJECTED]: <TriangleAlert className="size-3.5 text-basic-orange" />,
 };
 
 const businessStatusColors = {
@@ -73,7 +73,7 @@ export type TableData = {
   adAccount: number;
 };
 
-export const businessColumns: ColumnDef<TableData>[] = [
+const AccessManagerColumn: ColumnDef<TableData>[] = [
   {
     accessorKey: "checkbox",
     header: ({ table }) => {
@@ -99,10 +99,20 @@ export const businessColumns: ColumnDef<TableData>[] = [
   {
     accessorKey: "accessId",
     header: "Access ID",
+    cell: ({row}) => {
+      return (
+        <p className="w-[200px] text-default text-sm font-normal">{row.original.accessId}</p>
+      )
+    }
   },
   {
     accessorKey: "managerName",
     header: "Manager Name",
+    cell: ({row}) => {
+      return (
+        <p className="w-[200px] text-default text-sm font-normal">{row.original.managerName}</p>
+      )
+    }
   },
 
   {
@@ -110,7 +120,7 @@ export const businessColumns: ColumnDef<TableData>[] = [
     header: "Platform",
     cell: ({ row }) => {
       return (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 w-[160px]">
           {businessPlatformIcons[row.original.platform as PlatformEnum]}
           <p>{row.original.platform}</p>
         </div>
@@ -122,7 +132,7 @@ export const businessColumns: ColumnDef<TableData>[] = [
     header: "Status",
     cell: ({ row }) => {
       return (
-        <div className="flex items-center">
+        <div className="flex items-center w-[125px]">
           <div
             className={cn(
               "bg-badge-green-10 rounded-sm px-1.5 border flex gap-1 items-center",
@@ -132,7 +142,7 @@ export const businessColumns: ColumnDef<TableData>[] = [
             {businessStatusIcons[row.original.status as StatusEnum]}
             <p
               className={cn(
-                "text-sm capitalize",
+                "text-xs font-medium p-0.5 capitalize",
                 businessStatusTextColors[row.original.status as StatusEnum]
               )}
             >
@@ -147,13 +157,18 @@ export const businessColumns: ColumnDef<TableData>[] = [
   {
     accessorKey: "date",
     header: "Date",
+    cell: ({row}) => {
+      return (
+        <p className="w-[200px]">{row.original.date}</p>
+      )
+    }
   },
   {
     accessorKey: "adAccount",
     header: "Ad Account",
     cell: ({ row }) => {
       return (
-        <div className="flex items-center">
+        <div className="flex items-center w-[100px]">
           <p className="text-sm ">{row.original.adAccount}</p>
         </div>
       );
@@ -176,3 +191,6 @@ export const businessColumns: ColumnDef<TableData>[] = [
     },
   },
 ];
+
+
+export default AccessManagerColumn

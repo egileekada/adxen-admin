@@ -57,7 +57,7 @@ const statusTextColors = {
   [StatusEnum.SUSPENDED]: "text-basic-red",
 };
 
-export const adAccountColumns: ColumnDef<TableData>[] = [
+const AccessAdAccountColumns: ColumnDef<TableData>[] = [
   {
     accessorKey: "checkbox",
     header: ({ table }) => {
@@ -180,3 +180,5 @@ export const adAccountColumns: ColumnDef<TableData>[] = [
     },
   },
 ];
+
+export default AccessAdAccountColumns

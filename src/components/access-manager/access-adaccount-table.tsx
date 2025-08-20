@@ -16,15 +16,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import Pagination from "../shared/pagination";
+
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
 
-export function BusinessTable<TData, TValue>({
+function AccessAdAccountTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
@@ -102,20 +103,18 @@ export function BusinessTable<TData, TValue>({
               </TableBody>
             </Table>
           </div>
+          <Pagination table={table} />
         </>
       ) : (
-        <div className="text-subtle text-sm flex text-center flex-col items-center justify-center py-16 gap-6 border-t">
+        <div className="text-subtle text-sm flex text-center flex-col items-center justify-center py-16 gap-6">
           <div>
-            <p className="text-subtle text-sm max-w-[400px] md:inline-flex text-center flex-wrap items-center justify-center">
-              You haven't added any access managers yet.{" "}
-              <span>Add one now to simplify future ad account requests.</span>
-            </p>
+            <p className="text-subtle text-sm max-w-[400px] md:inline-flex text-center flex-wrap items-center justify-center"></p>
           </div>
-          <Button className="py-1.5 px-2.5 h-8 text-sm cursor-pointer">
-            Connect access manager
-          </Button>
         </div>
       )}
     </div>
   );
 }
+
+
+export default AccessAdAccountTable
