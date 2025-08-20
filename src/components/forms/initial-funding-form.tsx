@@ -15,7 +15,7 @@ const InitialFundingForm = () => {
   };
 
   return (
-    <div className="mt-6">
+    <div>
       <Formik
         initialValues={initialValues}
         validationSchema={initialFundingFormSchema}

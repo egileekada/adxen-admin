@@ -1,4 +1,4 @@
-import { TransactionTable } from "@/components/shared/data-tables/transaction-table";
+// import { TransactionTable } from "@/components/accounts/account-request-table";
 import HeaderDescription from "@/components/shared/headerDecription";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,17 +9,18 @@ import {
 } from "@/components/ui/select";
 import { SelectValue } from "@radix-ui/react-select";
 import { SelectContent } from "@radix-ui/react-select";
-import { requestColumns } from "../components/shared/tables-columns/request-column";
+// import { requestColumns } from "../components/accounts/account-request-column";
 import {
   ChevronRight,
   ListFilter,
   MoreHorizontal,
   PlusIcon,
 } from "lucide-react";
-import { AccountTable } from "@/components/shared/data-tables/account-table";
-import { accountColumns } from "@/components/shared/tables-columns/account-column";
+// import { AccountTable } from "@/components/accounts/account-table";
+// import { accountColumns } from "@/components/accounts/account-column";
 import TableFilter from "@/components/shared/table-filter";
 import { useModal } from "@/hooks/use-modal";
+import { BudgetAccountColumn, BudgetAccountTable, BudgetTransactionColumn, BudgetTransactionTable } from "@/components/ad-budgets";
 
 const budgetData = [
   {
@@ -55,38 +56,33 @@ const sortFilter = [
   },
 ];
 
-const requestData = [
+const transactionData = [
   {
-    date: "2021-01-01",
-    requestId: "1234567890",
+    accountId: "123456789",
     accountName: "Amazon - Mexico",
-    platform: "Google",
-    timezone: "(GMT+2) Paris",
-    status: "pending",
+    amount: "1000",
+    type: "Deposit",
+    status: "completed",
+    date: "Feb 03, 2025 10:19am",
+    action: null
   },
   {
-    date: "2021-01-01",
-    requestId: "1234567890",
+    accountId: "123456789",
     accountName: "Amazon - Mexico",
-    platform: "Google",
-    timezone: "(GMT+2) Paris",
+    amount: "1000",
+    type: "Deposit",
     status: "pending",
+    date: "Feb 03, 2025 10:19am",
+    action: null
   },
   {
-    date: "2021-01-01",
-    requestId: "1234567890",
+    accountId: "123456789",
     accountName: "Amazon - Mexico",
-    platform: "Google",
-    timezone: "(GMT+2) Paris",
-    status: "rejected",
-  },
-  {
-    date: "2021-01-01",
-    requestId: "1234567890",
-    accountName: "Amazon - Mexico",
-    platform: "Google",
-    timezone: "(GMT+2) Paris",
-    status: "pending",
+    amount: "1000",
+    type: "Deposit",
+    status: "refunded",
+    date: "Feb 03, 2025 10:19am",
+    action: null
   },
 ];
 
@@ -96,72 +92,36 @@ const data = [
     accountId: "1234567890",
     accountName: "Amazon - Mexico",
     platform: "Google",
-    timezone: "(GMT+2) Paris",
-    status: "approved",
+    domain: "amazon.com.nx",
     balance: 100,
+    spent: 20,
   },
   {
     id: 2,
     accountId: "1234567890",
     accountName: "Amazon - Mexico",
     platform: "Google",
-    timezone: "(GMT+2) Paris",
-    status: "at risk",
+    domain: "amazon.com.nx",
     balance: 100,
+    spent: 20
   },
   {
     id: 3,
     accountId: "1234567890",
     accountName: "Amazon - Mexico",
     platform: "Google",
-    timezone: "(GMT+2) Paris",
-    status: "pre-approved",
+    domain: "amazon.com.nx",
     balance: 100,
+    spent: 10
   },
   {
     id: 4,
     accountId: "1234567890",
     accountName: "Amazon - Mexico",
     platform: "Google",
-    timezone: "(GMT+2) Paris",
-    status: "revoked",
+    domain: "amazon.com.nx",
     balance: 100,
-  },
-  {
-    id: 5,
-    accountId: "1234567890",
-    accountName: "Amazon - Mexico",
-    platform: "Google",
-    timezone: "(GMT+2) Paris",
-    status: "draft",
-    balance: 100,
-  },
-  {
-    id: 5,
-    accountId: "1234567890",
-    accountName: "Amazon - Mexico",
-    platform: "Google",
-    timezone: "(GMT+2) Paris",
-    status: "draft",
-    balance: 100,
-  },
-  {
-    id: 5,
-    accountId: "1234567890",
-    accountName: "Amazon - Mexico",
-    platform: "Google",
-    timezone: "(GMT+2) Paris",
-    status: "draft",
-    balance: 100,
-  },
-  {
-    id: 5,
-    accountId: "1234567890",
-    accountName: "Amazon - Mexico",
-    platform: "Google",
-    timezone: "(GMT+2) Paris",
-    status: "draft",
-    balance: 100,
+    spent: 60
   },
 ];
 
@@ -265,12 +225,13 @@ const BudgetPage = () => {
             <h2 className="text-base font-inter text-default font-medium">
               Recent transactions
             </h2>
-            <Button variant="outline" size="sm" className="p-0">
+            <Button variant="outline" size="sm" className="h-7">
               View All
               <ChevronRight className="w-4 h-4 text-muted" />
             </Button>
           </div>
-          <TransactionTable columns={requestColumns} data={requestData} />
+          {/* use account request table fro transaction table or modify using another folder */}
+          <BudgetTransactionTable columns={BudgetTransactionColumn} data={transactionData}/>
         </div>
 
         {/* second table */}
@@ -279,17 +240,13 @@ const BudgetPage = () => {
             <h2 className="text-base font-inter text-default font-medium">
               Ad accounts
             </h2>
-            <Button variant="outline" size="sm" className="py-1">
+            <Button variant="outline" size="sm" className="h-7">
               View All
               <ChevronRight className="w-4 h-4 text-muted" />
             </Button>
           </div>
           <TableFilter showRefreshButton={false} />
-          <AccountTable
-            columns={accountColumns}
-            data={data}
-            showPagination={false}
-          />
+          <BudgetAccountTable columns={BudgetAccountColumn} data={data}/>
         </div>
       </div>
 

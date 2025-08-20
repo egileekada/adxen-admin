@@ -62,7 +62,7 @@ const platformIcons = {
   [PlatformEnum.TIKTOK]: <FaTiktok />,
 };
 
-export const requestColumns: ColumnDef<RequestData>[] = [
+const AccountRequestColumns: ColumnDef<RequestData>[] = [
   {
     accessorKey: "checkbox",
     header: ({ table }) => {
@@ -180,3 +180,6 @@ export const requestColumns: ColumnDef<RequestData>[] = [
     },
   },
 ];
+
+
+export default AccountRequestColumns

@@ -32,8 +32,8 @@ import { ListFilter, MoreHorizontal } from "lucide-react";
 import HeaderDescription from "@/components/shared/headerDecription";
 import Stats from "@/components/shared/stats";
 import Charts from "@/components/shared/charts";
-import { TransactionTable } from "@/components/shared/data-tables/transaction-table";
-import { transactionColumns } from "@/components/shared/tables-columns/transaction-column";
+// import { TransactionTable } from "@/components/accounts/account-request-table";
+// import { transactionColumns } from "@/components/shared/tables-columns/transaction-column";
 
 import { LogTable } from "@/components/shared/data-tables/log-table";
 import { logColumns } from "@/components/shared/tables-columns/log-column";
@@ -48,6 +48,7 @@ import { subaccountColumns } from "@/components/shared/tables-columns/subaccount
 
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { AccountRequestTable, AccountTransactionColumn } from "@/components/accounts";
 
 // const data = [
 //   {
@@ -295,8 +296,10 @@ function AdAccountPage() {
               <MoreHorizontal />
             </Button>
           </PopoverTrigger>
-          <PopoverContent align="start" className="w-60 p-0 overflow-hidden">
+          {!isSubaccount &&
+            <PopoverContent align="start" className="w-60 p-0 overflow-hidden">
             <div className="flex flex-col items-start gap-2 px-2 py-1.5">
+        
               <Button
                 className="w-full inline-flex items-center justify-start gap-2 text-sm font-inter font-normal bg-white text-default hover:bg-soft hover:text-subtle border-none shadow-none rounded-sm"
                 onClick={() => handleMore("fund-transfer")}
@@ -339,6 +342,7 @@ function AdAccountPage() {
               </Button>
             </div>
           </PopoverContent>
+            }
         </Popover>
       </div>
 
@@ -361,12 +365,14 @@ function AdAccountPage() {
                 Transactions
               </TabsTrigger>
             )}
-            <TabsTrigger
-              value="subaccounts"
+            {!isSubaccount && (
+              <TabsTrigger
+                value="subaccounts"
               className="text-muted data-[state=active]:border-b-2 data-[state=active]:border-b-accent-foreground data-[state=active]:text-accent-foreground rounded-none"
-            >
-              Subaccounts
-            </TabsTrigger>
+              >
+                Subaccounts
+              </TabsTrigger>
+            )}
 
             <TabsTrigger
               value="logs"
@@ -595,13 +601,10 @@ function AdAccountPage() {
               </div>
               <Charts />
               <div className="pb-6">
-                <h1 className="mb-4 text-lg text-default">
+                <h1 className="mb-4 text-lg text-default font-semibold">
                   Recent Transactions
                 </h1>
-                <TransactionTable
-                  columns={transactionColumns}
-                  data={paymentData}
-                />
+                <AccountRequestTable columns={AccountTransactionColumn} data={paymentData}/>
               </div>
             </div>
           </TabsContent>

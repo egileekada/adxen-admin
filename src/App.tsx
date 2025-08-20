@@ -31,7 +31,7 @@ import {
 } from "./components/layouts";
 import { ChangePasswordForm, ResetForm, VerifyForm } from "./components/auth";
 import ModalProvider from "./components/modals/modal-provider";
-import BusinessManagerPage from "./pages/businessManagerPage";
+import BusinessManagerPage from "./pages/business/businessManagerPage";
 import WalletPage from "./pages/walletPage";
 
 function App() {

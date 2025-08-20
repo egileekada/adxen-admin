@@ -11,16 +11,15 @@ import {
   AlertTriangle,
   RefreshCcw,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 export type TableData = {
   id: number;
   accountId: string;
   accountName: string;
   platform: string;
-  timezone: string;
-  status: string;
+  domain: string;
   balance: number;
+  spent: number;
 };
 
 // enum for platform
@@ -74,7 +73,7 @@ const platformIcons = {
   [PlatformEnum.TIKTOK]: <FaTiktok />,
 };
 
-export const accountColumns: ColumnDef<TableData>[] = [
+const BudgetAccountColumn: ColumnDef<TableData>[] = [
   {
     accessorKey: "checkbox",
     header: ({ table }) => {
@@ -118,34 +117,8 @@ export const accountColumns: ColumnDef<TableData>[] = [
     },
   },
   {
-    accessorKey: "timezone",
-    header: "Timezone",
-  },
-  {
-    accessorKey: "status",
-    header: "Status",
-    cell: ({ row }) => {
-      return (
-        <div className="flex items-center">
-          <div
-            className={cn(
-              "bg-badge-green-10 rounded-sm px-1.5 border flex gap-1 items-center",
-              statusColors[row.original.status as StatusEnum]
-            )}
-          >
-            {statusIcons[row.original.status as StatusEnum]}
-            <p
-              className={cn(
-                "text-sm capitalize",
-                statusTextColors[row.original.status as StatusEnum]
-              )}
-            >
-              {row.original.status}
-            </p>
-          </div>
-        </div>
-      );
-    },
+    accessorKey: "domain",
+    header: "Domain",
   },
   {
     accessorKey: "balance",
@@ -154,6 +127,20 @@ export const accountColumns: ColumnDef<TableData>[] = [
       return (
         <p>
           {row.original.balance.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+          })}
+        </p>
+      );
+    },
+  },
+  {
+    accessorKey: "spent",
+    header: "Spent",
+    cell: ({ row }) => {
+      return (
+        <p>
+          {row.original.spent.toLocaleString("en-US", {
             style: "currency",
             currency: "USD",
           })}
@@ -179,3 +166,6 @@ export const accountColumns: ColumnDef<TableData>[] = [
     },
   },
 ];
+
+
+export default BudgetAccountColumn
