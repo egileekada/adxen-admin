@@ -21,7 +21,7 @@ export default function PersonalInfoForm() {
                 <CustomButton variant={"outline"} className=" h-[28px] text-xs " >Upload</CustomButton>
                 <p className=" text-xs " >JPG, GIF or PNG. 1MB Max.</p>
             </div>
-            <div className=" w-full grid grid-cols-2 gap-4 " >
+            <div className=" w-full flex flex-col lg:grid grid-cols-2 gap-4 " >
                 <CustomInput placeholder="" label="First name" name={""} setValue={changeHandler} />
                 <CustomInput placeholder="" label="Last name" name={""} setValue={changeHandler} />
                 <CustomInput placeholder="" label="Phone number" name={""} setValue={changeHandler} />

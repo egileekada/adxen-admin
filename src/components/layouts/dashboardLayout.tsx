@@ -10,12 +10,12 @@ export default function DashboardLayout() {
   const isAdAccountRequest = pathname.pathname.includes("request");
 
   return (
-    <SidebarProvider className=" p-3 !bg-[#FAFAFA] h-screen ">
+    <SidebarProvider className=" lg:p-3 !bg-[#FAFAFA] h-screen ">
       {isAdAccountRequest ? <AdAccountSidebar /> : <AppSidebar />}
       <SidebarInset className=" flex-1 relative rounded-lg overflow-y-auto ">
-        <div className="flex flex-1 flex-col px-4 py-4 sm:px-6  overflow-x-hidden ">
+        <div className="flex flex-1 flex-col px-4 pb-4 sm:px-6 lg:gap-4 overflow-x-hidden ">
           {!isAdAccountRequest && (
-            <div className=" w-full bg-white h-fit " >
+            <div className=" w-full top-0 sticky z-20 bg-white h-fit " >
               <Navbar />
             </div>
           )}
