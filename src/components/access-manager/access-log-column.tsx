@@ -114,10 +114,3 @@ const AccessLogColumns: ColumnDef<TableData>[] = [
 
 
 export default AccessLogColumns
-
-
-
-// {
-//   "email": "brice@gmail.com",
-//   "password": "brice1234"
-// }
