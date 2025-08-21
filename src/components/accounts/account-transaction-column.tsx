@@ -42,17 +42,22 @@ const paymentTextColors = {
   [PaymentEnum.REFUNDED]: "text-default",
 };
 
-export const transactionColumns: ColumnDef<PaymentData>[] = [
+const AccountTransactionColumn: ColumnDef<PaymentData>[] = [
   {
     accessorKey: "description",
     header: "Description",
+    cell: ({row}) => {
+      return (
+        <p className="w-[200px] text-default text-sm font-medium">{row.original.description}</p>
+      )
+    }
   },
   {
     accessorKey: "amount",
     header: "Amount",
     cell: ({ row }) => {
       return (
-        <p>
+        <p className="text-default text-sm font-medium">
           {row.original.amount.toLocaleString("en-US", {
             style: "currency",
             currency: "USD",
@@ -90,13 +95,18 @@ export const transactionColumns: ColumnDef<PaymentData>[] = [
   {
     accessorKey: "method",
     header: "Method",
+    cell: ({row}) => {
+      return (
+        <p className="w-[140px] text-muted text-sm font-normal">{row.original.method}</p>
+      )
+    }
   },
   {
     accessorKey: "fee",
     header: "Fee",
     cell: ({ row }) => {
       return (
-        <p>
+        <p className="text-default text-sm font-medium">
           {row.original.fee.toLocaleString("en-US", {
             style: "currency",
             currency: "USD",
@@ -109,7 +119,7 @@ export const transactionColumns: ColumnDef<PaymentData>[] = [
     accessorKey: "date",
     header: "Date",
     cell: ({ row }) => {
-      return <p>{row.original.date}</p>;
+      return <p className="w-full">{row.original.date}</p>;
     },
   },
   {
@@ -117,14 +127,19 @@ export const transactionColumns: ColumnDef<PaymentData>[] = [
     header: () => <div className="" />,
     cell: () => {
       return (
-        <div className="flex items-center gap-8 w-full justify-end">
+        <div className="flex items-center gap-8 w-10 justify-end">
           <Button
             className="px-1.5 text-sm text-blue-500 hover:bg-transparent"
             variant="ghost"
-          ></Button>
+          >
+
           <MoreHorizontal className="text-muted" />
+          </Button>
         </div>
       );
     },
   },
 ];
+
+
+export default AccountTransactionColumn

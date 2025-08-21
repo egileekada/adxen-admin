@@ -3,24 +3,24 @@
 import type { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { FaGoogle, FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa";
-import { Settings, Trash, X } from "lucide-react";
-import { RiSendPlaneLine } from "@remixicon/react";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal, AlertTriangle } from "lucide-react";
-import { cn } from "@/lib/utils";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+  Check,
+  MoreHorizontal,
+  X,
+  AlertTriangle,
+  RefreshCcw,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
 
-export type RequestData = {
-  date: string;
-  requestId: string;
+export type TableData = {
+  id: number;
+  accountId: string;
   accountName: string;
   platform: string;
   timezone: string;
   status: string;
+  balance: number;
 };
 
 // enum for platform
@@ -34,25 +34,37 @@ enum PlatformEnum {
 
 // @ts-expect-error @tanstack/react-table
 enum StatusEnum {
-  PENDING = "pending",
-  REJECTED = "rejected",
+  APPROVED = "approved",
+  AT_RISK = "at risk",
+  DRAFT = "draft",
+  PRE_APPROVED = "pre-approved",
+  REVOKED = "revoked",
 }
 
 const statusIcons = {
-  [StatusEnum.PENDING]: (
-    <AlertTriangle className="size-3.5 text-basic-orange" />
+  [StatusEnum.APPROVED]: <Check className="size-3.5 text-basic-green" />,
+  [StatusEnum.AT_RISK]: <AlertTriangle className="size-3.5 text-basic-fusia" />,
+  [StatusEnum.DRAFT]: <Check className="size-3.5 text-icon-muted" />,
+  [StatusEnum.PRE_APPROVED]: (
+    <RefreshCcw className="size-3.5 text-basic-orange" />
   ),
-  [StatusEnum.REJECTED]: <X className="size-3.5 text-basic-red" />,
+  [StatusEnum.REVOKED]: <X className="size-3.5 text-basic-red" />,
 };
 
 const statusColors = {
-  [StatusEnum.PENDING]: "bg-badge-orange-10",
-  [StatusEnum.REJECTED]: "bg-badge-red-10",
+  [StatusEnum.APPROVED]: "bg-badge-green-10",
+  [StatusEnum.AT_RISK]: "bg-badge-fusia-10",
+  [StatusEnum.DRAFT]: "bg-badge-yellow-10",
+  [StatusEnum.PRE_APPROVED]: "bg-badge-orange-10",
+  [StatusEnum.REVOKED]: "bg-badge-red-10",
 };
 
 const statusTextColors = {
-  [StatusEnum.PENDING]: "text-basic-orange",
-  [StatusEnum.REJECTED]: "text-basic-red",
+  [StatusEnum.APPROVED]: "text-basic-green",
+  [StatusEnum.AT_RISK]: "text-basic-fusia",
+  [StatusEnum.DRAFT]: "text-subtle",
+  [StatusEnum.PRE_APPROVED]: "text-basic-orange",
+  [StatusEnum.REVOKED]: "text-basic-red",
 };
 
 const platformIcons = {
@@ -62,7 +74,7 @@ const platformIcons = {
   [PlatformEnum.TIKTOK]: <FaTiktok />,
 };
 
-export const requestColumns: ColumnDef<RequestData>[] = [
+const AccountColumn: ColumnDef<TableData>[] = [
   {
     accessorKey: "checkbox",
     header: ({ table }) => {
@@ -86,12 +98,8 @@ export const requestColumns: ColumnDef<RequestData>[] = [
     ),
   },
   {
-    accessorKey: "date",
-    header: "Date",
-  },
-  {
-    accessorKey: "requestId",
-    header: "Request ID",
+    accessorKey: "accountId",
+    header: "Account ID",
   },
   {
     accessorKey: "accountName",
@@ -140,43 +148,37 @@ export const requestColumns: ColumnDef<RequestData>[] = [
     },
   },
   {
+    accessorKey: "balance",
+    header: "Balance",
+    cell: ({ row }) => {
+      return (
+        <p>
+          {row.original.balance.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+          })}
+        </p>
+      );
+    },
+  },
+  {
     accessorKey: "action",
     header: () => <div className="" />,
     cell: () => {
       return (
         <div className="flex items-center gap-8 w-full justify-end">
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                className="px-1.5 text-sm text-blue-500 hover:bg-transparent"
-                variant="ghost"
-              >
-                <MoreHorizontal className="text-muted" />
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-50 p-0">
-              <div className="p-1.5">
-                <Button className="w-full flex items-center justify-start gap-2 bg-transparent hover:bg-soft hover:rounded-sm text-default shadow-none rounded-none">
-                  <Settings className="size-4" />
-                  <span className="text-sm font-normal">
-                    Edit Configuration
-                  </span>
-                </Button>
-                <Button className="w-full flex items-center justify-start gap-2 bg-transparent hover:bg-soft hover:rounded-sm text-default shadow-none rounded-none">
-                  <RiSendPlaneLine className="size-4" />
-                  <span className="text-sm font-normal">Resubmit</span>
-                </Button>
-                <Button className="w-full flex items-center justify-start gap-2 bg-transparent hover:bg-soft hover:rounded-sm text-default shadow-none rounded-none">
-                  <Trash className="size-4 text-basic-red" />
-                  <span className="text-sm text-basic-red font-normal">
-                    Delete
-                  </span>
-                </Button>
-              </div>
-            </PopoverContent>
-          </Popover>
+          <Button
+            className="px-1.5 text-sm text-blue-500 hover:bg-transparent"
+            variant="ghost"
+          >
+            Top Up
+          </Button>
+          <MoreHorizontal className="text-muted" />
         </div>
       );
     },
   },
 ];
+
+
+export default AccountColumn

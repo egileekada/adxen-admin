@@ -22,6 +22,7 @@ import {
   RiSnapchatFill,
   RiTiktokLine,
 } from "@remixicon/react";
+import { CustomButton } from "../custom";
 
 const platforms = [
   {
@@ -67,7 +68,7 @@ const BusinessManagerForm = () => {
         onSubmit={handleSubmit}
       >
         {({ setFieldValue }) => (
-          <FormikForm className="space-y-5 mb-6">
+          <FormikForm className="space-y-5">
             <div className="flex flex-col gap-4 px-6">
               <div className="flex flex-col gap-2 w-full">
                 <label className="text-sm font-medium font-inter text-default">
@@ -174,15 +175,14 @@ const BusinessManagerForm = () => {
                 />
               </div>
             </div>
-
-            <div className="flex justify-between items-center px-6 py-4 border-t border-border-darker">
-              <Button variant="outline" size="sm" type="button" className="h-8">
-                Cancel
-              </Button>
-              <Button type="submit" size="sm" className="h-8">
-                Request connection
-              </Button>
-            </div>
+             <div className="flex justify-between items-center px-6 py-4 border-t border-border-darker">
+                <CustomButton variant="outline" >
+                    Cancel
+                </CustomButton>
+                <CustomButton type="submit">
+                   Requestion connection
+                </CustomButton>
+              </div>
           </FormikForm>
         )}
       </Formik>

@@ -9,7 +9,7 @@ export default function OnboardingLayout() {
 
     return (
         <div className={` w-full h-screen flex lg:flex-row flex-col `} >
-            <img alt="auth" src="/images/auth.png" className=" absolute left-0 inset-y-0 h-screen " />
+            <img alt="auth" src="/images/auth.png" className=" lg:absolute lg:left-0 lg:inset-y-0 lg:h-screen " />
             <div className=" w-[286px] h-full hidden lg:flex flex-col justify-center gap-6 items-center " >
                 <img src="/images/logo.png" alt="logo" className=" w-[100px] absolute top-6 left-4 " />
                 <div className="  w-full flex flex-col justify-center items-center " >
@@ -65,7 +65,7 @@ export default function OnboardingLayout() {
                     </div>
                 </div>
             </div>
-            <div className=" w-full h-full lg:pb-0 pb-10 flex justify-center items-center " >
+            <div className=" w-full lg:h-full lg:pb-0 pb-10 px-4 flex lg:justify-center lg:items-center " >
                 <Outlet />
             </div>
         </div>

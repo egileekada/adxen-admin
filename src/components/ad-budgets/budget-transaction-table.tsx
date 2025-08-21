@@ -18,8 +18,9 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-
-import Pagination from "../pagination";
+import Pagination from "../shared/pagination";
+import { useLocation } from "react-router-dom";
+import TableFilter from "../shared/table-filter";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -27,11 +28,14 @@ interface DataTableProps<TData, TValue> {
   showPagination?: boolean;
 }
 
-export function AccountTable<TData, TValue>({
+function BudgetTransactionTable<TData, TValue>({
   columns,
   data,
   showPagination = false,
 }: DataTableProps<TData, TValue>) {
+  const location = useLocation();
+  const isBudget = location.pathname.includes("budget");
+
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 5,
@@ -49,6 +53,12 @@ export function AccountTable<TData, TValue>({
 
   return (
     <div className="flex flex-col">
+      {!isBudget && (
+        <TableFilter
+          options={["Account ID", "Platform", "Date"]}
+          showRefreshButton={false}
+        />
+      )}
       {data.length > 0 ? (
         <>
           <div>
@@ -68,9 +78,9 @@ export function AccountTable<TData, TValue>({
                           {header.isPlaceholder
                             ? null
                             : flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
+                                header.column.columnDef.header,
+                                header.getContext()
+                              )}
                         </TableHead>
                       );
                     })}
@@ -105,8 +115,8 @@ export function AccountTable<TData, TValue>({
                 )}
               </TableBody>
             </Table>
+            {showPagination && <Pagination table={table} />}
           </div>
-          {showPagination && <Pagination table={table} />}
         </>
       ) : (
         <div className="text-subtle text-sm flex text-center flex-col items-center justify-center py-16 gap-6 border-t">
@@ -118,7 +128,7 @@ export function AccountTable<TData, TValue>({
               </span>
             </p>
           </div>
-          <Button className="py-1.5 px-2.5 text-sm h-7 cursor-pointer">
+          <Button className="py-1.5 px-2.5 text-sm cursor-pointer">
             Request an Ad Account
           </Button>
         </div>
@@ -126,3 +136,6 @@ export function AccountTable<TData, TValue>({
     </div>
   );
 }
+
+
+export default BudgetTransactionTable

@@ -1,13 +1,11 @@
-import { AccountTable } from "@/components/shared/data-tables/account-table";
-import { accountColumns } from "@/components/shared/tables-columns/account-column";
-import { requestColumns } from "@/components/shared/tables-columns/request-column";
-import { TransactionTable } from "@/components/shared/data-tables/transaction-table";
+
 import HeaderDescription from "@/components/shared/headerDecription";
 import Stats from "@/components/shared/stats";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useNavigate } from "react-router-dom";
 import TableFilter from "@/components/shared/table-filter";
 import { PlusIcon } from "lucide-react";
+import { AccountColumn, AccountRequestTable, AccountTable, AccountRequestColumns } from "@/components/accounts";
 
 const accounts = [
   {
@@ -187,10 +185,10 @@ function AdAccountPage() {
               options={["Account ID", "Platform", "Date", "More filters"]}
               showRefreshButton={true}
             />
-            <AccountTable columns={accountColumns} data={data} />
+            <AccountTable columns={AccountColumn} data={data} />
           </TabsContent>
           <TabsContent value="requests" className="mt-5">
-            <TransactionTable columns={requestColumns} data={requestData} />
+            <AccountRequestTable columns={AccountRequestColumns} data={requestData} />
           </TabsContent>
         </Tabs>
       </div>
