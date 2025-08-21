@@ -5,11 +5,11 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { FaGoogle, FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import {
-  Check,
+  // Check,
   MoreHorizontal,
-  X,
-  AlertTriangle,
-  RefreshCcw,
+  // X,
+  // AlertTriangle,
+  // RefreshCcw,
 } from "lucide-react";
 
 export type TableData = {
@@ -40,31 +40,31 @@ enum StatusEnum {
   REVOKED = "revoked",
 }
 
-const statusIcons = {
-  [StatusEnum.APPROVED]: <Check className="size-3.5 text-basic-green" />,
-  [StatusEnum.AT_RISK]: <AlertTriangle className="size-3.5 text-basic-fusia" />,
-  [StatusEnum.DRAFT]: <Check className="size-3.5 text-icon-muted" />,
-  [StatusEnum.PRE_APPROVED]: (
-    <RefreshCcw className="size-3.5 text-basic-orange" />
-  ),
-  [StatusEnum.REVOKED]: <X className="size-3.5 text-basic-red" />,
-};
+// const statusIcons = {
+//   [StatusEnum.APPROVED]: <Check className="size-3.5 text-basic-green" />,
+//   [StatusEnum.AT_RISK]: <AlertTriangle className="size-3.5 text-basic-fusia" />,
+//   [StatusEnum.DRAFT]: <Check className="size-3.5 text-icon-muted" />,
+//   [StatusEnum.PRE_APPROVED]: (
+//     <RefreshCcw className="size-3.5 text-basic-orange" />
+//   ),
+//   [StatusEnum.REVOKED]: <X className="size-3.5 text-basic-red" />,
+// };
 
-const statusColors = {
-  [StatusEnum.APPROVED]: "bg-badge-green-10",
-  [StatusEnum.AT_RISK]: "bg-badge-fusia-10",
-  [StatusEnum.DRAFT]: "bg-badge-yellow-10",
-  [StatusEnum.PRE_APPROVED]: "bg-badge-orange-10",
-  [StatusEnum.REVOKED]: "bg-badge-red-10",
-};
+// const statusColors = {
+//   [StatusEnum.APPROVED]: "bg-badge-green-10",
+//   [StatusEnum.AT_RISK]: "bg-badge-fusia-10",
+//   [StatusEnum.DRAFT]: "bg-badge-yellow-10",
+//   [StatusEnum.PRE_APPROVED]: "bg-badge-orange-10",
+//   [StatusEnum.REVOKED]: "bg-badge-red-10",
+// };
 
-const statusTextColors = {
-  [StatusEnum.APPROVED]: "text-basic-green",
-  [StatusEnum.AT_RISK]: "text-basic-fusia",
-  [StatusEnum.DRAFT]: "text-subtle",
-  [StatusEnum.PRE_APPROVED]: "text-basic-orange",
-  [StatusEnum.REVOKED]: "text-basic-red",
-};
+// const statusTextColors = {
+//   [StatusEnum.APPROVED]: "text-basic-green",
+//   [StatusEnum.AT_RISK]: "text-basic-fusia",
+//   [StatusEnum.DRAFT]: "text-subtle",
+//   [StatusEnum.PRE_APPROVED]: "text-basic-orange",
+//   [StatusEnum.REVOKED]: "text-basic-red",
+// };
 
 const platformIcons = {
   [PlatformEnum.GOOGLE]: <FaGoogle />,
