@@ -3,16 +3,18 @@ import { useMutation } from "@tanstack/react-query";
 import * as Yup from 'yup';
 import { useFormik } from 'formik'; 
 import toast from "react-hot-toast";
-import Cookies from "js-cookie" 
+// import Cookies from "js-cookie" 
 import { useState } from "react";
 import { unsecureHttpService } from "@/helper/services/httpService";
 import type { ILogin } from "@/helper/models/auth";
+import { useNavigate } from "react-router-dom";
 
 const useAuth = () => {
  
     const [initialTime, setInitialTime] = useState(0);
     const [startTimer, setStartTimer] = useState(false);
     const [code, setCode] = useState("");  
+    const navigate = useNavigate()
 
 
     const { mutate: signIn, isPending: signInPending } = useMutation({
@@ -22,7 +24,9 @@ const useAuth = () => {
         },
         onSuccess: (data: any) => { 
             toast.success('Login Successful') 
-            Cookies.set("access_token", data?.data?.access_token); 
+            console.log(data);
+            navigate("/dashboard")
+            // Cookies.set("access_token", data?.data?.access_token); 
 
         },
     });
