@@ -24,7 +24,7 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
 }
 
-function AffiliateCommissionTable<TData, TValue>({
+function AffiliateTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
@@ -110,4 +110,4 @@ function AffiliateCommissionTable<TData, TValue>({
   );
 }
 
-export default AffiliateCommissionTable
+export default AffiliateTable

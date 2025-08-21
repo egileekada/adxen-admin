@@ -20,6 +20,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
 import Pagination from "../shared/pagination";
+import { useNavigate } from "react-router-dom";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -27,11 +28,12 @@ interface DataTableProps<TData, TValue> {
   showPagination?: boolean;
 }
 
-function BudgetAccountTable<TData, TValue>({
+function AccountTable<TData, TValue>({
   columns,
   data,
   showPagination = false,
 }: DataTableProps<TData, TValue>) {
+  const navigate = useNavigate()
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 5,
@@ -58,6 +60,7 @@ function BudgetAccountTable<TData, TValue>({
                   <TableRow
                     key={headerGroup.id}
                     className="hover:bg-transparent"
+                    onClick={() => navigate("dashboard/account/1")}
                   >
                     {headerGroup.headers.map((header) => {
                       return (
@@ -84,6 +87,7 @@ function BudgetAccountTable<TData, TValue>({
                       key={row.id}
                       data-state={row.getIsSelected() && "selected"}
                       className="hover:bg-gray-50"
+                      onClick={() => navigate("/dashboard/account/1")}
                     >
                       {row.getVisibleCells().map((cell) => (
                         <TableCell
@@ -128,4 +132,4 @@ function BudgetAccountTable<TData, TValue>({
 }
 
 
-export default BudgetAccountTable
+export default AccountTable

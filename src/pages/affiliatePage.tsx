@@ -1,4 +1,4 @@
-import { AffiliateCommissionColumns, AffiliateCommissionTable, AffiliateReferralColumn, AffiliateReferralTable } from "@/components/affiliate";
+import { AffiliateCommissionColumns, AffiliateTable, AffiliateReferralColumn } from "@/components/affiliate";
 import HeaderDescription from "@/components/shared/headerDecription";
 import TableFilter from "@/components/shared/table-filter";
 import { Button } from "@/components/ui/button";
@@ -95,7 +95,7 @@ const AffiliatePage = () => {
                 options={["Payment", "Date", "Status"]}
                 showRefreshButton={false}
               />
-              <AffiliateCommissionTable
+              <AffiliateTable
                 columns={AffiliateCommissionColumns}
                 data={commissionData}
               />
@@ -106,7 +106,7 @@ const AffiliatePage = () => {
               <h2 className="text-base font-semibold text-default">
                 All Referrals
               </h2>
-              <AffiliateReferralTable columns={AffiliateReferralColumn} data={referralData} />
+              <AffiliateTable columns={AffiliateReferralColumn} data={referralData} />
             </div>
           </TabsContent>
         </Tabs>

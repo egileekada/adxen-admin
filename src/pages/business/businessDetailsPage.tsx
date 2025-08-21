@@ -1,4 +1,5 @@
-import { AccessAdAccountColumns, AccessAdAccountTable, AccessLogTable,AccessLogColumn } from "@/components/access-manager";
+import { AccessAdAccountColumns, AccessTable,AccessLogColumn } from "@/components/access-manager";
+import type { TableData } from "@/components/access-manager/access-adaccount-column";
 import HeaderDescription from "@/components/shared/headerDecription";
 import TableFilter from "@/components/shared/table-filter";
 import { Button } from "@/components/ui/button";
@@ -11,37 +12,41 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Check, ListFilter, MoreHorizontal, Plus } from "lucide-react";
 import { SiMeta } from "react-icons/si";
 
-const adAccountData = [
+const adAccountData: TableData[] = [
   {
     id: 1,
     accountId: "56704445",
     accountName: "Amazon - Mexico",
+    platform: 'instagram',
+    timezone: "(GMT)",
     status: "pending",
-    domain: "nike.eu",
     balance: 230,
   },
   {
     id: 2,
     accountId: "56704445",
     accountName: "Amazon - Mexico",
+    platform: 'meta',
+    timezone: "(GMT)",
     status: "active",
-    domain: "nike.eu",
     balance: 230,
   },
   {
     id: 3,
     accountId: "56704445",
     accountName: "Amazon - Mexico",
+    platform: 'google',
+    timezone: "(GMT)",
     status: "suspended",
-    domain: "nike.eu",
     balance: 230,
   },
   {
     id: 4,
     accountId: "56704445",
     accountName: "Amazon - Mexico",
+    platform: 'tikTok',
+    timezone: "(GMT)",
     status: "at-risk",
-    domain: "nike.eu",
     balance: 230,
   },
 ];
@@ -185,7 +190,7 @@ const BusinessDetailsPage = () => {
           <TabsContent value="adaccounts">
             <div className="mt-6">
               <TableFilter showRefreshButton={false} />
-              <AccessAdAccountTable columns={AccessAdAccountColumns} data={adAccountData} />
+              <AccessTable columns={AccessAdAccountColumns} data={adAccountData} />
             </div>
           </TabsContent>
           <TabsContent value="logs">
@@ -201,7 +206,7 @@ const BusinessDetailsPage = () => {
                   </Button>
                 </div>
               </div>
-              <AccessLogTable columns={AccessLogColumn} data={logData} />
+              <AccessTable columns={AccessLogColumn} data={logData} />
             </div>
           </TabsContent>
         </Tabs>

@@ -5,7 +5,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useNavigate } from "react-router-dom";
 import TableFilter from "@/components/shared/table-filter";
 import { PlusIcon } from "lucide-react";
-import { AccountColumn, AccountRequestTable, AccountTable, AccountRequestColumns } from "@/components/accounts";
+import { AccountOpenColumn, AccountTable, AccountRequestColumns } from "@/components/accounts";
+import type { TableData } from "@/components/accounts/account-open-column";
+import type { RequestData } from "@/components/accounts/account-request-column";
 
 const accounts = [
   {
@@ -30,12 +32,12 @@ const accounts = [
   },
 ];
 
-const data = [
+const data: TableData[] = [
   {
     id: 1,
     accountId: "1234567890",
     accountName: "Amazon - Mexico",
-    platform: "Google",
+    platform: "google",
     timezone: "(GMT+2) Paris",
     status: "approved",
     balance: 100,
@@ -44,7 +46,7 @@ const data = [
     id: 2,
     accountId: "1234567890",
     accountName: "Amazon - Mexico",
-    platform: "Google",
+    platform: "google",
     timezone: "(GMT+2) Paris",
     status: "at risk",
     balance: 100,
@@ -53,7 +55,7 @@ const data = [
     id: 3,
     accountId: "1234567890",
     accountName: "Amazon - Mexico",
-    platform: "Google",
+    platform: "google",
     timezone: "(GMT+2) Paris",
     status: "pre-approved",
     balance: 100,
@@ -62,7 +64,7 @@ const data = [
     id: 4,
     accountId: "1234567890",
     accountName: "Amazon - Mexico",
-    platform: "Google",
+    platform: "google",
     timezone: "(GMT+2) Paris",
     status: "revoked",
     balance: 100,
@@ -71,7 +73,7 @@ const data = [
     id: 5,
     accountId: "1234567890",
     accountName: "Amazon - Mexico",
-    platform: "Google",
+    platform: "google",
     timezone: "(GMT+2) Paris",
     status: "draft",
     balance: 100,
@@ -80,7 +82,7 @@ const data = [
     id: 5,
     accountId: "1234567890",
     accountName: "Amazon - Mexico",
-    platform: "Google",
+    platform: "google",
     timezone: "(GMT+2) Paris",
     status: "draft",
     balance: 100,
@@ -89,7 +91,7 @@ const data = [
     id: 5,
     accountId: "1234567890",
     accountName: "Amazon - Mexico",
-    platform: "Google",
+    platform: "google",
     timezone: "(GMT+2) Paris",
     status: "draft",
     balance: 100,
@@ -98,19 +100,19 @@ const data = [
     id: 5,
     accountId: "1234567890",
     accountName: "Amazon - Mexico",
-    platform: "Google",
+    platform: "google",
     timezone: "(GMT+2) Paris",
     status: "draft",
     balance: 100,
   },
 ];
 
-const requestData = [
+const requestData: RequestData[] = [
   {
     date: "2021-01-01",
     requestId: "1234567890",
     accountName: "Amazon - Mexico",
-    platform: "Google",
+    platform: "google",
     timezone: "(GMT+2) Paris",
     status: "pending",
   },
@@ -118,7 +120,7 @@ const requestData = [
     date: "2021-01-01",
     requestId: "1234567890",
     accountName: "Amazon - Mexico",
-    platform: "Google",
+    platform: "google",
     timezone: "(GMT+2) Paris",
     status: "pending",
   },
@@ -126,7 +128,7 @@ const requestData = [
     date: "2021-01-01",
     requestId: "1234567890",
     accountName: "Amazon - Mexico",
-    platform: "Google",
+    platform: "google",
     timezone: "(GMT+2) Paris",
     status: "rejected",
   },
@@ -134,7 +136,7 @@ const requestData = [
     date: "2021-01-01",
     requestId: "1234567890",
     accountName: "Amazon - Mexico",
-    platform: "Google",
+    platform: "google",
     timezone: "(GMT+2) Paris",
     status: "pending",
   },
@@ -185,10 +187,10 @@ function AdAccountPage() {
               options={["Account ID", "Platform", "Date", "More filters"]}
               showRefreshButton={true}
             />
-            <AccountTable columns={AccountColumn} data={data} />
+            <AccountTable columns={AccountOpenColumn} data={data} />
           </TabsContent>
           <TabsContent value="requests" className="mt-5">
-            <AccountRequestTable columns={AccountRequestColumns} data={requestData} />
+            <AccountTable columns={AccountRequestColumns} data={requestData} />
           </TabsContent>
         </Tabs>
       </div>

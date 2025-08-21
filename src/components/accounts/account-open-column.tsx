@@ -2,7 +2,6 @@
 
 import type { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
-import { FaGoogle, FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import {
   Check,
@@ -12,25 +11,32 @@ import {
   RefreshCcw,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { BsBing } from "react-icons/bs";
+import type { JSX } from "react";
+import { RiGoogleFill, RiInstagramLine, RiMetaFill, RiTiktokFill, RiSnapchatFill } from "react-icons/ri";
 
 export type TableData = {
   id: number;
   accountId: string;
   accountName: string;
-  platform: string;
+  platform: Platform;
   timezone: string;
   status: string;
   balance: number;
 };
 
 // enum for platform
-// @ts-expect-error @tanstack/react-table
-enum PlatformEnum {
-  GOOGLE = "Google",
-  FACEBOOK = "Facebook",
-  INSTAGRAM = "Instagram",
-  TIKTOK = "TikTok",
-}
+const Platform = {
+  GOOGLE: "google",
+  INSTAGRAM: "instagram",
+  TIKTOK: "tikTok",
+  SNAPCHAT: "snapchat",
+  META: "meta",
+  BING: "bing",
+} as const;
+
+type Platform = typeof Platform[keyof typeof Platform];
+
 
 // @ts-expect-error @tanstack/react-table
 enum StatusEnum {
@@ -67,11 +73,15 @@ const statusTextColors = {
   [StatusEnum.REVOKED]: "text-basic-red",
 };
 
-const platformIcons = {
-  [PlatformEnum.GOOGLE]: <FaGoogle />,
-  [PlatformEnum.FACEBOOK]: <FaFacebook />,
-  [PlatformEnum.INSTAGRAM]: <FaInstagram />,
-  [PlatformEnum.TIKTOK]: <FaTiktok />,
+const platformIcons: Record<Platform, JSX.Element> = {
+  [Platform.GOOGLE]: <RiGoogleFill className="size-4" />,
+  [Platform.INSTAGRAM]: <RiInstagramLine className="size-4" />,
+  [Platform.TIKTOK]: <RiTiktokFill className="size-4" />,
+  [Platform.SNAPCHAT]: (
+    <RiSnapchatFill className="size-4" />
+  ),
+  [Platform.META]: <RiMetaFill className="size-4" />,
+  [Platform.BING]: <BsBing className="size-4" />,
 };
 
 const AccountColumn: ColumnDef<TableData>[] = [
@@ -111,8 +121,8 @@ const AccountColumn: ColumnDef<TableData>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex items-center gap-2">
-          {platformIcons[row.original.platform as PlatformEnum]}
-          <p>{row.original.platform}</p>
+          {platformIcons[row.original.platform]}
+          <p className="capitalize">{row.original.platform}</p>
         </div>
       );
     },
@@ -167,13 +177,17 @@ const AccountColumn: ColumnDef<TableData>[] = [
     cell: () => {
       return (
         <div className="flex items-center gap-8 w-full justify-end">
+          <Button variant={"ghost"} className="text-blue-500 hover:bg-transparent">Top Up</Button>
           <Button
             className="px-1.5 text-sm text-blue-500 hover:bg-transparent"
             variant="ghost"
+            onClick={(e) => {
+              e.stopPropagation()
+              console.log("more button clicked")
+            }}
           >
-            Top Up
-          </Button>
           <MoreHorizontal className="text-muted" />
+          </Button>
         </div>
       );
     },

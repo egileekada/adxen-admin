@@ -17,16 +17,30 @@ import {
   RefreshCcw,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { RiCornerUpRightLine } from "react-icons/ri";
+import { RiCornerUpRightLine, RiGoogleFill, RiInstagramLine, RiMetaFill, RiSnapchatFill, RiTiktokFill } from "react-icons/ri";
+import { BsBing } from "react-icons/bs";
+import type { JSX } from "react";
 
 export type TableData = {
   id: number;
   accountId: string;
   accountName: string;
+  platform: Platform,
+  timezone: string,
   status: string;
-  domain: string;
   balance: number;
 };
+
+const Platform = {
+  GOOGLE: "google",
+  INSTAGRAM: "instagram",
+  TIKTOK: "tikTok",
+  SNAPCHAT: "snapchat",
+  META: "meta",
+  BING: "bing",
+} as const;
+
+type Platform = typeof Platform[keyof typeof Platform];
 
 // @ts-expect-error @tanstack/react-table
 enum StatusEnum {
@@ -55,6 +69,17 @@ const statusTextColors = {
   [StatusEnum.AT_RISK]: "text-basic-fusia",
   [StatusEnum.PENDING]: "text-basic-orange",
   [StatusEnum.SUSPENDED]: "text-basic-red",
+};
+
+const platformIcons: Record<Platform, JSX.Element> = {
+  [Platform.GOOGLE]: <RiGoogleFill className="size-4" />,
+  [Platform.INSTAGRAM]: <RiInstagramLine className="size-4" />,
+  [Platform.TIKTOK]: <RiTiktokFill className="size-4" />,
+  [Platform.SNAPCHAT]: (
+    <RiSnapchatFill className="size-4" />
+  ),
+  [Platform.META]: <RiMetaFill className="size-4" />,
+  [Platform.BING]: <BsBing className="size-4" />,
 };
 
 const AccessAdAccountColumns: ColumnDef<TableData>[] = [
@@ -96,6 +121,22 @@ const AccessAdAccountColumns: ColumnDef<TableData>[] = [
     },
   },
   {
+    accessorKey: "platform",
+    header: "Platform",
+    cell: ({ row }) => {
+      return (
+        <div className="flex items-center gap-2">
+          {platformIcons[row.original.platform]}
+          <p>{row.original.platform}</p>
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "timezone",
+    header: "Timezone",
+  },
+  {
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => {
@@ -122,10 +163,6 @@ const AccessAdAccountColumns: ColumnDef<TableData>[] = [
     },
   },
   {
-    accessorKey: "domain",
-    header: "Domain",
-  },
-  {
     accessorKey: "balance",
     header: "Balance",
     cell: ({ row }) => {
@@ -145,6 +182,7 @@ const AccessAdAccountColumns: ColumnDef<TableData>[] = [
     cell: () => {
       return (
         <div className="flex items-center gap-8 w-full justify-center">
+          <Button variant="ghost" className="text-blue-500 hover:bg-transparent">Top up</Button>
           <Popover>
             <PopoverTrigger asChild>
               <Button

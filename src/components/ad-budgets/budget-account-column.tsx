@@ -2,30 +2,34 @@
 
 import type { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
-import { FaGoogle, FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import {
   MoreHorizontal,
 } from "lucide-react";
+import { RiGoogleFill, RiInstagramLine, RiMetaFill, RiTiktokFill, RiSnapchatFill } from "react-icons/ri";
+import type { JSX } from "react";
+import { BsBing } from "react-icons/bs";
 
-export type TableData = {
+export type BudgetTableData = {
   id: number;
   accountId: string;
   accountName: string;
-  platform: string;
+  platform: Platform;
   domain: string;
   balance: number;
   spent: number;
 };
 
-// enum for platform
-// @ts-expect-error @tanstack/react-table
-enum PlatformEnum {
-  GOOGLE = "Google",
-  FACEBOOK = "Facebook",
-  INSTAGRAM = "Instagram",
-  TIKTOK = "TikTok",
-}
+const Platform = {
+  GOOGLE: "google",
+  INSTAGRAM: "instagram",
+  TIKTOK: "tikTok",
+  SNAPCHAT: "snapchat",
+  META: "meta",
+  BING: "bing",
+} as const;
+
+type Platform = typeof Platform[keyof typeof Platform];
 
 // @ts-expect-error @tanstack/react-table
 enum StatusEnum {
@@ -36,14 +40,17 @@ enum StatusEnum {
   REVOKED = "revoked",
 }
 
-const platformIcons = {
-  [PlatformEnum.GOOGLE]: <FaGoogle />,
-  [PlatformEnum.FACEBOOK]: <FaFacebook />,
-  [PlatformEnum.INSTAGRAM]: <FaInstagram />,
-  [PlatformEnum.TIKTOK]: <FaTiktok />,
+const platformIcons: Record<Platform, JSX.Element> = {
+  [Platform.GOOGLE]: <RiGoogleFill className="size-4" />,
+  [Platform.INSTAGRAM]: <RiInstagramLine className="size-4" />,
+  [Platform.TIKTOK]: <RiTiktokFill className="size-4" />,
+  [Platform.SNAPCHAT]: (
+    <RiSnapchatFill className="size-4" />
+  ),
+  [Platform.META]: <RiMetaFill className="size-4" />,
+  [Platform.BING]: <BsBing className="size-4" />,
 };
-
-const BudgetAccountColumn: ColumnDef<TableData>[] = [
+const BudgetAccountColumn: ColumnDef<BudgetTableData>[] = [
   {
     accessorKey: "checkbox",
     header: ({ table }) => {
@@ -80,8 +87,8 @@ const BudgetAccountColumn: ColumnDef<TableData>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex items-center gap-2">
-          {platformIcons[row.original.platform as PlatformEnum]}
-          <p>{row.original.platform}</p>
+          {platformIcons[row.original.platform]}
+          <p className="capitalize">{row.original.platform}</p>
         </div>
       );
     },

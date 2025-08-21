@@ -2,7 +2,7 @@ import HeaderDescription from "@/components/shared/headerDecription";
 import { Button } from "@/components/ui/button";
 import { ListFilter, Plus, Users } from "lucide-react";
 import { useModal } from "@/hooks/use-modal";
-import { AccessManagerColumn, AccessManagerTable } from "@/components/access-manager";
+import { AccessManagerColumn, AccessTable } from "@/components/access-manager";
 
 const accessStats = [
   {
@@ -143,7 +143,7 @@ const BusinessManagerPage = () => {
           </div>
         </div>
         <div className=" mt-6">
-          <AccessManagerTable columns={AccessManagerColumn} data={businessTable} />
+          <AccessTable columns={AccessManagerColumn} data={businessTable} />
         </div>
       </div>
     </div>

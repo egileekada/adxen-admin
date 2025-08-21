@@ -2,7 +2,7 @@
 
 import type { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
-import { FaGoogle, FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa";
+import { RiGoogleFill, RiInstagramLine, RiMetaFill, RiTiktokFill, RiSnapchatFill } from "react-icons/ri";
 import { Settings, Trash, X } from "lucide-react";
 import { RiSendPlaneLine } from "@remixicon/react";
 import { Button } from "@/components/ui/button";
@@ -13,24 +13,29 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import type { JSX } from "react";
+import { BsBing } from "react-icons/bs";
 
 export type RequestData = {
   date: string;
   requestId: string;
   accountName: string;
-  platform: string;
+  platform: Platform;
   timezone: string;
   status: string;
 };
 
-// enum for platform
-// @ts-expect-error @tanstack/react-table
-enum PlatformEnum {
-  GOOGLE = "Google",
-  FACEBOOK = "Facebook",
-  INSTAGRAM = "Instagram",
-  TIKTOK = "TikTok",
-}
+const Platform = {
+  GOOGLE: "google",
+  INSTAGRAM: "instagram",
+  TIKTOK: "tikTok",
+  SNAPCHAT: "snapchat",
+  META: "meta",
+  BING: "bing",
+} as const;
+
+type Platform = typeof Platform[keyof typeof Platform];
+
 
 // @ts-expect-error @tanstack/react-table
 enum StatusEnum {
@@ -55,11 +60,15 @@ const statusTextColors = {
   [StatusEnum.REJECTED]: "text-basic-red",
 };
 
-const platformIcons = {
-  [PlatformEnum.GOOGLE]: <FaGoogle />,
-  [PlatformEnum.FACEBOOK]: <FaFacebook />,
-  [PlatformEnum.INSTAGRAM]: <FaInstagram />,
-  [PlatformEnum.TIKTOK]: <FaTiktok />,
+const platformIcons: Record<Platform, JSX.Element> = {
+  [Platform.GOOGLE]: <RiGoogleFill className="size-4" />,
+  [Platform.INSTAGRAM]: <RiInstagramLine className="size-4" />,
+  [Platform.TIKTOK]: <RiTiktokFill className="size-4" />,
+  [Platform.SNAPCHAT]: (
+    <RiSnapchatFill className="size-4" />
+  ),
+  [Platform.META]: <RiMetaFill className="size-4" />,
+  [Platform.BING]: <BsBing className="size-4" />,
 };
 
 const AccountRequestColumns: ColumnDef<RequestData>[] = [
@@ -103,8 +112,8 @@ const AccountRequestColumns: ColumnDef<RequestData>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex items-center gap-2">
-          {platformIcons[row.original.platform as PlatformEnum]}
-          <p>{row.original.platform}</p>
+          {platformIcons[row.original.platform]}
+          <p className="capitalize">{row.original.platform}</p>
         </div>
       );
     },

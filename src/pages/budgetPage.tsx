@@ -1,4 +1,3 @@
-// import { TransactionTable } from "@/components/accounts/account-request-table";
 import HeaderDescription from "@/components/shared/headerDecription";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,18 +8,16 @@ import {
 } from "@/components/ui/select";
 import { SelectValue } from "@radix-ui/react-select";
 import { SelectContent } from "@radix-ui/react-select";
-// import { requestColumns } from "../components/accounts/account-request-column";
 import {
   ChevronRight,
   ListFilter,
   MoreHorizontal,
   PlusIcon,
 } from "lucide-react";
-// import { AccountTable } from "@/components/accounts/account-table";
-// import { accountColumns } from "@/components/accounts/account-column";
 import TableFilter from "@/components/shared/table-filter";
 import { useModal } from "@/hooks/use-modal";
-import { BudgetAccountColumn, BudgetAccountTable, BudgetTransactionColumn, BudgetTransactionTable } from "@/components/ad-budgets";
+import { BudgetAdAccountColumn, BudgetTable, BudgetTransactionColumn } from "@/components/ad-budgets";
+import type { BudgetTableData } from "@/components/ad-budgets/budget-account-column";
 
 const budgetData = [
   {
@@ -86,12 +83,12 @@ const transactionData = [
   },
 ];
 
-const data = [
+const data: BudgetTableData[] = [
   {
     id: 1,
     accountId: "1234567890",
     accountName: "Amazon - Mexico",
-    platform: "Google",
+    platform: "google",
     domain: "amazon.com.nx",
     balance: 100,
     spent: 20,
@@ -100,7 +97,7 @@ const data = [
     id: 2,
     accountId: "1234567890",
     accountName: "Amazon - Mexico",
-    platform: "Google",
+    platform: "meta",
     domain: "amazon.com.nx",
     balance: 100,
     spent: 20
@@ -109,7 +106,7 @@ const data = [
     id: 3,
     accountId: "1234567890",
     accountName: "Amazon - Mexico",
-    platform: "Google",
+    platform: "snapchat",
     domain: "amazon.com.nx",
     balance: 100,
     spent: 10
@@ -118,7 +115,7 @@ const data = [
     id: 4,
     accountId: "1234567890",
     accountName: "Amazon - Mexico",
-    platform: "Google",
+    platform: "bing",
     domain: "amazon.com.nx",
     balance: 100,
     spent: 60
@@ -231,7 +228,7 @@ const BudgetPage = () => {
             </Button>
           </div>
           {/* use account request table fro transaction table or modify using another folder */}
-          <BudgetTransactionTable columns={BudgetTransactionColumn} data={transactionData}/>
+          <BudgetTable columns={BudgetTransactionColumn} data={transactionData}/>
         </div>
 
         {/* second table */}
@@ -246,7 +243,7 @@ const BudgetPage = () => {
             </Button>
           </div>
           <TableFilter showRefreshButton={false} />
-          <BudgetAccountTable columns={BudgetAccountColumn} data={data}/>
+          <BudgetTable columns={BudgetAdAccountColumn} data={data}/>
         </div>
       </div>
 

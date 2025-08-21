@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 export type RequestData = {
   subaccountId: string;
   accountName: string;
-  balance: string;
+  initBalance: string;
   status: string;
   createdOn: string;
 };
@@ -27,26 +27,41 @@ const statusIcons = {
 
 const statusColors = {
   [StatusEnum.APPROVED]: "bg-badge-green-10",
-  [StatusEnum.PENDING]: "bg-badge-red-10",
+  [StatusEnum.PENDING]: "bg-badge-orange-10",
 };
 
 const statusTextColors = {
   [StatusEnum.APPROVED]: "text-basic-green",
-  [StatusEnum.PENDING]: "text-basic-red",
+  [StatusEnum.PENDING]: "text-basic-orange",
 };
 
-export const subaccountColumns: ColumnDef<RequestData>[] = [
+const AccountSubaccountColumns: ColumnDef<RequestData>[] = [
   {
     accessorKey: "subaccountId",
     header: "Subaccount ID",
+    cell: ({row} ) => {
+      return (
+        <p className="text-default text-sm font-normal">{row.original.subaccountId}</p>
+      )
+    }
   },
   {
     accessorKey: "accountName",
     header: "Account Name",
+    cell: ({row} ) => {
+      return (
+        <p className="text-default text-sm font-normal">{row.original.accountName}</p>
+      )
+    }
   },
   {
-    accessorKey: "balance",
-    header: "Balance",
+    accessorKey: "initial-balance",
+    header: "Initial Balance",
+    cell: ({row} ) => {
+      return (
+        <p className="text-default text-sm font-medium">{row.original.initBalance}</p>
+      )
+    }
   },
   {
     accessorKey: "status",
@@ -77,5 +92,13 @@ export const subaccountColumns: ColumnDef<RequestData>[] = [
   {
     accessorKey: "createdOn",
     header: "Created On",
+    cell: ({row} ) => {
+      return (
+        <p className="text-default text-sm font-normal">{row.original.createdOn}</p>
+      )
+    }
   },
 ];
+
+
+export default AccountSubaccountColumns

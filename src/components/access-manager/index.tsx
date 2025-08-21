@@ -1,6 +1,4 @@
-export {default as AccessManagerTable} from "./access-manager-table"
+export {default as AccessTable} from "./access-table"
 export {default as AccessManagerColumn} from "./access-manager-column"
-export {default as AccessAdAccountTable} from "./access-adaccount-table"
 export {default as AccessAdAccountColumns} from "./access-adaccount-column"
 export {default as AccessLogColumn} from "./access-log-column"
-export {default as AccessLogTable} from "./access-log-table"

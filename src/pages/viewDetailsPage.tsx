@@ -32,98 +32,17 @@ import { ListFilter, MoreHorizontal } from "lucide-react";
 import HeaderDescription from "@/components/shared/headerDecription";
 import Stats from "@/components/shared/stats";
 import Charts from "@/components/shared/charts";
-// import { TransactionTable } from "@/components/accounts/account-request-table";
-// import { transactionColumns } from "@/components/shared/tables-columns/transaction-column";
-
-import { LogTable } from "@/components/shared/data-tables/log-table";
-import { logColumns } from "@/components/shared/tables-columns/log-column";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useModal, type ModalType } from "@/hooks/use-modal";
-import { SubaccountTable } from "@/components/shared/data-tables/subaccount-table";
-import { subaccountColumns } from "@/components/shared/tables-columns/subaccount-column";
 
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { AccountRequestTable, AccountTransactionColumn } from "@/components/accounts";
+import { AccountLogColumn, AccountTable, AccountTransactionColumn, AccountSubaccountColumns } from "@/components/accounts";
 
-// const data = [
-//   {
-//     id: 1,
-//     accountId: "1234567890",
-//     accountName: "Amazon - Mexico",
-//     platform: "Google",
-//     timezone: "(GMT+2) Paris",
-//     status: "approved",
-//     balance: 100,
-//   },
-//   {
-//     id: 2,
-//     accountId: "1234567890",
-//     accountName: "Amazon - Mexico",
-//     platform: "Google",
-//     timezone: "(GMT+2) Paris",
-//     status: "at risk",
-//     balance: 100,
-//   },
-//   {
-//     id: 3,
-//     accountId: "1234567890",
-//     accountName: "Amazon - Mexico",
-//     platform: "Google",
-//     timezone: "(GMT+2) Paris",
-//     status: "pre-approved",
-//     balance: 100,
-//   },
-//   {
-//     id: 4,
-//     accountId: "1234567890",
-//     accountName: "Amazon - Mexico",
-//     platform: "Google",
-//     timezone: "(GMT+2) Paris",
-//     status: "revoked",
-//     balance: 100,
-//   },
-//   {
-//     id: 5,
-//     accountId: "1234567890",
-//     accountName: "Amazon - Mexico",
-//     platform: "Google",
-//     timezone: "(GMT+2) Paris",
-//     status: "draft",
-//     balance: 100,
-//   },
-//   {
-//     id: 5,
-//     accountId: "1234567890",
-//     accountName: "Amazon - Mexico",
-//     platform: "Google",
-//     timezone: "(GMT+2) Paris",
-//     status: "draft",
-//     balance: 100,
-//   },
-//   {
-//     id: 5,
-//     accountId: "1234567890",
-//     accountName: "Amazon - Mexico",
-//     platform: "Google",
-//     timezone: "(GMT+2) Paris",
-//     status: "draft",
-//     balance: 100,
-//   },
-//   {
-//     id: 5,
-//     accountId: "1234567890",
-//     accountName: "Amazon - Mexico",
-//     platform: "Google",
-//     timezone: "(GMT+2) Paris",
-//     status: "draft",
-//     balance: 100,
-//   },
-// ];
 
 const stats = [
   {
@@ -233,21 +152,21 @@ const subaccountData = [
   {
     subaccountId: "1234567890",
     accountName: "Amazon - Mexico",
-    balance: "$100",
+    initBalance: "$100",
     status: "approved",
     createdOn: "Feb 12, 2025",
   },
   {
     subaccountId: "1234567890",
     accountName: "Amazon - Mexico",
-    balance: "$100",
+    initBalance: "$100",
     status: "approved",
     createdOn: "Feb 12, 2025",
   },
   {
     subaccountId: "1234567890",
     accountName: "Amazon - Mexico",
-    balance: "$100",
+    initBalance: "$100",
     status: "pending",
     createdOn: "Feb 12, 2025",
   },
@@ -258,7 +177,6 @@ function AdAccountPage() {
   const location = useLocation();
 
   const isSubaccount = location.search.includes("tab=request");
-  console.log(isSubaccount);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -604,20 +522,20 @@ function AdAccountPage() {
                 <h1 className="mb-4 text-lg text-default font-semibold">
                   Recent Transactions
                 </h1>
-                <AccountRequestTable columns={AccountTransactionColumn} data={paymentData}/>
+                <AccountTable columns={AccountTransactionColumn} data={paymentData}/>
               </div>
             </div>
           </TabsContent>
           <TabsContent value="subaccounts" className="mt-5">
-            <SubaccountTable
-              columns={subaccountColumns}
+            <AccountTable
+              columns={AccountSubaccountColumns}
               data={subaccountData}
             />
           </TabsContent>
           <TabsContent value="logs" className="mt-5">
             <div>
               <h1 className="mb-4 text-lg text-default">Recent Logs</h1>
-              <LogTable columns={logColumns} data={logData} />
+              <AccountTable columns={AccountLogColumn} data={logData} />
             </div>
           </TabsContent>
         </Tabs>

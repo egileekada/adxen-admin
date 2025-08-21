@@ -110,7 +110,7 @@ const AccessManagerColumn: ColumnDef<TableData>[] = [
     header: "Manager Name",
     cell: ({row}) => {
       return (
-        <p className="w-[200px] text-default text-sm font-normal">{row.original.managerName}</p>
+        <p className="text-default text-sm font-normal">{row.original.managerName}</p>
       )
     }
   },
